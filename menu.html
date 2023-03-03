@@ -105,7 +105,24 @@
             <h1 id="play"><a id="playLink" href='introCutscene.html'>Play</a></h1>
         </body>
     <script>
+        let menuSong
+        function preload() {
+            soundFormats('mp3', 'ogg');
+            menuSong = loadSound('menuSong(Petscop-AdenMayo).mp3')
+            menuSong.setVolume(0.1)
+        }
 
+        function menuMusic() {
+            menuSong.play()
+            menuSong.loop()
+            
+        }
+
+        function setup() {
+            userStartAudio()
+            menuMusic()
+            }
+        
     </script>
   </head>
 </html>
