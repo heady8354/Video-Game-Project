@@ -27,13 +27,14 @@
             position: absolute;
             -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: black;
-            animation-name: titleRotate, titleDrop, titleMove;
+            animation-name: titleRotate, titleDrop;
             animation-duration: 2s, 2s,2s;
             animation-timing-function: ease-in-out, ease-out,ease-out;
             animation-delay: 0s, 0s, 3.5s;
             animation-iteration-count: infinite, 1, 1;
             animation-direction: normal, forwards, normal;
             animation-fill-mode: none, forwards, forwards;
+            cursor: pointer;
         }
         #credit {
             font-family: Garamond;
@@ -42,35 +43,66 @@
             -webkit-text-stroke-width: 0.5px;
             -webkit-text-stroke-color: black;
             font-size: 40px;
-            left: 43%;
+            left: 42%;
             top: 110%;
             animation-name: creditPopUp;
             animation-duration: 1s;
             animation-fill-mode: forwards;
             animation-delay: 1.5s;
+            cursor: pointer;
+        }
+
+        #play {
+            font-family: Garamond;
+            color: white;
+            font-size: 80px;
+            left: 44%;
+            top: 49%;
+            position: absolute;
+            opacity: 0%;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: black;
+            animation-name: playAppear;
+            animation-duration: 1.5s;
+            animation-delay: 3s;
+            animation-fill-mode: forwards;
+            transition: transform 0.5s ease-in-out;
+            transform-origin: center;
+            cursor: pointer;
+        }
+        #play:hover {
+            transform: scale(1.5);
+        }
+        #playLink {
+            text-decoration: none;
+            color: white;
+        }
+        @keyframes playAppear {
+            0% {opacity: 0%;}
+            100% { opacity: 100%; }
         }
         @keyframes titleDrop {
             0% {top: -20%}
             100% {top: 15%}
         }
         @keyframes titleRotate {
-            0% {transform: rotate(10deg);}
-            50% {transform: rotate(-10deg);}
-            100% {transform: rotate(10deg);}
-        }
-        @keyframes titleMove {
-            0% {left: 39%}
-            100% {left: 65%}
+            0% {transform: rotate(5deg);}
+            50% {transform: rotate(-5deg);}
+            100% {transform: rotate(5deg);}
         }
         @keyframes creditPopUp {
             0% {top: 110%}
             100% {top: 90%}
         }
+        @keyframes playAppear {
+            0% {opacity: 0;}
+            100% {opacity: 100%;}
+        }
         </style>
         <body>
             <h1 id="title">Amnesia</h1>
             <h3 id="credit">by Will Lopez</h3>
-            <h1 id="play">Play</h1>
+            <h1 id="play"><a id="playLink" href='introCutscene.html'>Play</a></h1>
         </body>
     <script>
 
