@@ -17,6 +17,7 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
+            color:black
         }
         #title {
             font-family: Garamond;
@@ -102,14 +103,27 @@
         <body>
             <h1 id="title">Amnesia</h1>
             <h3 id="credit">by Will Lopez</h3>
-            <h1 id="play"><a id="playLink" href='introCutscene.html'>Play</a></h1>
+            <h1 id="play" onclick="beginGameF()">Play</h1>
         </body>
     <script>
-        let menuSong
+        let fadeDuration = 3 //seconds
+        let fadeAmount = 5;
+        let opacity = 255;
+        let fadeOut = false
+
+        
+
+        function beginGameF() {
+            beginGame.play();
+            menuSong.fade(0, fadeDuration);
+            }
+
         function preload() {
             soundFormats('mp3', 'ogg');
             menuSong = loadSound('menuSong(Petscop-AdenMayo).mp3')
             menuSong.setVolume(0.1)
+            beginGame = loadSound('beginGame(OMORI-FileSaved).mp3')
+            beginGame.setVolume(0.1)
         }
 
         function menuMusic() {
@@ -122,6 +136,15 @@
             userStartAudio()
             menuMusic()
             }
+
+        function draw() {
+            if (fadeOut) {
+            fadeAmount += 5;
+            if (fadeAmount >= 255) {
+            fadeAmount = 255;
+            }
+        }
+        }
         
     </script>
   </head>
