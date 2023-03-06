@@ -35,6 +35,7 @@
             animation-direction: normal, forwards, normal;
             animation-fill-mode: none, forwards, forwards;
             cursor: pointer;
+           
         }
         #credit {
             font-family: Garamond;
@@ -50,6 +51,7 @@
             animation-fill-mode: forwards;
             animation-delay: 1.5s;
             cursor: pointer;
+            z-index: -1;
         }
 
         #play {
@@ -66,17 +68,27 @@
             animation-duration: 1.5s;
             animation-delay: 3s;
             animation-fill-mode: forwards;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.5s ease-in-out, opacity 3s ease-in-out;
             transform-origin: center;
             cursor: pointer;
+            z-index: 1000;
+            
         }
         #play:hover {
             transform: scale(1.5);
         }
-        #playLink {
-            text-decoration: none;
-            color: white;
-        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+            z-index: 999;
+            }
         @keyframes playAppear {
             0% {opacity: 0%;}
             100% { opacity: 100%; }
@@ -98,18 +110,43 @@
             0% {opacity: 0;}
             100% {opacity: 100%;}
         }
+        @keyframes playDisappear {
+            0% {opacity: 100%;}
+            100% {opacity: 0%;}
+        }
         </style>
         <body>
             <h1 id="title">Amnesia</h1>
             <h3 id="credit">by Will Lopez</h3>
-            <h1 id="play"><a id="playLink" href='introCutscene.html'>Play</a></h1>
+            <h1 id="play" onclick="beginGameF()">Play</h1>
+            <div id="overlay"></div>
         </body>
     <script>
-        let menuSong
+        let fadeDuration = 3 //seconds
+
+        const overlay = document.getElementById("overlay");
+
+
+        play.addEventListener("click", () => {
+            overlay.style.opacity = 1;
+            });
+
+        function beginGameF() {
+            beginGame.play();
+            menuSong.fade(0, fadeDuration);
+            document.getElementById('play').style.animation = 'playDisappear 3s forwards'
+            setTimeout(function() {
+                location.replace('introCutscene.html');
+            }, 4000);
+            }
+            
+
         function preload() {
             soundFormats('mp3', 'ogg');
             menuSong = loadSound('menuSong(Petscop-AdenMayo).mp3')
             menuSong.setVolume(0.1)
+            beginGame = loadSound('beginGame(OMORI-FileSaved).mp3')
+            beginGame.setVolume(0.1)
         }
 
         function menuMusic() {
@@ -122,6 +159,15 @@
             userStartAudio()
             menuMusic()
             }
+
+        function draw() {
+            if (fadeOut) {
+            fadeAmount += 5;
+            if (fadeAmount >= 255) {
+            fadeAmount = 255;
+            }
+        }
+        }
         
     </script>
   </head>
