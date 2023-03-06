@@ -20,7 +20,21 @@
         #mcClosed {
             position: absolute;
             top: 65%;
-            left: 45%
+            left: 45%;
+            animation-name: mcWake1;
+            animation-delay: 4s;
+            animation-duration: 0.1s;
+            animation-fill-mode: forwards;
+        }
+        #mcLay {
+            position: absolute;
+            top: 65%;
+            left: 45%;
+            opacity: 0;
+            animation-name: mcWake2;
+            animation-delay: 4s;
+            animation-duration: 0.1s;
+            animation-fill-mode: forwards;
         }
         #JCL {
             position: absolute;
@@ -30,15 +44,36 @@
         #DLD {
             position: absolute;
             top: 55%;
-            left: 45%
+            left: 45%;
+            animation-name: shockDL;
+            animation-duration: 0.5s;
+            animation-delay: 4.5s;
+            animation-fill-mode: forwards;
+
+
+        }
+
+        @keyframes mcWake1 {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        @keyframes mcWake2 {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes shockDL {
+            0% {top: 55%}
+            50% {top: 50%}
+            100% {top: 55%}
         }
         </style>
 
         <body>
             <img src="mcClosed.png" id="mcClosed">
+            <img src="mcLay.png" id="mcLay">
             <img src="JoshuaCoinLeft.png" id="JCL">
             <img src="DeniseLockermanDown.png" id="DLD"> 
-            <div id="fade"></div>
+            
         </body>
 
         <script>
