@@ -40,6 +40,10 @@
             position: absolute;
             top: 65%;
             left: 53%; 
+            animation-name: shockJC;
+            animation-duration: 0.5s;
+            animation-delay: 4.6s;
+            animation-fill-mode: forwards;
         }
         #DLD {
             position: absolute;
@@ -49,10 +53,32 @@
             animation-duration: 0.5s;
             animation-delay: 4.5s;
             animation-fill-mode: forwards;
-
-
         }
-
+        #DLChatBox {
+            position: absolute;
+            width: 23vw;
+            height: 37vh;
+            left: 74vw;
+            top: 35vh;
+            background-color: gainsboro;
+            border: 5px solid gray;
+            opacity: 0;
+            animation-name: DLchatboxappear1;
+            animation-duration: 0.1s;
+            animation-delay: 5s;
+            animation-fill-mode: forwards;
+        }
+        #DLPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            z-index: 5;
+            opacity: 0;
+            animation-name: DLchatboxappear1;
+            animation-duration: 0.1s;
+            animation-delay: 5s;
+            animation-fill-mode: forwards;
+        }
         @keyframes mcWake1 {
             0% {opacity: 1;}
             100% {opacity: 0;}
@@ -66,6 +92,15 @@
             50% {top: 50%}
             100% {top: 55%}
         }
+        @keyframes shockJC {
+            0% {top: 65%}
+            50% {top: 60%}
+            100% {top: 65%}
+        }
+        @keyframes DLchatboxappear1 {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
         </style>
 
         <body>
@@ -73,9 +108,21 @@
             <img src="mcLay.png" id="mcLay">
             <img src="JoshuaCoinLeft.png" id="JCL">
             <img src="DeniseLockermanDown.png" id="DLD"> 
+            <img src="DeniseLockermanPortrait.png" id="DLPortrait">
+            <div id="DLChatBox"><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>???</b><br><br><br><span id='typed-text'></span></div>
             
         </body>
 
         <script>
-
+            var text = "Oh my, he's awake!";
+            var delay = 50; // delay in milliseconds
+            var i = 0;
+            function type() {
+                if (i < text.length) {
+                document.getElementById("typed-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, delay);
+                }
+            }
+            setTimeout(type, 5000); // 5-second delay before calling the type function
         </script>
