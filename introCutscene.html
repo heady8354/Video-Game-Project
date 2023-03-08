@@ -63,10 +63,10 @@
             background-color: gainsboro;
             border: 5px solid gray;
             opacity: 0;
-            animation-name: DLchatboxappear1;
-            animation-duration: 0.1s;
-            animation-delay: 5s;
-            animation-fill-mode: forwards;
+            animation-name: DLchatboxappear1,DLchatboxdisappear1;
+            animation-duration: 0.1s,0.1s;
+            animation-delay: 5s,7s;
+            animation-fill-mode: forwards,forwards;
         }
         #DLPortrait {
             top: 35vh;
@@ -74,10 +74,10 @@
             position: absolute;
             z-index: 5;
             opacity: 0;
-            animation-name: DLchatboxappear1;
-            animation-duration: 0.1s;
-            animation-delay: 5s;
-            animation-fill-mode: forwards;
+            animation-name: DLchatboxappear1,DLchatboxdisappear1;
+            animation-duration: 0.1s,0.1s;
+            animation-delay: 5s,7s;
+            animation-fill-mode: forwards,forwards;
         }
         @keyframes mcWake1 {
             0% {opacity: 1;}
@@ -101,6 +101,10 @@
             0% {opacity: 0;}
             100% {opacity: 1;}
         }
+        @keyframes DLchatboxdisappear1 {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
         </style>
 
         <body>
@@ -109,20 +113,31 @@
             <img src="JoshuaCoinLeft.png" id="JCL">
             <img src="DeniseLockermanDown.png" id="DLD"> 
             <img src="DeniseLockermanPortrait.png" id="DLPortrait">
-            <div id="DLChatBox"><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>???</b><br><br><br><span id='typed-text'></span></div>
-            
+            <div id="DLChatBox"><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>???</b><br><br><br><span id='typed-text'></span></div>
+            <div id="JCChatBox"><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>???</b><br><br><br><span id='typed-text'></span></div>
         </body>
 
         <script>
-            var text = "Oh my, he's awake!";
+            var ohmy = "Oh my, he's awake!";
             var delay = 50; // delay in milliseconds
             var i = 0;
-            function type() {
-                if (i < text.length) {
-                document.getElementById("typed-text").innerHTML += text.charAt(i);
+            function ohmy() {
+                if (i < ohmy.length) {
+                document.getElementById("typed-text").innerHTML += ohmy.charAt(i);
                 i++;
-                setTimeout(type, delay);
+                setTimeout(ohmy, delay);
                 }
             }
-            setTimeout(type, 5000); // 5-second delay before calling the type function
+            setTimeout(ohmy, 5000); // 5-second delay before calling the type function
+            var yeah = "yeah!! hes back!!";
+            var delay = 50; // delay in milliseconds
+            var i = 0;
+            function yeah() {
+                if (i < yeah.length) {
+                document.getElementById("typed-text").innerHTML += yeah.charAt(i);
+                i++;
+                setTimeout(yeah, delay);
+                }
+            }
+            setTimeout(yeah, 7000); // 5-second delay before calling the type function
         </script>
