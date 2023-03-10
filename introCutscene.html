@@ -37,6 +37,20 @@
             animation-duration: 0.1s;
             animation-fill-mode: forwards;
         }
+        #mcDown {
+            position: absolute;
+            top: 65%;
+            left: 45%;
+            opacity: 0;
+            z-index: 2;
+        }
+        #mcUp {
+            position: absolute;
+            top: 65%;
+            left: 45%;
+            opacity: 0;
+            z-index: 2;
+        }
         #JCL {
             position: absolute;
             top: 65%;
@@ -61,10 +75,11 @@
             height: 37vh;
             left: 74vw;
             top: 35vh;
+            z-index: -1;
             opacity: 0;
             background-color: gainsboro;
             border: 5px solid gray;
-            animation-name: DLchatboxappear1,DLchatboxdisappear1;
+            animation-name: appear,disappear;
             animation-duration: 0.1s,0.1s;
             animation-delay: 5s,7s;
             animation-fill-mode: forwards,forwards;
@@ -73,12 +88,11 @@
             top: 35vh;
             left: 74vw;
             position: absolute;
-            z-index: 5;
             opacity: 0;
-            animation-name: DLchatboxappear1,DLchatboxdisappear1;
-            animation-duration: 0.1s,0.1s;
-            animation-delay: 5s,7s;
-            animation-fill-mode: forwards,forwards;
+            animation-name: appear;
+            animation-duration: 0.1s;
+            animation-delay: 5s;
+            animation-fill-mode: forwards;
         }
         #JCChatBox {
             position: absolute;
@@ -86,21 +100,22 @@
             height: 37vh;
             left: 74vw;
             top: 35vh;
+            z-index: 1;
+            opacity: 0;
             background-color: gainsboro;
             border: 5px solid gray;
-            visibility: hidden;
-            animation-name: JCchatboxappear1;
-            animation-delay: 7s;
+            animation-name: appear;
             animation-duration: 0.1s;
+            animation-delay: 7s;
             animation-fill-mode: forwards;
         }
         #JCPortrait {
             top: 35vh;
             left: 74vw;
             position: absolute;
-            z-index: 1;
-            visibility: hidden;
-            animation-name: JCchatboxappear1;
+            opacity: 0;
+            z-index: 2;
+            animation-name: appear;
             animation-duration: 0.1s;
             animation-delay: 7s;
             animation-fill-mode: forwards;
@@ -123,23 +138,26 @@
             50% {top: 60%}
             100% {top: 65%}
         }
-        @keyframes DLchatboxappear1 {
+        @keyframes mcJump {
+            0% {top: 65%; opacity: 0;}
+            50% {top: 60%; opacity: 1;}
+            100% {top: 65%; opacity: 1;}
+        }
+        @keyframes appear {
             0% {opacity: 0;}
             100% {opacity: 1;}
         }
-        @keyframes DLchatboxdisappear1 {
+        @keyframes disappear {
             0% {opacity: 1;}
             100% {opacity: 0;}
-        }
-        @keyframes JCchatboxappear1 {
-            0% {visibility: hidden;}
-            100% {visibility: visible;}
         }
         </style>
 
         <body>
             <img src="mcClosed.png" id="mcClosed">
             <img src="mcLay.png" id="mcLay">
+            <img src="mcDown.png" id="mcDown">
+            <img src="mcUp.png" id="mcUp">
             <img src="JoshuaCoinLeft.png" id="JCL">
             <img src="DeniseLockermanDown.png" id="DLD"> 
             <img src="DeniseLockermanPortrait.png" id="DLPortrait">
@@ -149,11 +167,29 @@
         </body>
 
         <script>
+
             function terrible() {
                 document.getElementById('JCPortrait').style.top = "10000%"
-                document.getElementById('DLPortrait').style.opacity = '1'
-                document.getElementById('JCChatBox').style.opacity = '0'
-                document.getElementById('yeah').innerHTML = ' '
+                document.getElementById('DLPortrait').style.zIndex = '3'
+                document.getElementById('yeah').innerHTML = 'Haha, well. You just took quite the fall. You were out for about an hour!'
+                document.getElementById('terrible').style.opacity = '0'
+                document.getElementById('whoAre').style.opacity = '0'
+                function terrible2() {
+                    document.getElementById('DLPortrait').style.zIndex = '1'
+                    document.getElementById('JCPortrait').style.top = '35vh'
+                    document.getElementById('yeah').innerHTML = 'cmon partner, get up.'
+                    function terrible3() {
+                        document.getElementById('mcLay').style.animation = "disappear 0.1s forwards"
+                        document.getElementById('mcDown').style.animation = "mcJump 0.5s forwards"
+                        function terrible4() {
+                            document.getElementById('DLPortrait').style.zIndex = '3'
+                            document.getElementById('JCPortrait').style.top = '1000%'
+                            document.getElementById('mcDown').style.animation = "disappear 0.1s forwards"
+                            document.getElementById('mcUp').style.animation = "appear 0.1s forwards"
+                            document.getElementById('yeah').innerHTML = "So, are you okay? <br><br> <button id='where' onclick='where()'>where am i?</button><br><button id='whoAre2' onclick='whoAre2'>who are you people?</button>"
+                        } setTimeout(terrible4,1000)
+                    } setTimeout(terrible3,1000)
+                } setTimeout(terrible2, 3000)
             }
             
         </script>
