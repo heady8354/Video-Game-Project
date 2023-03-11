@@ -66,6 +66,9 @@
             animation-duration: 0.5s;
             animation-delay: 4.6s;
             animation-fill-mode: forwards;
+            position: absolute;
+            top: 65%;
+            left: 53%; 
         }
         #DLD {
             position: absolute;
@@ -75,6 +78,12 @@
             animation-duration: 0.5s;
             animation-delay: 4.5s;
             animation-fill-mode: forwards;
+        }
+        #DLR {
+            position: absolute;
+            top: 55%;
+            left: 45%;
+            opacity: 0;
         }
         #DLChatBox {
             position: absolute;
@@ -127,6 +136,12 @@
             animation-delay: 7s;
             animation-fill-mode: forwards;
         }
+        #JCD {
+            position: absolute;
+            top: 65%;
+            left: 53%; 
+            opacity: 0;
+        }
         @keyframes mcWake1 {
             0% {opacity: 1;}
             100% {opacity: 0;}
@@ -167,13 +182,14 @@
             <img src="mcUp.png" id="mcUp">
             <img src="mcRight.png" id="mcRight">
             <img src="JoshuaCoinLeft.png" id="JCL">
+            <img src="JoshuaCoinDown.png" id="JCD">
             <img src="DeniseLockermanDown.png" id="DLD"> 
+            <img src="DeniseLockermanRight.png" id="DLR">
             <img src="DeniseLockermanPortrait.png" id="DLPortrait">
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
             <div id="DLChatBox"><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>???</b><br><br><br><p id='ohmy'>Oh my, he's awake!</p></div>
             <div id="JCChatBox"><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>???</b><br><br><br><p id="yeah">yeah! how do you feel?</p><br><br><button id='terrible' onclick='terrible()'>terrible...</button><br><button id='whoAre' onclick=whoAre()>who are you people?</button></div>
         </body>
-
         <script>
 
             function terrible() {
@@ -203,6 +219,7 @@
                 document.getElementById('JCPortrait').style.top = "10000%"
                 document.getElementById('DLPortrait').style.zIndex = '3'
                 document.getElementById('yeah').innerHTML = 'Oh no, has he lost his memory?!'
+                document.getElementById('DLD').style.animation = "shockDL 0.5s forwards"
                 document.getElementById('terrible').style.opacity = '0'
                 document.getElementById('whoAre').style.opacity = '0'
                 function whoAre2() {
@@ -226,6 +243,35 @@
                 } setTimeout(whoAre2,2000)
             }
             function nameChoice() {
-                
+                document.getElementById('JCChatBox').style.top = "10000%"
+                document.getElementById('JCPortrait').style.top = "10000%"
+                document.getElementById('DLPortrait').style.top = "1000%"
+                function nameChoice2() {
+                    document.getElementById('JCL').style.animation = "disappear 0.1s forwards"
+                    document.getElementById('JCD').style.animation = "appear 0.1s forwards"
+                    function nameChoice3() {
+                        document.getElementById('JCL').style.animation = "appear 0.1s forwards"
+                        document.getElementById('JCD').style.animation = "disappear 0.1s forwards"
+                        function nameChoice4() {
+                            document.getElementById('JCChatBox').style.top = "35vh"
+                            document.getElementById('JCPortrait').style.top = "35vh"
+                            document.getElementById('DLPortrait').style.top = "35vh"
+                            document.getElementById('yeah').innerHTML = "so...what do you want know..my student???"
+                            function nameChoice5() {
+                                document.getElementById('JCPortrait').style.top = "10000%"
+                                document.getElementById('DLPortrait').style.top = '35vh'
+                                document.getElementById('DLPortrait').style.zIndex = '3'
+                                document.getElementById('DLD').style.animation = 'disappear 0.1s forwards'
+                                document.getElementById('DLR').style.animation = 'appear 0.1s forwards'
+                                document.getElementById('yeah').innerHTML = 'Really..'
+                                function nameChoice6() {
+                                    document.getElementById('JCPortrait').style.top = '35vh'
+                                    document.getElementById('DLPortrait').style.zIndex = '1'
+                                    document.getElementById('yeah').innerHTML = 'yes! we could teach him all sortsa stuff!!'
+                                } setTimeout(nameChoice6,1500)
+                            } setTimeout(nameChoice5,1500)
+                        } setTimeout(nameChoice4,2000)
+                    } setTimeout(nameChoice3, 2000)
+                } setTimeout(nameChoice2,1000)
             }
         </script>
