@@ -220,7 +220,7 @@
                 document.getElementById('DLPortrait').style.zIndex = '3'
                 document.getElementById('yeah').innerHTML = 'Oh no, has he lost his memory?!'
                 document.getElementById('DLD').style.animation = "shockDL 0.5s forwards"
-                document.getElementById('terrible').style.opacity = '0'
+                document.getElementById('terrible').style.display = 'none'
                 document.getElementById('whoAre').style.opacity = '0'
                 function whoAre2() {
                     document.getElementById('JCPortrait').style.top = '35vh'
@@ -279,7 +279,7 @@
                                         function nameChoice8() {
                                             document.getElementById('JCPortrait').style.top = '35vh'
                                             document.getElementById('DLPortrait').style.zIndex = '1'
-                                            document.getElementById('yeah').innerHTML = "yess!! okay, so.. what do you want to know? <br> <button onclick='name()'>my name</button> <br> <button onclick='location()'>where am I?</button> <br> <button onclick='who()'>who are you?!</button> <br> <button onclick='combat()'>combat</button> <br> <button onclick='social()''>social skills</button>"
+                                            document.getElementById('yeah').innerHTML = "yess!! okay, so.. what do you want to know? <br> <button id='name'>my name</button> <br> <button onclick='location()'>where am I?</button> <br> <button id='who'>who are you?!</button> <br> <button id='combat'>combat</button> <br> <button id='social'>social skills</button>"
                                         } setTimeout(nameChoice8,2000)
                                     } setTimeout(nameChoice7,2000)
                                 } setTimeout(nameChoice6,1500)
@@ -287,24 +287,22 @@
                         } setTimeout(nameChoice4,2000)
                     } setTimeout(nameChoice3, 2000)
                 } setTimeout(nameChoice2,1000)
-                function name() {
-                if (BFFNamesKnown === true) {
-                    document.getElementById('name').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
-                }
-                document.getElementById('yeah').innerHTML = "Your name is X <br> <button onclick=''location()'>where am I?</button> <br> <button onclick='who()'>who are you?!</button> <br> <button onclick='combat()'>combat</button> <br> <button onclick='social()''>social skills</button>" 
+            }
+            function name() {
+                document.getElementById('yeah').innerHTML = "Your name is X <br> <button onclick='location()'>where am I?</button> <br> <button id='who'>who are you?!</button> <br> <button id='combat'>combat</button> <br> <button id='social'>social skills</button>" 
             }
             function location() {
                 if (BFFNamesKnown === true) {
                     document.getElementById('name').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
                 }
-                document.getElementById('yeah').innerHTML = "we live on an island in a town called X, but beware, there is a cove filled with dangerous dudes. Theres a guy in town you can talk to who can explain more, I dont really get involved with any of that. <br> <button onclick='name()'>my name</button> <br> <button onclick='who()'>who are you?!</button> <br> <button onclick='combat()'>combat</button> <br> <button onclick='social()''>social skills</button>"
+                document.getElementById('yeah').innerHTML = "we live on an island in a town called X, but beware, there is a cove filled with dangerous dudes. Theres a guy in town you can talk to who can explain more, I dont really get involved with any of that. <br> <button id='name'>my name</button> <br> <button id='who'>who are you?!</button> <br> <button id='combat'>combat</button> <br> <button id='social'>social skills</button>"
             }
             function who() {
                 BFFNamesKnown = true
                 if (BFFNamesKnown === true) {
                     document.getElementById('name').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
                 }
-                document.getElementById('yeah').innerHTML = "ohh right. Well, my name is Joshua Coin. im your best friend! and she is Denise Lockerman, your other best friend! we are a nice litle group. <br> <button onclick='name()'>my name</button> <br> <button onclick='''location()'>where am I?</button> <br> <button onclick='combat()'>combat</button> <br> <button onclick='social()''>social skills</button> "
+                document.getElementById('yeah').innerHTML = "ohh right. Well, my name is Joshua Coin. im your best friend! and she is Denise Lockerman, your other best friend! we are a nice litle group. <br> <button id='name'>my name</button> <br> <button onclick='location()'>where am I?</button> <br> <button id='combat'>combat</button> <br> <button id='social'>social skills</button> "
             }
             function combat() {
                 document.getElementById('yeah').innerHTML = 'uhh idk lol'
@@ -313,10 +311,8 @@
                 if (BFFNamesKnown === true) {
                     document.getElementById('name').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
                 }
-                document.getElementById('yeah').innerHTML = "well, as you know, when you talk to someone you are given various <b>choices<b>, these choices affect the outcome of your interaction, and also how the person youre talking to feels about you. They will remember what you say. <br> <button onclick='name()'>my name</button> <br> <button onclick='location()'>where am I?</button> <br> <button onclick='who()'>who are you?!</button> <br> <button onclick='combat()'>combat</button> "
-            }
+                document.getElementById('yeah').innerHTML = "well, as you know, when you talk to someone you are given various <b>choices<b>, these choices affect the outcome of your interaction, and also how the person youre talking to feels about you. They will remember what you say. <br> <button id='name'>my name</button> <br> <button onclick='location()'>where am I?</button> <br> <button id='who'>who are you?!</button> <br> <button id='combat'>combat</button> "
             }
             
-            //TBD
             //NTS: fix the undefined shit 
         </script>
