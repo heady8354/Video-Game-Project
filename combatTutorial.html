@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js" integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+      integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+      <!--reference external JS-->
+      <script src="script.js"></script>
+  </head>
+      <style>
+        body {
+            background-image: url('battlescreen.gif');
+        }
+        #MCL {
+            position: absolute;
+            top: 50vh;
+            left: 20vw;
+        }
+        #JCL {
+            position: absolute;
+            top: 50vh;
+            left: 80vw;
+        }
+        #dialogue {
+            position: absolute;
+            height: 30vh;
+            width: 40vw;
+            background-color: gainsboro;
+            border: 5px solid gray;
+            left: 31vw;
+        }
+        #JCPortrait {
+            position: absolute;
+            left: 31vw;
+        }
+        #Charname {
+            font-size: 40px;
+            font-family: fantasy
+        }
+        </style>
+        <body>
+            <img src="mcRight.png" id="MCL">
+            <img src="JoshuaCoinLeft.png" id="JCL">
+            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='typing-text'></span></div>
+            <img src="JoshuaCoinPortrait.png" id="JCPortrait">
+        </body>
+        <script>
+            const message = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything.";
+
+// Set up variables
+let i = 0;
+const speed = 30; // Number of milliseconds between typing each character
+
+// Call the "typeWriter" function every "speed" milliseconds
+const timerId = setInterval(typeWriter, speed);
+
+function typeWriter() {
+  // Get the text element and the current text inside it
+  const textEl = document.getElementById("typing-text");
+  const currentText = textEl.innerHTML;
+
+  // If we've typed out the entire message, stop the timer
+  if (i >= message.length) {
+    clearInterval(timerId);
+    return;
+  }
+
+  // Add the next character to the current text
+  const nextChar = message.charAt(i);
+  const newText = currentText + nextChar;
+
+  // Update the text element with the new text
+  textEl.innerHTML = newText;
+
+  // Increment the counter
+  i++;
+}
+
+        </script>
