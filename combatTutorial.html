@@ -32,6 +32,16 @@
             border: 5px solid gray;
             left: 31vw;
         }
+        #actions {
+            position: absolute;
+            height: 9vh;
+            width: 40vw;
+            padding: 5px;
+            background-color: gainsboro;
+            border: 5px solid gray;
+            left: 31vw;
+            top: 65vh;
+        }
         #JCPortrait {
             position: absolute;
             left: 31vw;
@@ -40,36 +50,58 @@
             font-size: 40px;
             font-family: fantasy
         }
+        #punch {
+        margin: auto;
+        padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+
+        #punch:hover {background-color: #6e02cc}
+
+        #punch:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+
         </style>
         <body>
             <img src="mcRight.png" id="MCL">
             <img src="JoshuaCoinLeft.png" id="JCL">
-            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='typing-text'></span></div>
+            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
+            <div id="actions"><br><button id='punch'>Punch</button></div>
         </body>
         <script>
-            const message = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything.";
+            const welcomeMsg = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything.";
 
 // Set up variables
 let i = 0;
-const speed = 30; // Number of milliseconds between typing each character
+const speed = 30; 
 
-// Call the "typeWriter" function every "speed" milliseconds
 const timerId = setInterval(typeWriter, speed);
 
 function typeWriter() {
-  // Get the text element and the current text inside it
-  const textEl = document.getElementById("typing-text");
+  const textEl = document.getElementById("welcome");
   const currentText = textEl.innerHTML;
 
-  // If we've typed out the entire message, stop the timer
-  if (i >= message.length) {
+  // If we've typed out the entire welcomeMsg, stop the timer
+  if (i >= welcomeMsg.length) {
     clearInterval(timerId);
     return;
   }
 
   // Add the next character to the current text
-  const nextChar = message.charAt(i);
+  const nextChar = welcomeMsg.charAt(i);
   const newText = currentText + nextChar;
 
   // Update the text element with the new text
@@ -80,3 +112,5 @@ function typeWriter() {
 }
 
         </script>
+
+        
