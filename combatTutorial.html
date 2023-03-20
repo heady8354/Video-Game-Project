@@ -36,11 +36,11 @@
         #actions {
             position: absolute;
             height: 9vh;
-            width: 34vw;
+            width: 16.6vw;
             padding: 5px;
             background-color: gainsboro;
             border: 5px solid gray;
-            left: 34vw;
+            left: 42vw;
             top: 120vh;
             animation-name: actionBarRise;
             animation-duration: 1s;
@@ -78,7 +78,6 @@
         }
 
         #defend {
-        margin-left: 26%;
         padding: 5px 15px;
         font-size: 21px;
         cursor: pointer;
@@ -101,7 +100,6 @@
         }
 
         #talk {
-        margin-left: 33%;
         padding: 5px 15px;
         font-size: 21px;
         cursor: pointer;
@@ -174,7 +172,66 @@
             0% {top: 65vh}
             100% {top: 120vh}
         }
+        #talk1option1 {
+            padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+        #talk1option2 {
+            padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+        #actionsReturn {
+            padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+        #talk1option1:hover {background-color: #6e02cc}
 
+        #talk1option1:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+        #talk1option2:hover {background-color: #6e02cc}
+
+        #talk1option2:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+        #actionsReturn:hover {background-color: #6e02cc}
+
+        #actionsReturn:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
         </style>
         <body>
             <img src="mcRight.png" id="MCL">
@@ -189,7 +246,7 @@
         </body>
         <script>
             const welcomeMsg = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything.";
-            const talk1Reply = ''
+            const talk1option2reply = 'ah, there are three different types of weapons. theres a <b>blade</b>, a <b>maul</b>, and a <b>bow</b>. Each weapon is unqiuely powerful against different types of enemies. A blade is most useful against humanoid enemies, like dudes with flesh and fat and stuff. A maul is useful against skeletons. it crushes their bones and stuff. and bows are just for wussys who cant fight.  '
 // Set up variables
 let i = 0;
 const speed = 30; 
@@ -222,11 +279,32 @@ function actionBarRise() {
 function actionBarDescend() {
     document.getElementById('actions').style.animation = 'actionBarDescend 1s forwards'
 }
-talk1run = false
 function talk1() {
     actionBarDescend()
+    function talk1anim1() {
     document.getElementById('actions').innerHTML = "<br><button id='talk1option1' onclick='talk1option1()'>What is all this?</button><button id='talk1option2' onclick='talk1option2()'>what types of gear are there?</button><button id='actionsReturn' onclick='actionsReturn()'>*Back</button>"
+    document.getElementById('actions').style.width = '37vw'
+    document.getElementById('actions').style.left = '33vw'
     actionBarRise()
+    } setTimeout(talk1anim1,1200)
+}
+function actionsReturn() {
+    actionBarDescend()
+    function talk1anim2() {
+    document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
+    document.getElementById('actions').style.width = '16.6vw'
+    document.getElementById('actions').style.left = '42vw'
+    actionBarRise()
+    } setTimeout(talk1anim2,1200)
+}
+function talk1option2() {
+    actionBarDescend()
+    function talk1anim3() {
+    document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
+    document.getElementById('actions').style.width = '16.6vw'
+    document.getElementById('actions').style.left = '42vw'
+    actionBarRise()
+    } setTimeout(talk1anim3,6000)
 }   
 
 
