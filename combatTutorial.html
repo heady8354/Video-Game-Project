@@ -13,6 +13,7 @@
       <style>
         body {
             background-image: url('battlescreen.gif');
+            overflow: hidden;
         }
         #MCL {
             position: absolute;
@@ -35,12 +36,16 @@
         #actions {
             position: absolute;
             height: 9vh;
-            width: 40vw;
+            width: 34vw;
             padding: 5px;
             background-color: gainsboro;
             border: 5px solid gray;
-            left: 31vw;
-            top: 65vh;
+            left: 34vw;
+            top: 120vh;
+            animation-name: actionBarRise;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-delay: 6.5s;
         }
         #JCPortrait {
             position: absolute;
@@ -51,7 +56,6 @@
             font-family: fantasy
         }
         #punch {
-        margin: auto;
         padding: 5px 15px;
         font-size: 21px;
         cursor: pointer;
@@ -73,17 +77,119 @@
         transform: translateY(4px);
         }
 
+        #defend {
+        margin-left: 26%;
+        padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+
+        #defend:hover {background-color: #6e02cc}
+
+        #defend:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+
+        #talk {
+        margin-left: 33%;
+        padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+
+        #talk:hover {background-color: #6e02cc}
+
+        #talk:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+        #mcHP {
+            color: lightgreen;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 56vh;
+            left: 20vw
+        }
+        #mcMorale {
+            color: cyan;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 58vh;
+            left: 20.5vw
+        }
+        #JCHP {
+            color: lightgreen;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 56vh;
+            left: 80vw
+        }
+        #JCMorale {
+            color: cyan;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 58vh;
+            left: 80.5vw
+        }
+        @keyframes actionBarRise {
+            0% {top: 120vh}
+            100% {top: 65vh}
+        }
+        @keyframes actionBarDescend {
+            0% {top: 65vh}
+            100% {top: 120vh}
+        }
+
         </style>
         <body>
             <img src="mcRight.png" id="MCL">
+            <p id="mcHP"><b>100/100</b></p>
+            <p id="mcMorale"><b>100%</b></p>
+            <p id="JCHP"><b>100/100</b></p>
+            <p id="JCMorale"><b>100%</b></p>
             <img src="JoshuaCoinLeft.png" id="JCL">
             <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
-            <div id="actions"><br><button id='punch'>Punch</button></div>
+            <div id="actions"><br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button></div>
         </body>
         <script>
             const welcomeMsg = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything.";
-
+            const talk1Reply = ''
 // Set up variables
 let i = 0;
 const speed = 30; 
@@ -91,8 +197,8 @@ const speed = 30;
 const timerId = setInterval(typeWriter, speed);
 
 function typeWriter() {
-  const textEl = document.getElementById("welcome");
-  const currentText = textEl.innerHTML;
+  const welcomeText = document.getElementById("welcome");
+  const currentText = welcomeText.innerHTML;
 
   // If we've typed out the entire welcomeMsg, stop the timer
   if (i >= welcomeMsg.length) {
@@ -105,11 +211,25 @@ function typeWriter() {
   const newText = currentText + nextChar;
 
   // Update the text element with the new text
-  textEl.innerHTML = newText;
+  welcomeText.innerHTML = newText;
 
   // Increment the counter
   i++;
 }
+function actionBarRise() {
+    document.getElementById('actions').style.animation = 'actionBarRise 1s forwards'
+}
+function actionBarDescend() {
+    document.getElementById('actions').style.animation = 'actionBarDescend 1s forwards'
+}
+talk1run = false
+function talk1() {
+    actionBarDescend()
+    document.getElementById('actions').innerHTML = "<br><button id='talk1option1' onclick='talk1option1()'>What is all this?</button><button id='talk1option2' onclick='talk1option2()'>what types of gear are there?</button><button id='actionsReturn' onclick='actionsReturn()'>*Back</button>"
+    actionBarRise()
+}   
+
+
 
         </script>
 
