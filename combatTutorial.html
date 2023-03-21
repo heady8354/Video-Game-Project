@@ -34,9 +34,9 @@
             left: 31vw;
         }
         #actions {
+            display: inline-block;
             position: absolute;
             height: 9vh;
-            width: 16.6vw;
             padding: 5px;
             background-color: gainsboro;
             border: 5px solid gray;
@@ -283,7 +283,6 @@ function talk1() {
     actionBarDescend()
     function talk1anim1() {
     document.getElementById('actions').innerHTML = "<br><button id='talk1option1' onclick='talk1option1()'>What is all this?</button><button id='talk1option2' onclick='talk1option2()'>what types of gear are there?</button><button id='actionsReturn' onclick='actionsReturn()'>*Back</button>"
-    document.getElementById('actions').style.width = '37vw'
     document.getElementById('actions').style.left = '33vw'
     actionBarRise()
     } setTimeout(talk1anim1,1200)
@@ -292,7 +291,6 @@ function actionsReturn() {
     actionBarDescend()
     function talk1anim2() {
     document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
-    document.getElementById('actions').style.width = '16.6vw'
     document.getElementById('actions').style.left = '42vw'
     actionBarRise()
     } setTimeout(talk1anim2,1200)
@@ -301,9 +299,8 @@ function talk1option2() {
     actionBarDescend()
     function talk1anim3() {
     document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
-    document.getElementById('actions').style.width = '16.6vw'
     document.getElementById('actions').style.left = '42vw'
-    actionBarRise()
+        actionBarRise()
     } setTimeout(talk1anim3,6000)
 }   
 
