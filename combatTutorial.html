@@ -240,18 +240,18 @@
             <p id="JCHP"><b>100/100</b></p>
             <p id="JCMorale"><b>100%</b></p>
             <img src="JoshuaCoinLeft.png" id="JCL">
-            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span></div>
+            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
             <div id="actions"><br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button></div>
         </body>
         <script>
             const welcomeMsg = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything.";
-            const talk1option2reply = 'ah, there are three different types of weapons. theres a <b>blade</b>, a <b>maul</b>, and a <b>bow</b>. Each weapon is unqiuely powerful against different types of enemies. A blade is most useful against humanoid enemies, like dudes with flesh and fat and stuff. A maul is useful against skeletons. it crushes their bones and stuff. and bows are just for wussys who cant fight.  '
+            const weaponsMsg = 'ah, there are three different types of weapons. theres a <b>blade</b>, a <b>maul</b>, and a <b>bow</b>. Each weapon is unqiuely powerful against different types of enemies. A blade is most useful against humanoid enemies, like dudes with flesh and fat and stuff. A maul is useful against skeletons. it crushes their bones and stuff. and bows are just for wussys who cant fight.  '
 // Set up variables
 let i = 0;
-const speed = 30; 
+const txtSpeed = 30; 
 
-const timerId = setInterval(typeWriter, speed);
+const timerId = setInterval(typeWriter, txtSpeed);
 
 function typeWriter() {
   const welcomeText = document.getElementById("welcome");
@@ -297,6 +297,19 @@ function actionsReturn() {
 }
 function talk1option2() {
     actionBarDescend()
+    welcome.remove()
+    function typeWriter2() {
+    const weaponsText = document.getElementById("weapons");
+    const weaponsMsgText = weaponsText.innerHTML;
+    if (i >= weaponsMsg.length) {
+        clearInterval(timerId);
+        return;
+    }
+    const nextChar2 = weaponsMsg.charAt(i);
+    const newText2 = weaponsMsgText + nextChar2;
+    weaponsText.innerHTML = newText2;
+    i++;
+    }
     function talk1anim3() {
     document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
     document.getElementById('actions').style.left = '42vw'
