@@ -232,8 +232,14 @@
         box-shadow: 0 5px #666;
         transform: translateY(4px);
         }
+        #bgbutton {
+            position: absolute;
+        }
         </style>
         <body>
+            <button onclick="stopBG()" id="bgbutton">Stop Background</button>
+            <br>
+            <button onclick="playBG()" id="bgbutton">Play Background</button>
             <img src="mcRight.png" id="MCL">
             <p id="mcHP"><b>100/100</b></p>
             <p id="mcMorale"><b>100%</b></p>
@@ -245,31 +251,31 @@
             <div id="actions"><br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button></div>
         </body>
         <script>
-            const welcomeMsg = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything.";
-            const weaponsMsg = 'ah, there are three different types of weapons. theres a <b>blade</b>, a <b>maul</b>, and a <b>bow</b>. Each weapon is unqiuely powerful against different types of enemies. A blade is most useful against humanoid enemies, like dudes with flesh and fat and stuff. A maul is useful against skeletons. it crushes their bones and stuff. and bows are just for wussys who cant fight.  '
+            const welcomeMsg = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything."
+            const weaponsMsg = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAah, there are three different types of weapons. theres a blade, a maul, and a bow. Each weapon is unqiuely powerful against different types of enemies. A blade is most useful against humanoid enemies, like dudes with flesh and fat and stuff. A maul is useful against skeletons. it crushes their bones and stuff. and bows are just for wussys who cant fight."
+            function stopBG() {
+                document.body.style.backgroundImage = 'url("battlescreenStill.png")'
+            }
+            function playBG() {
+                document.body.style.backgroundImage = 'url("battlescreen.gif")'
+            }
 // Set up variables
 let i = 0;
 const txtSpeed = 30; 
-
-const timerId = setInterval(typeWriter, txtSpeed);
-
-function typeWriter() {
+const timerId = setInterval(typeWelcome, txtSpeed);
+function typeWelcome() {
   const welcomeText = document.getElementById("welcome");
   const currentText = welcomeText.innerHTML;
-
   // If we've typed out the entire welcomeMsg, stop the timer
   if (i >= welcomeMsg.length) {
     clearInterval(timerId);
     return;
   }
-
   // Add the next character to the current text
   const nextChar = welcomeMsg.charAt(i);
   const newText = currentText + nextChar;
-
   // Update the text element with the new text
   welcomeText.innerHTML = newText;
-
   // Increment the counter
   i++;
 }
@@ -298,27 +304,27 @@ function actionsReturn() {
 function talk1option2() {
     actionBarDescend()
     welcome.remove()
-    function typeWriter2() {
+    const timerId = setInterval(typeWeapons, txtSpeed);
+    function typeWeapons() {
     const weaponsText = document.getElementById("weapons");
-    const weaponsMsgText = weaponsText.innerHTML;
+    const currentText2 = weaponsText.innerHTML;
+    // If we've typed out the entire welcomeMsg, stop the timer
     if (i >= weaponsMsg.length) {
         clearInterval(timerId);
         return;
     }
-    const nextChar2 = weaponsMsg.charAt(i);
-    const newText2 = weaponsMsgText + nextChar2;
+    // Add the next character to the current text
+    const nextChar = weaponsMsg.charAt(i);
+    const newText2 = currentText2 + nextChar;
+    // Update the text element with the new text
     weaponsText.innerHTML = newText2;
+    // Increment the counter
     i++;
-    }
     function talk1anim3() {
     document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
     document.getElementById('actions').style.left = '42vw'
         actionBarRise()
     } setTimeout(talk1anim3,6000)
-}   
-
-
-
+}
+} 
         </script>
-
-        
