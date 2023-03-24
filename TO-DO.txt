@@ -1,6 +1,8 @@
 Urgent:
 Combat Tutorial
-fix button order
+add action effects
+action log
+
 
 Near future:
 movement and playability 
