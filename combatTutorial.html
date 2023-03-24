@@ -235,6 +235,26 @@
         #bgbutton {
             position: absolute;
         }
+        #actionLog {
+            position: absolute;
+            z-index: 1;
+            width: 15vw;
+            height: 27vh;
+            background-color: gainsboro;
+            border: 5px solid gray;
+            top: 4vh;
+            left: 71vw;
+            text-align: right;
+            overflow: scroll;
+        }
+        #moraleUp {
+            color:cyan;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        }
         </style>
         <body>
             <button onclick="stopBG()" id="bgbutton">Stop Background</button>
@@ -248,6 +268,7 @@
             <img src="JoshuaCoinLeft.png" id="JCL">
             <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span><span id='allthis'></span><span id='allthis2'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
+            <div id="actionLog">battle begins</div>
             <div id="actions"><br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button></div>
         </body>
         <script>
@@ -261,6 +282,15 @@
             function playBG() {
                 document.body.style.backgroundImage = 'url("battlescreen.gif")'
             }
+            var actionLogCheck = document.getElementById('actionLog')
+            if (actionLogCheck.scrollHeight > actionLogCheck.clientHeight) {
+            // Clear the content of the div
+            actionLogCheck.innerHTML = "";
+            }
+            JCMorale = 100
+            mcMorale = 100
+            JCHealth = 100
+            mcHealth = 100
 // Set up variables
 let i = 0;
 const txtSpeed = 30; 
@@ -287,6 +317,16 @@ function actionBarRise() {
 function actionBarDescend() {
     document.getElementById('actions').style.animation = 'actionBarDescend 1s forwards'
 }
+var element = document.getElementById("actionLog");
+var currentText = element.innerHTML;
+var newText = currentText + " <br> Joshua's turn <br> Joshua uses talk"
+element.innerHTML = newText;
+function firstturn() {
+    var element = document.getElementById("actionLog");
+var currentText = element.innerHTML;
+var newText = currentText + " <br> Jack's turn"
+element.innerHTML = newText;
+}setTimeout(firstturn,6500)
 function talk1() {
     console.log('talk1 pressed')
     actionBarDescend()
@@ -307,6 +347,10 @@ function actionsReturn() {
 }
 function talk1option2() {
     console.log('talk option 2 pressed')
+    var element = document.getElementById("actionLog");
+    var currentText = element.innerHTML;
+    var newText = currentText + " <br> Jack uses talk"
+    element.innerHTML = newText;
     actionBarDescend()
     document.getElementById('welcome').innerHTML = ''
     document.getElementById('allthis').innerHTML = ''
@@ -327,10 +371,21 @@ function talk1option2() {
 }
     function talk1anim3() {
         console.log('buttons updated')
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> <p id='moraleUp'>Joshua enjoys educating Jack!</p>"
+        element.innerHTML = newText;
+        JCMorale = JCMorale + 5
+        document.getElementById('JCMorale') = JCMorale + '%' //fix this
+        console.log(JCMorale)
         document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
         document.getElementById('actions').style.left = '42vw'
     } setTimeout(talk1anim3,2000)
     function talk1anim4() {
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> Jack's turn"
+        element.innerHTML = newText;
         actionBarRise()
     } setTimeout(talk1anim4,10000)
 

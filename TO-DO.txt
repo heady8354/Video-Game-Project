@@ -2,7 +2,7 @@ Urgent:
 Combat Tutorial
 add action effects
 action log
-
+different bg options
 
 Near future:
 movement and playability 
@@ -12,4 +12,5 @@ Emotion Portraits
 change menu bg to random areas 
 
 Maybe:
-???
+repeating action prevention
+battle transitions
