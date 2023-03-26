@@ -153,7 +153,7 @@
             top: 56vh;
             left: 80vw
         }
-        #JCMorale {
+        #JCMoraleP {
             color: cyan;
             text-shadow:
             -1px -1px 0 #000,
@@ -255,6 +255,51 @@
             -1px 1px 0 #000,
             1px 1px 0 #000;
         }
+        #moraleUPgif1 {
+            height: 52px;
+            width: 52px;
+            position: absolute;
+            z-index: 9999;
+            top: 52vh;
+            left: 78vw;
+            opacity: 0;
+        }
+        #moraleUPgif2 {
+            height: 52px;
+            width: 52px;
+            position: absolute;
+            z-index: 9999;
+            top: 54vh;
+            left: 82vw;
+            opacity: 0;
+        }
+        #moraleUPgif3 {
+            height: 52px;
+            width: 52px;
+            position: absolute;
+            z-index: 9999;
+            top: 56vh;
+            left: 80vw;
+            opacity: 0;
+        }
+        @keyframes rise1 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 40vh;}
+        }
+        @keyframes rise2 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 44vh;}
+        }
+        @keyframes rise3 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 46vh;}
+        }
+
+        
+
         </style>
         <body>
             <button onclick="stopBG()" id="bgbutton">Stop Background</button>
@@ -263,8 +308,11 @@
             <img src="mcRight.png" id="MCL">
             <p id="mcHP"><b>100/100</b></p>
             <p id="mcMorale"><b>100%</b></p>
+            <img src="moraleUP.gif" id="moraleUPgif1">
+            <img src="moraleUP.gif" id="moraleUPgif2">
+            <img src="moraleUP.gif" id="moraleUPgif3">
             <p id="JCHP"><b>100/100</b></p>
-            <p id="JCMorale"><b>100%</b></p>
+            <p id="JCMoraleP"><b>100%</b></p>
             <img src="JoshuaCoinLeft.png" id="JCL">
             <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span><span id='allthis'></span><span id='allthis2'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
@@ -300,7 +348,7 @@ function typeWelcome() {
   const currentText = welcomeText.innerHTML;
   // If we've typed out the entire welcomeMsg, stop the timer
   if (i >= welcomeMsg.length) {
-    clearInterval(timerId);
+    clearInterval(timerId); 
     return;
   }
   // Add the next character to the current text
@@ -375,8 +423,11 @@ function talk1option2() {
         var currentText = element.innerHTML;
         var newText = currentText + " <br> <p id='moraleUp'>Joshua enjoys educating Jack!</p>"
         element.innerHTML = newText;
+        document.getElementById('moraleUPgif1').style.animation = 'rise1 3s ease-out'
+        document.getElementById('moraleUPgif2').style.animation = 'rise2 3s ease-out'
+        document.getElementById('moraleUPgif3').style.animation = 'rise3 3s ease-out 2'
         JCMorale = JCMorale + 5
-        document.getElementById('JCMorale') = JCMorale + '%' //fix this
+        document.getElementById('JCMoraleP').innerHTML = JCMorale + '%'
         console.log(JCMorale)
         document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
         document.getElementById('actions').style.left = '42vw'
@@ -428,7 +479,7 @@ function talk1anim5() {
     allthis2Text.innerHTML = newText4;
     i++;
 }
-    function talk1anim6() {
+    function talk1anim6() { 
         console.log('buttons updated')
         document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
         document.getElementById('actions').style.left = '42vw'

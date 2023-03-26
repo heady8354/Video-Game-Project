@@ -10,6 +10,7 @@ movement and playability
 Later on indev:
 Emotion Portraits
 change menu bg to random areas 
+make retro big dog
 
 Maybe:
 repeating action prevention
