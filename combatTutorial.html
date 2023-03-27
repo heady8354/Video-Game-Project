@@ -19,11 +19,24 @@
             position: absolute;
             top: 50vh;
             left: 20vw;
+            animation: stretch 0.398s steps(153) infinite;
         }
+        @keyframes stretch {
+            0% {
+                transform: scaleY(1);
+            }
+            50% {
+                transform: scaleY(1.1);
+            }
+            100% {
+                transform: scaleY(1);
+            }
+            }
         #JCL {
             position: absolute;
             top: 50vh;
             left: 80vw;
+            animation: stretch 0.398s steps(153) infinite;
         }
         #dialogue {
             position: absolute;
@@ -302,7 +315,14 @@
             width: 26px;
             position: absolute;
         }
-        
+        #followUP {
+            color:yellow;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        }
 
         </style>
         <body>
@@ -497,7 +517,7 @@ function talk1anim5() {
     i++;
 }
     function talk1anim6() { 
-        console.log('buttons updated')
+        console.log('buttons updatedpooooop')
         document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
         document.getElementById('actions').style.left = '42vw'
         var element = document.getElementById("actionLog");
@@ -510,7 +530,16 @@ function talk1anim5() {
         document.getElementById('moraleUPgif1').style.animation = 'rise1 3s ease-out'
         document.getElementById('moraleUPgif2').style.animation = 'rise2 3s ease-out'
         document.getElementById('moraleUPgif3').style.animation = 'rise3 3s ease-out'
+        function talk1anim8() {
+        console.log('turnran')
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> Jacks turn"
+        element.innerHTML = newText;
+        actionBarRise()
+    }setTimeout(talk1anim8,7000)
     } setTimeout(talk1anim6,2000)
 } setTimeout(talk1anim5,16000) 
+    
 } 
         </script>
