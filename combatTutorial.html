@@ -283,7 +283,7 @@
             opacity: 0;
         }
         @keyframes rise1 {
-            0% {opacity: 0}
+            0% {opacity: 0;}
             50% {opacity: 1;}
             100% {opacity: 0; top: 40vh;}
         }
@@ -297,7 +297,11 @@
             50% {opacity: 1;}
             100% {opacity: 0; top: 46vh;}
         }
-
+        #followUp {
+            height: 52px;
+            width: 26px;
+            position: absolute;
+        }
         
 
         </style>
@@ -313,6 +317,7 @@
             <img src="moraleUP.gif" id="moraleUPgif3">
             <p id="JCHP"><b>100/100</b></p>
             <p id="JCMoraleP"><b>100%</b></p>
+            <img src="followUpIcon.png" id="followUp">
             <img src="JoshuaCoinLeft.png" id="JCL">
             <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span><span id='allthis'></span><span id='allthis2'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
@@ -423,12 +428,12 @@ function talk1option2() {
         var currentText = element.innerHTML;
         var newText = currentText + " <br> <p id='moraleUp'>Joshua enjoys educating Jack!</p>"
         element.innerHTML = newText;
-        document.getElementById('moraleUPgif1').style.animation = 'rise1 3s ease-out'
-        document.getElementById('moraleUPgif2').style.animation = 'rise2 3s ease-out'
-        document.getElementById('moraleUPgif3').style.animation = 'rise3 3s ease-out 2'
         JCMorale = JCMorale + 5
         document.getElementById('JCMoraleP').innerHTML = JCMorale + '%'
         console.log(JCMorale)
+        document.getElementById('moraleUPgif1').style.animation = 'rise1 3s ease-out'
+        document.getElementById('moraleUPgif2').style.animation = 'rise2 3s ease-out'
+        document.getElementById('moraleUPgif3').style.animation = 'rise3 3s ease-out'
         document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
         document.getElementById('actions').style.left = '42vw'
     } setTimeout(talk1anim3,2000)
@@ -461,6 +466,18 @@ function talk1option1() {
     allthisText.innerHTML = newText3;
     i++;
 }
+function talk1anim7() {
+    var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> <p id='moraleUp'>Joshua enjoys educating Jack!</p>"
+        element.innerHTML = newText;
+        JCMorale = JCMorale + 5
+        document.getElementById('JCMoraleP').innerHTML = JCMorale + '%'
+        console.log(JCMorale)
+        document.getElementById('moraleUPgif1').style.animation = 'rise1 3s ease-out'
+        document.getElementById('moraleUPgif2').style.animation = 'rise2 3s ease-out'
+        document.getElementById('moraleUPgif3').style.animation = 'rise3 3s ease-out'
+} setTimeout(talk1anim7,2000)
 function talk1anim5() {
     document.getElementById('welcome').innerHTML = ''
     document.getElementById('allthis').innerHTML = ''
@@ -483,6 +500,16 @@ function talk1anim5() {
         console.log('buttons updated')
         document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
         document.getElementById('actions').style.left = '42vw'
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> <p id='moraleUp'>Joshua enjoys educating Jack!</p>"
+        element.innerHTML = newText;
+        JCMorale = JCMorale + 5
+        document.getElementById('JCMoraleP').innerHTML = JCMorale + '%'
+        console.log(JCMorale)
+        document.getElementById('moraleUPgif1').style.animation = 'rise1 3s ease-out'
+        document.getElementById('moraleUPgif2').style.animation = 'rise2 3s ease-out'
+        document.getElementById('moraleUPgif3').style.animation = 'rise3 3s ease-out'
     } setTimeout(talk1anim6,2000)
 } setTimeout(talk1anim5,16000) 
 } 
