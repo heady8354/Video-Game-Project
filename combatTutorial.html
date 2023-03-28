@@ -199,7 +199,7 @@
         box-shadow: 0 9px #999;
         }
         #talk1option2 {
-            padding: 5px 15px;
+        padding: 5px 15px;
         font-size: 21px;
         cursor: pointer;
         text-align: center;
@@ -258,7 +258,7 @@
             top: 4vh;
             left: 71vw;
             text-align: right;
-            overflow: scroll;
+            overflow: auto;
         }
         #moraleUp {
             color:cyan;
@@ -310,12 +310,52 @@
             50% {opacity: 1;}
             100% {opacity: 0; top: 46vh;}
         }
-        #followUp {
-            height: 52px;
-            width: 26px;
-            position: absolute;
+        @keyframes rise4 {
+            0% {opacity: 0;}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 40vh;}
         }
-        #followUP {
+        @keyframes rise5 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 44vh;}
+        }
+        @keyframes rise6 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 46vh;}
+        }
+        @keyframes rise7 {
+            0% {opacity: 0;}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 40vh;}
+        }
+        @keyframes rise8 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 44vh;}
+        }
+        @keyframes rise9 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 46vh;}
+        }
+        @keyframes rise10 {
+            0% {opacity: 0;}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 40vh;}
+        }
+        @keyframes rise11 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 44vh;}
+        }
+        @keyframes rise12 {
+            0% {opacity: 0}
+            50% {opacity: 1;}
+            100% {opacity: 0; top: 46vh;}
+        }
+        #followUp {
             color:yellow;
             text-shadow:
             -1px -1px 0 #000,
@@ -323,7 +363,61 @@
             -1px 1px 0 #000,
             1px 1px 0 #000;
         }
-
+        #followUPimg1 {
+            height: 52px;
+            width: 52px;
+            position: absolute;
+            z-index: 9999;
+            top: 52vh;
+            left: 78vw;
+            opacity: 0;
+        }
+        #followUPimg2 {
+            height: 52px;
+            width: 52px;
+            position: absolute;
+            z-index: 9999;
+            top: 54vh;
+            left: 82vw;
+            opacity: 0;
+        }
+        #followUPimg3 {
+            height: 52px;
+            width: 52px;
+            position: absolute;
+            z-index: 9999;
+            top: 56vh;
+            left: 80vw;
+            opacity: 0;
+        }
+        #defendIconImg {
+            height: 128px;
+            width: 128px;
+            position: absolute;
+            z-index: 9999;
+            top: 48vh;
+            left: 24vw;
+            opacity: 0;
+            /* animation: slam-fade-in 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards; */
+        }
+        @keyframes slam-fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(-200px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadedout {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
         </style>
         <body>
             <button onclick="stopBG()" id="bgbutton">Stop Background</button>
@@ -337,9 +431,12 @@
             <img src="moraleUP.gif" id="moraleUPgif3">
             <p id="JCHP"><b>100/100</b></p>
             <p id="JCMoraleP"><b>100%</b></p>
-            <img src="followUpIcon.png" id="followUp">
+            <img src="followUpIcon.png" id="followUPimg1">
+            <img src="followUpIcon.png" id="followUPimg2">
+            <img src="followUpIcon.png" id="followUPimg3">
             <img src="JoshuaCoinLeft.png" id="JCL">
-            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span><span id='allthis'></span><span id='allthis2'></span></div>
+            <img src="defendIcon.gif" id="defendIconImg">
+            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span><span id='allthis'></span><span id='allthis2'></span><span id='defendtxt'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
             <div id="actionLog">battle begins</div>
             <div id="actions"><br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button></div>
@@ -349,16 +446,12 @@
             const weaponsMsg = "ah, there are three different types of weapons. theres a blade, a maul, and a bow. Each weapon is unqiuely powerful against different types of enemies. A blade is most useful against humanoid enemies, like dudes with flesh and fat and stuff. A maul is useful against skeletons. it crushes their bones and stuff. and bows are just for wussys who cant fight."
             const allthisMsg = "im sure all this is quite confusing. First of all, the statistics that me and you have is called our health (green), which obviously shows how dead we are. 100/100 is not dead, and 0/100 is dead. Secondly, the blue, is called your morale. your morale can be changed by actions that you or your opponent do during your battle. It tells you how much damage your attack does. 100% morale means 100% damage, and 50% morale means half damage. simple!"
             const allthisMsg2 = "also, see that stuff that says im liking that im teaching you? thats the action log. it shows why anybody's health or morale is going up or down along with other stuffs. now go ahead and try to hit me! ill dodge it, trust me.  "
+            const DefendResponse = "uhh...dont worry. im not gonna hit'cha. "
             function stopBG() {
                 document.body.style.backgroundImage = 'url("battlescreenStill.png")'
             }
             function playBG() {
                 document.body.style.backgroundImage = 'url("battlescreen.gif")'
-            }
-            var actionLogCheck = document.getElementById('actionLog')
-            if (actionLogCheck.scrollHeight > actionLogCheck.clientHeight) {
-            // Clear the content of the div
-            actionLogCheck.innerHTML = "";
             }
             JCMorale = 100
             mcMorale = 100
@@ -400,6 +493,55 @@ var currentText = element.innerHTML;
 var newText = currentText + " <br> Jack's turn"
 element.innerHTML = newText;
 }setTimeout(firstturn,6500)
+
+function defend1() {
+var element = document.getElementById("actionLog");
+var currentText = element.innerHTML;
+var newText = currentText + " <br> Jack defends"
+element.innerHTML = newText;
+document.getElementById('defendIconImg').style.animation = 'slam-fade-in 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards'
+actionBarDescend()
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> Joshua's turn"
+        element.innerHTML = newText;
+function defend1anim1() {
+        let i = 0;
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> Joshua uses talk"
+        element.innerHTML = newText;
+        document.getElementById('welcome').innerHTML = ''
+        document.getElementById('allthis').innerHTML = ''
+        document.getElementById('allthis2').innerHTML = ''
+        document.getElementById('weapons').innerHTML = ''
+        document.getElementById('defendtxt').innerHTML = ''
+        const timerId = setInterval(typeDefendResponse, txtSpeed);
+        function typeDefendResponse() {
+        const DefendText = document.getElementById("defendtxt");
+        const currentText5 = DefendText.innerHTML;
+        // If we've typed out the entire welcomeMsg, stop the timer
+        if (i >= DefendResponse.length) {
+            clearInterval(timerId); 
+            return;
+        }
+        const nextChar = DefendResponse.charAt(i);
+        const newText5 = currentText5 + nextChar;
+        DefendText.innerHTML = newText5;
+        i++;
+    function defend1anim2() {
+        console.log('whydodis1billionntimes')
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> Jack's turn"
+        element.innerHTML = newText;
+        document.getElementById('defendIconImg').style.animation = 'fadedout 1.5s forwards'
+        actionBarRise()
+}setTimeout(defend1anim2,2000) 
+} 
+}setTimeout(defend1anim1,1000) //this runs like 40 billion times for some reason lol
+}
+
 function talk1() {
     console.log('talk1 pressed')
     actionBarDescend()
@@ -427,6 +569,7 @@ function talk1option2() {
     actionBarDescend()
     document.getElementById('welcome').innerHTML = ''
     document.getElementById('allthis').innerHTML = ''
+    document.getElementById('allthis2').innerHTML = ''
     document.getElementById('weapons').innerHTML = ''
     let i = 0
     const timerId = setInterval(typeWeapons, txtSpeed);
@@ -451,9 +594,9 @@ function talk1option2() {
         JCMorale = JCMorale + 5
         document.getElementById('JCMoraleP').innerHTML = JCMorale + '%'
         console.log(JCMorale)
-        document.getElementById('moraleUPgif1').style.animation = 'rise1 3s ease-out'
-        document.getElementById('moraleUPgif2').style.animation = 'rise2 3s ease-out'
-        document.getElementById('moraleUPgif3').style.animation = 'rise3 3s ease-out'
+        document.getElementById('moraleUPgif1').style.animation = 'rise7 3s ease-out'
+        document.getElementById('moraleUPgif2').style.animation = 'rise8 3s ease-out'
+        document.getElementById('moraleUPgif3').style.animation = 'rise9 3s ease-out'
         document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
         document.getElementById('actions').style.left = '42vw'
     } setTimeout(talk1anim3,2000)
@@ -504,6 +647,13 @@ function talk1anim5() {
     document.getElementById('weapons').innerHTML = ''
     let i = 0
     const timerId = setInterval(typeAllthis2, txtSpeed);
+    var element = document.getElementById("actionLog");
+    var currentText = element.innerHTML;
+    var newText = currentText + "<br> <p id='followUp'>Joshua follows up with talk!</p>"
+    element.innerHTML = newText;
+    document.getElementById('followUPimg1').style.animation = 'rise4 3s ease-out'
+    document.getElementById('followUPimg2').style.animation = 'rise5 3s ease-out'
+    document.getElementById('followUPimg3').style.animation = 'rise6 3s ease-out'
     function typeAllthis2() {
     const allthis2Text = document.getElementById("allthis2");
     const currentText4 = allthis2Text.innerHTML;
@@ -527,9 +677,9 @@ function talk1anim5() {
         JCMorale = JCMorale + 5
         document.getElementById('JCMoraleP').innerHTML = JCMorale + '%'
         console.log(JCMorale)
-        document.getElementById('moraleUPgif1').style.animation = 'rise1 3s ease-out'
-        document.getElementById('moraleUPgif2').style.animation = 'rise2 3s ease-out'
-        document.getElementById('moraleUPgif3').style.animation = 'rise3 3s ease-out'
+        document.getElementById('moraleUPgif1').style.animation = 'rise10 3s ease-out'
+        document.getElementById('moraleUPgif2').style.animation = 'rise11 3s ease-out'
+        document.getElementById('moraleUPgif3').style.animation = 'rise12 3s ease-out'
         function talk1anim8() {
         console.log('turnran')
         var element = document.getElementById("actionLog");
