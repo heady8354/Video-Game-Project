@@ -1,8 +1,7 @@
 Urgent:
 Combat Tutorial
-add action effects
-action log
 different bg options
+introcutscene finish
 
 Near future:
 movement and playability 

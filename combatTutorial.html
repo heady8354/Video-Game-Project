@@ -418,6 +418,46 @@
             0% {opacity: 1;}
             100% {opacity: 0;}
         }
+        .shake {
+      animation: shake 0.5s;
+    }
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-3px, -3px) rotate(-5deg); }
+            20% { transform: translate(3px, 3px) rotate(5deg); }
+            30% { transform: translate(-3px, 3px) rotate(-5deg); }
+            40% { transform: translate(3px, -3px) rotate(5deg); }
+            50% { transform: translate(-2px, 0px) rotate(-3deg); }
+            60% { transform: translate(2px, 0px) rotate(3deg); }
+            70% { transform: translate(0px, -2px) rotate(-3deg); }
+            80% { transform: translate(0px, 2px) rotate(3deg); }
+            90% { transform: translate(0px, -2px) rotate(-3deg); }
+            100% { transform: translate(0, 0); }
+        }
+        #punchIconImg {
+            height: 128px;
+            width: 128px;
+            position: absolute;
+            opacity: 0;
+            animation: punch 0.5s ease-in-out forwards;
+        }
+        @keyframes punch {
+  0% {
+    
+    transform: scale(0.8) rotate(-30deg);
+  }
+  50% {
+    
+    transform: scale(1.4) rotate(10deg);
+  }
+  80% {
+    transform: scale(1.1) rotate(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0)
+  }
+}
         </style>
         <body>
             <button onclick="stopBG()" id="bgbutton">Stop Background</button>
@@ -436,6 +476,7 @@
             <img src="followUpIcon.png" id="followUPimg3">
             <img src="JoshuaCoinLeft.png" id="JCL">
             <img src="defendIcon.gif" id="defendIconImg">
+            <img src="punchIcon.png" id="punchIconImg"  alt="Punch Icon">
             <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span><span id='allthis'></span><span id='allthis2'></span><span id='defendtxt'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
             <div id="actionLog">battle begins</div>
@@ -494,6 +535,16 @@ var newText = currentText + " <br> Jack's turn"
 element.innerHTML = newText;
 }setTimeout(firstturn,6500)
 
+function punch1() {
+    var elements = document.querySelectorAll("body *");
+      elements.forEach(function(element) {
+        element.classList.add("shake");
+        setTimeout(function() {
+          element.classList.remove("shake");
+        }, 500);
+      });
+}
+
 function defend1() {
 var element = document.getElementById("actionLog");
 var currentText = element.innerHTML;
@@ -511,6 +562,12 @@ function defend1anim1() {
         var currentText = element.innerHTML;
         var newText = currentText + " <br> Joshua uses talk"
         element.innerHTML = newText;
+        function defend1anim3() {
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> Jack's turn"
+        element.innerHTML = newText;
+        }setTimeout(defend1anim3,2000)
         document.getElementById('welcome').innerHTML = ''
         document.getElementById('allthis').innerHTML = ''
         document.getElementById('allthis2').innerHTML = ''
@@ -530,16 +587,12 @@ function defend1anim1() {
         DefendText.innerHTML = newText5;
         i++;
     function defend1anim2() {
-        console.log('whydodis1billionntimes')
-        var element = document.getElementById("actionLog");
-        var currentText = element.innerHTML;
-        var newText = currentText + " <br> Jack's turn"
-        element.innerHTML = newText;
-        document.getElementById('defendIconImg').style.animation = 'fadedout 1.5s forwards'
         actionBarRise()
+        console.log("pepepep")
+        document.getElementById('defendIconImg').style.animation = 'fadedout 1.5s forwards'
 }setTimeout(defend1anim2,2000) 
 } 
-}setTimeout(defend1anim1,1000) //this runs like 40 billion times for some reason lol
+}setTimeout(defend1anim1,1000) //fixed it get rekt LOOL!!!!
 }
 
 function talk1() {
@@ -571,6 +624,7 @@ function talk1option2() {
     document.getElementById('allthis').innerHTML = ''
     document.getElementById('allthis2').innerHTML = ''
     document.getElementById('weapons').innerHTML = ''
+    document.getElementById('defendtxt').innerHTML = ''
     let i = 0
     const timerId = setInterval(typeWeapons, txtSpeed);
     function typeWeapons() {
@@ -615,6 +669,8 @@ function talk1option1() {
     document.getElementById('welcome').innerHTML = ''
     document.getElementById('allthis').innerHTML = ''
     document.getElementById('weapons').innerHTML = ''
+    document.getElementById('defendtxt').innerHTML = ''
+    document.getElementById('allthis2').innerHTML = ''
     let i = 0
     const timerId = setInterval(typeAllthis, txtSpeed);
     function typeAllthis() {
