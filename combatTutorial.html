@@ -419,8 +419,8 @@
             100% {opacity: 0;}
         }
         .shake {
-      animation: shake 0.5s;
-    }
+        animation: shake 0.5s;
+        }
         @keyframes shake {
             0% { transform: translate(0, 0); }
             10% { transform: translate(-3px, -3px) rotate(-5deg); }
@@ -439,25 +439,63 @@
             width: 128px;
             position: absolute;
             opacity: 0;
-            animation: punch 0.5s ease-in-out forwards;
+            top: 48vh;
+            left: 78vw;
+            /* animation: punch 0.5s ease-in-out forwards; */
         }
         @keyframes punch {
-  0% {
-    
-    transform: scale(0.8) rotate(-30deg);
-  }
-  50% {
-    
-    transform: scale(1.4) rotate(10deg);
-  }
-  80% {
-    transform: scale(1.1) rotate(0);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0)
-  }
-}
+        0% {
+        transform: scale(0.8) rotate(-30deg);
+        }
+        50% {
+        transform: scale(1.4) rotate(10deg);
+        }
+        80% {
+            transform: scale(1.1) rotate(0);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(0)
+        }
+        }
+        @keyframes fadeout {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        #devastatingblow {
+            color:rgb(255, 117, 117);
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        }
+        @keyframes joshuasSmack {
+            0% {
+                top: 50vh;
+                left: 80vw;
+            }
+            25% {
+                top: 45vh;
+                left: 83vw;
+                transform: rotate(30deg)
+            }
+            50% {
+                top: 48vh;
+                left: 86vw;
+                transform: rotate(90deg)
+            }
+            75% {
+                top: 50vh;
+                left: 88vw;
+                transform: rotate(110deg)
+            }
+            100% {
+                top: 55vh;
+                left: 92vw;
+                transform: rotate(90deg)
+            }
+        }
         </style>
         <body>
             <button onclick="stopBG()" id="bgbutton">Stop Background</button>
@@ -477,7 +515,7 @@
             <img src="JoshuaCoinLeft.png" id="JCL">
             <img src="defendIcon.gif" id="defendIconImg">
             <img src="punchIcon.png" id="punchIconImg"  alt="Punch Icon">
-            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span><span id='allthis'></span><span id='allthis2'></span><span id='defendtxt'></span></div>
+            <div id="dialogue"><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin</p><br><span id='welcome'></span><span id='weapons'></span><span id='allthis'></span><span id='allthis2'></span><span id='defendtxt'></span><span id='painMsg'></span></div>
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
             <div id="actionLog">battle begins</div>
             <div id="actions"><br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button></div>
@@ -488,6 +526,7 @@
             const allthisMsg = "im sure all this is quite confusing. First of all, the statistics that me and you have is called our health (green), which obviously shows how dead we are. 100/100 is not dead, and 0/100 is dead. Secondly, the blue, is called your morale. your morale can be changed by actions that you or your opponent do during your battle. It tells you how much damage your attack does. 100% morale means 100% damage, and 50% morale means half damage. simple!"
             const allthisMsg2 = "also, see that stuff that says im liking that im teaching you? thats the action log. it shows why anybody's health or morale is going up or down along with other stuffs. now go ahead and try to hit me! ill dodge it, trust me.  "
             const DefendResponse = "uhh...dont worry. im not gonna hit'cha. "
+            const painMsg = 'gahhhouchhH!!!!!!!!'
             function stopBG() {
                 document.body.style.backgroundImage = 'url("battlescreenStill.png")'
             }
@@ -536,15 +575,53 @@ element.innerHTML = newText;
 }setTimeout(firstturn,6500)
 
 function punch1() {
-    var elements = document.querySelectorAll("body *");
+    document.getElementById('punchIconImg').style.animation = 'punch 0.5s ease-in-out forwards'
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> <p id='devastatingblow'>Jack lands a hard hit on Joshua!</p>"
+        element.innerHTML = newText;
+        document.getElementById('JCL').style.animation = 'joshuasSmack 0.6s ease-out forwards'
+        document.getElementById('JCHP').innerHTML = '42/100'
+        document.getElementById('JCHP').style.color = 'red'
+        JCMorale = JCMorale - 50
+        document.getElementById('JCMoraleP').innerHTML = JCMorale + '%'
+        actionBarDescend()
+        function punch1anim3() {
+            document.getElementById('welcome').innerHTML = ''
+    document.getElementById('allthis').innerHTML = ''
+    document.getElementById('allthis2').innerHTML = ''
+    document.getElementById('weapons').innerHTML = ''
+    document.getElementById('defendtxt').innerHTML = ''
+            let i = 0
+            const timerId = setInterval(typePain, txtSpeed);
+            function typePain() {
+            const painText = document.getElementById("painMsg");
+            const currentText6 = painText.innerHTML;
+            if (i >= painMsg.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = painMsg.charAt(i);
+            const newText6 = currentText6 + nextChar;
+            painText.innerHTML = newText6;
+            i++;
+        } 
+        }setTimeout(punch1anim3,200)
+      function punch1anim1() {
+        var elements = document.querySelectorAll("body *");
       elements.forEach(function(element) {
         element.classList.add("shake");
         setTimeout(function() {
           element.classList.remove("shake");
         }, 500);
       });
+      function punch1anim2() {
+        console.log('hello')
+        document.getElementById('punchIconImg').style.animation = 'fadeout 1s forwards'
+        
+      } setTimeout(punch1anim2,500)
+      } setTimeout(punch1anim1,1)
 }
-
 function defend1() {
 var element = document.getElementById("actionLog");
 var currentText = element.innerHTML;
