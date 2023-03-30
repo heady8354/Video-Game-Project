@@ -2,6 +2,7 @@ Urgent:
 Combat Tutorial
 different bg options
 introcutscene finish
+credits
 
 Near future:
 movement and playability 

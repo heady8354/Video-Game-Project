@@ -210,10 +210,52 @@
                             document.getElementById('JCPortrait').style.top = '1000%'
                             document.getElementById('mcDown').style.animation = "disappear 0.1s forwards"
                             document.getElementById('mcUp').style.animation = "appear 0.1s forwards"
-                            document.getElementById('yeah').innerHTML = "So, are you okay? <br><br> <button id='where' onclick='where()'>where am i?</button><br><button id='whoAre2' onclick='whoAreYou()'>who are you people?</button>"
+                            document.getElementById('yeah').innerHTML = "So, are you okay? <br><br> <button id='where' onclick='whereT()'>where am i?</button><br><button id='whoAre2' onclick='whoAreYou()'>who are you people?</button>"
                         } setTimeout(terrible4,1000)
                     } setTimeout(terrible3,1000)
                 } setTimeout(terrible2, 3000)
+            }
+            function whereT() {
+                document.getElementById('yeah').innerHTML = "Ahah, don't be ridiculous Jack. You've played this joke far too many times."
+                function whereT2() {
+                    document.getElementById('mcUp').style.animation = "disappear 0.1s forwards"
+                    document.getElementById('mcRight').style.animation = 'appear 0.1s forwards'
+                    function whereT3() {
+                        document.getElementById('mcUp').style.animation = "appear 0.1s forwards"
+                        document.getElementById('mcRight').style.animation = 'disappear 0.1s forwards'
+                        function whereT4() {
+                            document.getElementById('DLPortrait').style.zIndex = '1'
+                            document.getElementById('JCPortrait').style.top = '35vh'
+                            document.getElementById('yeah').innerHTML = 'oh man..does this mean i have to teach you chess all over again??'
+                            function whereT5() {
+                                document.getElementById('DLPortrait').style.zIndex = '3'
+                                document.getElementById('JCPortrait').style.top = '1000%'
+                                document.getElementById('DLD').style.animation = "disappear 0.1s forwards"
+                                document.getElementById('DLR').style.animation = 'appear 0.1s forwards'
+                                document.getElementById('mcUp').style.animation = "disappear 0.1s forwards"
+                                document.getElementById('mcRight').style.animation = 'appear 0.1s forwards'
+                                document.getElementById('yeah').innerHTML = 'Would you be so kind to be serious for once?! He might have lost his memory, like, actually!'
+                                function whereT6() {
+                                    document.getElementById('DLPortrait').style.zIndex = '1'
+                                    document.getElementById('JCPortrait').style.top = '35vh'
+                                    document.getElementById('yeah').innerHTML = 'alright..jeez. thought i could lighten the mood a little.'
+                                    function whereT7() {
+                                        document.getElementById('DLPortrait').style.zIndex = '3'
+                                        document.getElementById('JCPortrait').style.top = '1000%'
+                                        document.getElementById('DLD').style.animation = "appear 0.1s forwards"
+                                        document.getElementById('DLR').style.animation = 'disappear 0.1s forwards'
+                                        document.getElementById('yeah').innerHTML = 'Its fine, just upset Jack got hurt. '
+                                        document.getElementById('mcUp').style.animation = "appear 0.1s forwards"
+                                        document.getElementById('mcRight').style.animation = 'disappear 0.1s forwards'
+                                        function whereT8() {
+                                            document.getElementById('yeah').innerHTML = 'Anyways, would you like a quick rundown on everything and you can explore the rest for yourself? Or do you want me to explain everything in detail. <br> <button onclick="rundown">Rundown</button> <br> <button onclick="detail">Detail</button>'
+                                        } setTimeout(whereT8,1500)
+                                    }setTimeout(whereT7,2000)
+                                } setTimeout(whereT6,3500)
+                            } setTimeout(whereT5,3000)
+                        }setTimeout(whereT4,1500)
+                    }setTimeout(whereT3,1000)
+                }setTimeout(whereT2,2000)
             }
             function whoAre() {
                 document.getElementById('JCPortrait').style.top = "10000%"

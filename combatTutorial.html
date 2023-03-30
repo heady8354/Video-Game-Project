@@ -11,6 +11,7 @@
       <script src="script.js"></script>
   </head>
       <style>
+        
         body {
             background-image: url('battlescreen.gif');
             overflow: hidden;
@@ -20,6 +21,7 @@
             top: 50vh;
             left: 20vw;
             animation: stretch 0.398s steps(153) infinite;
+            animation-timing-function: ease-out;
         }
         @keyframes stretch {
             0% {
@@ -37,6 +39,7 @@
             top: 50vh;
             left: 80vw;
             animation: stretch 0.398s steps(153) infinite;
+            animation-timing-function: ease-out;
         }
         #dialogue {
             position: absolute;
@@ -498,6 +501,8 @@
         }
         </style>
         <body>
+            <div class="overlay"></div>
+            <div class="content">
             <button onclick="stopBG()" id="bgbutton">Stop Background</button>
             <br>
             <button onclick="playBG()" id="bgbutton">Play Background</button>
@@ -519,6 +524,7 @@
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
             <div id="actionLog">battle begins</div>
             <div id="actions"><br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button></div>
+            </div>
         </body>
         <script>
             const welcomeMsg = "Welcome to the battle! Don't worry, this is just practice. I'm going to teach you the basics of defending yourself. If you want to learn some more advanced techniques, I'll point you to someone who will teach you everything."
@@ -575,12 +581,14 @@ element.innerHTML = newText;
 }setTimeout(firstturn,6500)
 
 function punch1() {
+    TDM.stop()
+    crithit.play()
     document.getElementById('punchIconImg').style.animation = 'punch 0.5s ease-in-out forwards'
         var element = document.getElementById("actionLog");
         var currentText = element.innerHTML;
         var newText = currentText + " <br> <p id='devastatingblow'>Jack lands a hard hit on Joshua!</p>"
         element.innerHTML = newText;
-        document.getElementById('JCL').style.animation = 'joshuasSmack 0.6s ease-out forwards'
+        document.getElementById('JCL').style.animation = 'joshuasSmack 0.4s ease-out forwards'
         document.getElementById('JCHP').innerHTML = '42/100'
         document.getElementById('JCHP').style.color = 'red'
         JCMorale = JCMorale - 50
@@ -618,7 +626,6 @@ function punch1() {
       function punch1anim2() {
         console.log('hello')
         document.getElementById('punchIconImg').style.animation = 'fadeout 1s forwards'
-        
       } setTimeout(punch1anim2,500)
       } setTimeout(punch1anim1,1)
 }
@@ -628,6 +635,7 @@ var currentText = element.innerHTML;
 var newText = currentText + " <br> Jack defends"
 element.innerHTML = newText;
 document.getElementById('defendIconImg').style.animation = 'slam-fade-in 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards'
+defendSFX.play()
 actionBarDescend()
         var element = document.getElementById("actionLog");
         var currentText = element.innerHTML;
@@ -823,6 +831,35 @@ function talk1anim5() {
     }setTimeout(talk1anim8,7000)
     } setTimeout(talk1anim6,2000)
 } setTimeout(talk1anim5,16000) 
-    
 } 
-        </script>
+
+let soundLoaded = false;
+
+function preload() {
+  soundFormats('mp3', 'ogg');
+  TDM = loadSound('teamdeathmatch-itemasylum.mp3', onSoundLoaded);
+  crithit = loadSound('UTcrithit.mp3')
+  crithit.setVolume(0.1)
+  defendSFX = loadSound('DRbattlestart.mp3')
+  defendSFX.setVolume(0.1)
+}
+
+function onSoundLoaded() {
+  soundLoaded = true;
+  TDM.setVolume(0.1); // Set the volume once the sound is loaded
+}
+
+function TDMPlay() {
+  TDM.loop();
+}
+
+function setup() {
+  if (soundLoaded) {
+    userStartAudio();
+    TDMPlay();
+  } else {
+    setTimeout(setup, 100);
+  }
+}
+
+    </script>
