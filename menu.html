@@ -9,6 +9,7 @@
       referrerpolicy="no-referrer"></script>
       <!--reference external JS-->
       <script src="script.js"></script>
+      <title>Welcome to Amnesia!</title>
       <style>
         body {
             overflow: hidden;
@@ -114,8 +115,27 @@
             0% {opacity: 100%;}
             100% {opacity: 0%;}
         }
+        #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
         </style>
         <body>
+            <p id="fireasssong">now playing: Petscop - Item Asylum</p>
             <h1 id="title">Amnesia</h1>
             <h3 id="credit">by Will Lopez</h3>
             <h1 id="play" onclick="beginGameF()">Play</h1>

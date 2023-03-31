@@ -9,6 +9,7 @@
       referrerpolicy="no-referrer"></script>
       <!--reference external JS-->
       <script src="script.js"></script>
+      <title>u better thank him for teaching you all this again</title>
   </head>
       <style>
         
@@ -499,8 +500,27 @@
                 transform: rotate(90deg)
             }
         }
+        #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
         </style>
         <body>
+            <p id="fireasssong">now playing: Team Deathmatch - Item Asylum</p>
             <div class="overlay"></div>
             <div class="content">
             <button onclick="stopBG()" id="bgbutton">Stop Background</button>
@@ -581,6 +601,7 @@ element.innerHTML = newText;
 }setTimeout(firstturn,6500)
 
 function punch1() {
+    
     TDM.stop()
     crithit.play()
     document.getElementById('punchIconImg').style.animation = 'punch 0.5s ease-in-out forwards'
@@ -624,8 +645,12 @@ function punch1() {
         }, 500);
       });
       function punch1anim2() {
+        localStorage.setItem('myVariable', true);
         console.log('hello')
         document.getElementById('punchIconImg').style.animation = 'fadeout 1s forwards'
+        function punch1anim4() {
+            location.replace('introCutscene2.html')
+        } setTimeout(punch1anim4,4000)
       } setTimeout(punch1anim2,500)
       } setTimeout(punch1anim1,1)
 }

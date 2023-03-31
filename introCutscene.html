@@ -9,6 +9,7 @@
       referrerpolicy="no-referrer"></script>
       <!--reference external JS-->
       <script src="script.js"></script>
+      <title>this is the introduction and stuff, hopefully you like it :]</title>
   </head>
       <style>
         body {
@@ -173,9 +174,28 @@
             0% {opacity: 1;}
             100% {opacity: 0;}
         }
+        #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
         </style>
 
         <body>
+            <p id="fireasssong">now playing: Luck - Item Asylum</p>
             <img src="mcClosed.png" id="mcClosed">
             <img src="mcLay.png" id="mcLay">
             <img src="mcDown.png" id="mcDown">
@@ -210,7 +230,7 @@
                             document.getElementById('JCPortrait').style.top = '1000%'
                             document.getElementById('mcDown').style.animation = "disappear 0.1s forwards"
                             document.getElementById('mcUp').style.animation = "appear 0.1s forwards"
-                            document.getElementById('yeah').innerHTML = "So, are you okay? <br><br> <button id='where' onclick='whereT()'>where am i?</button><br><button id='whoAre2' onclick='whoAreYou()'>who are you people?</button>"
+                            document.getElementById('yeah').innerHTML = "So, are you okay? <br><br> <button id='where' onclick='whereT()'>where am i?</button><br><button id='whoAre2' onclick='whereT()'>who are you people?</button>"
                         } setTimeout(terrible4,1000)
                     } setTimeout(terrible3,1000)
                 } setTimeout(terrible2, 3000)
@@ -248,7 +268,7 @@
                                         document.getElementById('mcUp').style.animation = "appear 0.1s forwards"
                                         document.getElementById('mcRight').style.animation = 'disappear 0.1s forwards'
                                         function whereT8() {
-                                            document.getElementById('yeah').innerHTML = 'Anyways, would you like a quick rundown on everything and you can explore the rest for yourself? Or do you want me to explain everything in detail. <br> <button onclick="rundown">Rundown</button> <br> <button onclick="detail">Detail</button>'
+                                            document.getElementById('yeah').innerHTML = 'Anyways, would you like a quick rundown on everything and you can explore the rest for yourself? Or do you want me to explain everything in detail. <br> <br> <button onclick="rundown()">Rundown</button> <br> <button onclick="detail()">Detail</button>'
                                         } setTimeout(whereT8,1500)
                                     }setTimeout(whereT7,2000)
                                 } setTimeout(whereT6,3500)
@@ -256,6 +276,33 @@
                         }setTimeout(whereT4,1500)
                     }setTimeout(whereT3,1000)
                 }setTimeout(whereT2,2000)
+            }
+            function rundown() {
+                document.getElementById('yeah').innerHTML = 'Oh. Wasnt expecting you to say that. Youre the rundown type of guy now? '
+                function rundown2() {
+                    document.getElementById('yeah').innerHTML = "Well uh, go ahead and ask me whatever you want I guess. <br> <button id='Iam' onclick='Iam2()'>my name</button> <br> <button onclick='where2()'>where am I?</button> <br> <button id='who' onclick='who2()'>who are you?!</button> <br> <button id='combat()' onclick='combat2()'>combat</button> <br> <button id='social' onclick='social2()'>social skills</button>"
+                }setTimeout(rundown2,2000)
+                function Iam2() {
+                    document.getElementById('yeah').innerHTML = 'As you know, your first name is Jack. Your full name is Jack Winston. Youre quiet, optimistic, and like going out. '
+                }
+                function where2() {
+                    document.getElementById('yeah').innerHTML = 'Our town is called Maple Field, its a very small and nice community. Id be careful wandering around alone, theres some monsters from an evil cave that roam the forests. Scary stuff. '
+                }
+                function who2() {
+                    document.getElementById('yeah').innerHTML = 'Ah, right. Where are our manners. I am Denise Lockerman, and that is Joshua Coin. We are your best friends!  '
+                    document.getElementById('Charname').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Denise Lockerman'
+                }
+                function combat2() {
+                    document.getElementById('yeah').innerHTML = 'Glad you asked! Joshua, would you like to handle this?'
+                    function combat3() {
+                    document.getElementById('DLPortrait').style.zIndex = '1'
+                    document.getElementById('JCPortrait').style.top = '35vh'
+                    document.getElementById('yeah').innerHTML = 'yes!!!!! lets go Jack!'
+                    }setTimeout(combat3,2000)
+                }
+                function social2() {
+                    document.getElementById('yeah').innerHTML = 'When engaged in a conversation, you are given choices. Mindblowing I know, but these choices affect the outcome of the conversation, and a lot of the time, people remember what you have to say. '
+                }
             }
             function whoAre() {
                 document.getElementById('JCPortrait').style.top = "10000%"
