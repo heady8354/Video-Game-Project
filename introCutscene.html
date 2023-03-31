@@ -277,19 +277,26 @@
                     }setTimeout(whereT3,1000)
                 }setTimeout(whereT2,2000)
             }
+            function detail() {
+                document.getElementById('yeah').innerHTML = 'Heh, same old Jack. You always liked things in the upmost detail. '
+                function detail2() {
+                    document.getElementById('yeah').innerHTML = "Go ahead and ask me anything youd like to know, just please try to feel better. <br> <button id='Iam' onclick='Iam2()'>my name</button> <br> <button onclick='where2()'>where am I?</button> <br> <button id='who' onclick='who2()'>who are you?!</button> <br> <button id='combat()' onclick='combat2()'>combat [start fight]</button> <br> <button id='social' onclick='social2()'>social skills</button>"
+                }setTimeout(detail2,2000)
+            }
             function rundown() {
                 document.getElementById('yeah').innerHTML = 'Oh. Wasnt expecting you to say that. Youre the rundown type of guy now? '
                 function rundown2() {
-                    document.getElementById('yeah').innerHTML = "Well uh, go ahead and ask me whatever you want I guess. <br> <button id='Iam' onclick='Iam2()'>my name</button> <br> <button onclick='where2()'>where am I?</button> <br> <button id='who' onclick='who2()'>who are you?!</button> <br> <button id='combat()' onclick='combat2()'>combat</button> <br> <button id='social' onclick='social2()'>social skills</button>"
+                    document.getElementById('yeah').innerHTML = "Well uh, go ahead and ask me whatever you want I guess. <br> <button id='Iam' onclick='Iam2()'>my name</button> <br> <button onclick='where2()'>where am I?</button> <br> <button id='who' onclick='who2()'>who are you?!</button> <br> <button id='combat()' onclick='combat2()'>combat [start fight]</button> <br> <button id='social' onclick='social2()'>social skills</button>"
                 }setTimeout(rundown2,2000)
+            }
                 function Iam2() {
-                    document.getElementById('yeah').innerHTML = 'As you know, your first name is Jack. Your full name is Jack Winston. Youre quiet, optimistic, and like going out. '
+                    document.getElementById('yeah').innerHTML = "As you know, your first name is Jack. Your full name is Jack Winston. Youre quiet, optimistic, and like going out. <br> <button onclick='where2()'>where am I?</button> <br> <button id='who' onclick='who2()'>who are you?!</button> <br> <button id='combat()' onclick='combat2()'>combat [start fight]</button> <br> <button id='social' onclick='social2()'>social skills</button>"
                 }
                 function where2() {
-                    document.getElementById('yeah').innerHTML = 'Our town is called Maple Field, its a very small and nice community. Id be careful wandering around alone, theres some monsters from an evil cave that roam the forests. Scary stuff. '
+                    document.getElementById('yeah').innerHTML = "Our town is called Maple Field, its a very small and nice community. Id be careful wandering around alone, theres some monsters from an evil cave that roam the forests. Scary stuff. <br> <button id='Iam' onclick='Iam2()'>my name</button> <br> <button id='who' onclick='who2()'>who are you?!</button> <br> <button id='combat()' onclick='combat2()'>combat [start fight]</button> <br> <button id='social' onclick='social2()'>social skills</button>"
                 }
                 function who2() {
-                    document.getElementById('yeah').innerHTML = 'Ah, right. Where are our manners. I am Denise Lockerman, and that is Joshua Coin. We are your best friends!  '
+                    document.getElementById('yeah').innerHTML = "Ah, right. Where are our manners. I am Denise Lockerman, and that is Joshua Coin. We are your best friends! <br> <button id='Iam' onclick='Iam2()'>my name</button> <br> <button onclick='where2()'>where am I?</button> <br> <button id='combat()' onclick='combat2()'>combat [start fight]</button> <br> <button id='social' onclick='social2()'>social skills</button>"
                     document.getElementById('Charname').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Denise Lockerman'
                 }
                 function combat2() {
@@ -298,12 +305,16 @@
                     document.getElementById('DLPortrait').style.zIndex = '1'
                     document.getElementById('JCPortrait').style.top = '35vh'
                     document.getElementById('yeah').innerHTML = 'yes!!!!! lets go Jack!'
+                    document.getElementById('Charname').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin'
+
+                    function combat4() {
+                        location.replace('combatTutorial.html')
+                    }setTimeout(combat4,2000)
                     }setTimeout(combat3,2000)
                 }
                 function social2() {
-                    document.getElementById('yeah').innerHTML = 'When engaged in a conversation, you are given choices. Mindblowing I know, but these choices affect the outcome of the conversation, and a lot of the time, people remember what you have to say. '
+                    document.getElementById('yeah').innerHTML = "When engaged in a conversation, you are given choices. Mindblowing I know, but these choices affect the outcome of the conversation, and a lot of the time, people remember what you have to say. <br> <button id='Iam' onclick='Iam2()'>my name</button> <br> <button onclick='where2()'>where am I?</button> <br> <button id='who' onclick='who2()'>who are you?!</button> <br> <button id='combat()' onclick='combat2()'>combat [start fight]</button>"
                 }
-            }
             function whoAre() {
                 document.getElementById('JCPortrait').style.top = "10000%"
                 document.getElementById('DLPortrait').style.zIndex = '3'
@@ -368,7 +379,7 @@
                                         function nameChoice8() {
                                             document.getElementById('JCPortrait').style.top = '35vh'
                                             document.getElementById('DLPortrait').style.zIndex = '1'
-                                            document.getElementById('yeah').innerHTML = "yess!! okay, so.. what do you want to know? <br> <button id='Iam' onclick='Iam()'>my name</button> <br> <button onclick='where()'>where am I?</button> <br> <button id='who' onclick='who()'>who are you?!</button> <br> <button id='combat' onclick='combat()'>combat</button> <br> <button id='social' onclick='social()'>social skills</button>"
+                                            document.getElementById('yeah').innerHTML = "yess!! okay, so.. what do you want to know? <br> <button id='Iam' onclick='Iam()'>my name</button> <br> <button onclick='where()'>where am I?</button> <br> <button id='who' onclick='who()'>who are you?!</button> <br> <button id='combat' onclick='combat()'>combat [start fight]</button> <br> <button id='social' onclick='social()'>social skills</button>"
                                         } setTimeout(nameChoice8,2000)
                                     } setTimeout(nameChoice7,2000)
                                 } setTimeout(nameChoice6,1500)
@@ -378,15 +389,15 @@
                 } setTimeout(nameChoice2,1000)
             }
             function Iam() {
-                document.getElementById('yeah').innerHTML = "your name is Jack Winston, you are usually a quiet guy, and quite optimistic. you also like going on adventures and stuff. <br> <button onclick='where()'>where am I?</button> <br> <button id='who' onclick='who()'>who are you?!</button> <br> <button id='combat' onclick='combat()'>combat</button> <br> <button id='social' onclick='social()'>social skills</button>" 
+                document.getElementById('yeah').innerHTML = "your name is Jack Winston, you are usually a quiet guy, and quite optimistic. you also like going on adventures and stuff. <br> <button onclick='where()'>where am I?</button> <br> <button id='who' onclick='who()'>who are you?!</button> <br> <button id='combat' onclick='combat()'>combat [start fight]</button> <br> <button id='social' onclick='social()'>social skills</button>" 
             }
             function where() {
-                document.getElementById('yeah').innerHTML = "we live on an island called Kemewaki in a town called Maple Field. but beware, there is a cove filled with dangerous dudes. Theres a guy in town you can talk to who can explain more, I dont really get involved with any of that. <br> <button id='Iam' onclick='Iam()'>my name</button> <br> <button id='who' onclick='who()'>who are you?!</button> <br> <button id='combat' onclick='combat()'>combat</button> <br> <button id='social' onclick='social()'>social skills</button>"
+                document.getElementById('yeah').innerHTML = "we live on an island called Kemewaki in a town called Maple Field. but beware, there is a cove filled with dangerous dudes. Theres a guy in town you can talk to who can explain more, I dont really get involved with any of that. <br> <button id='Iam' onclick='Iam()'>my name</button> <br> <button id='who' onclick='who()'>who are you?!</button> <br> <button id='combat' onclick='combat()'>combat [start fight]</button> <br> <button id='social' onclick='social()'>social skills</button>"
             }
             function who() {
                 BFFNamesKnown = true
                 document.getElementById('Charname').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joshua Coin'
-                document.getElementById('yeah').innerHTML = "ohh right. Well, my name is Joshua Coin. im your best friend! and she is Denise Lockerman, your other best friend! we are a nice litle group. <br> <button id='Iam' onclick='Iam()'>my name</button> <br> <button onclick='where()'>where am I?</button> <br> <button id='combat' onclick='combat()'>combat</button> <br> <button id='social' onclick='social()'>social skills</button> "
+                document.getElementById('yeah').innerHTML = "ohh right. Well, my name is Joshua Coin. im your best friend! and she is Denise Lockerman, your other best friend! we are a nice litle group. <br> <button id='Iam' onclick='Iam()'>my name</button> <br> <button onclick='where()'>where am I?</button> <br> <button id='combat' onclick='combat()'>combat [start fight]</button> <br> <button id='social' onclick='social()'>social skills</button> "
             }
             function combat() {
                 document.getElementById('yeah').innerHTML = 'oh boy, im not the best at combat but ill give you a quick tutorial on the basics. here goes!'
@@ -395,7 +406,7 @@
                 } setTimeout(combatTutTP,2500)
             }
             function social() {
-                document.getElementById('yeah').innerHTML = "well, as you know, when you talk to someone you are given various <b>choices</b>, these choices affect the outcome of your interaction, and also how the person youre talking to feels about you. They will remember what you say. <br> <button id='Iam' onclick='Iam()'>my name</button> <br> <button onclick='where()'>where am I?</button> <br> <button id='who'>who are you?!</button> <br> <button id='combat' onclick='combat()'>combat</button> "
+                document.getElementById('yeah').innerHTML = "well, as you know, when you talk to someone you are given various <b>choices</b>, these choices affect the outcome of your interaction, and also how the person youre talking to feels about you. They will remember what you say. <br> <button id='Iam' onclick='Iam()'>my name</button> <br> <button onclick='where()'>where am I?</button> <br> <button id='who'>who are you?!</button> <br> <button id='combat' onclick='combat()'>combat [start fight]</button> "
             }
             function preload() {
             soundFormats('mp3', 'ogg');
