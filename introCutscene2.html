@@ -163,8 +163,7 @@
         <script>
           const whatMsg = 'What the hell, Jack!!!'
           const frMsg = 'Seriously? Thats your reasoning? I know you lost your memory and all, but please! Dont punch our friend! '
-          const actually = 'a-actually..i told him to punch me....my lungs feel deflated..'
-
+          const actuallyMsg = 'a-actually..i told him to punch me....my lungs feel deflated..'
 
           const txtSpeed = 30; 
           function opening() {
@@ -224,7 +223,14 @@
             frText.innerHTML = newText2;
             i++;
             }
-            cruisin2()
+            function cruisin2() {
+              checkForHit()
+              }
           }
+          function checkForHit() {
+            if (myVariable === true) {
+              
+              }
+            }
           //5000ms for cutoff
         </script>
