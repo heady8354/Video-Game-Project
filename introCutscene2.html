@@ -9,7 +9,7 @@
       referrerpolicy="no-referrer"></script>
       <!--reference external JS-->
       <script src="script.js"></script>
-      <title>BROOOO!!! YOU PUNCHED HIS ASS!!!!!! </title>
+      <title id="title">BROOOO!!! YOU PUNCHED HIS ASS!!!!!! </title>
   </head>
       <style>
         body {
@@ -19,12 +19,212 @@
             background-position: center;
             background-color: black;
         }
+        #mcUp {
+            position: absolute;
+            top: 65%;
+            left: 45%;
+            opacity: 0;
+            z-index: 2;
+        }
+        #mcRight {
+            position: absolute;
+            top: 65%;
+            left: 45%;
+            opacity: 1;
+            z-index: 2;
+        }
+        #JCL {
+            position: absolute;
+            top: 65%;
+            left: 53%; 
+            opacity: 0;
+        }
+        #DLD {
+            position: absolute;
+            left: 64vw;
+          top: 41vh;
+            opacity: 0;
+        }
+        #DLR {
+            position: absolute;
+            top: 55%;
+            left: 45%;
+            opacity: 0;
+        }
+        #DLPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+        }
+        #chatBox {
+            position: absolute;
+            width: 23vw;
+            height: 37vh;
+            left: 74vw;
+            top: 35vh;
+            z-index: 1;
+            opacity: 0;
+            background-color: gainsboro;
+            border: 5px solid gray;
+        }
+        #JCPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 2;
+        }
+        #JCD {
+            position: absolute;
+            top: 65%;
+            left: 53%; 
+            opacity: 0;
+        }
+        #mcDown {
+          position: absolute;
+          opacity: 0;
+        }
+        #JCLay {
+          position: absolute;
+          left: 64vw;
+          top: 68vh;
+        }
+        #DLL {
+          position: absolute;
+          left: 64vw;
+          top: 41vh;
+
+        }
+        #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
+        @keyframes appear {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes disappear {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        @keyframes alert1 {
+          0% {top: 41vh; opacity: 1;}
+          50% {top: 35vh}
+          100% {top: 41vh; opacity: 1;}
+        }
+        #DLWalkDown {
+          position: absolute;
+          height: 70px;
+          width: 70px;
+          left: 64vw;
+          top: 41vh;
+          opacity: 0;
+          
+        }
+        @keyframes walkdown {
+          0% {top: 41vh}
+          100% {top: 60vh}
+        }
         </style>
 
-        <body>
+        <body onload="setTimeout(opening,500)">
             <p id="other-page-element">whyd you punch him man that was rude af</p>
-        </body>
+            <p id="fireasssong">now playing: Goes Forward - Bonzods</p>
+            <img src="JoshuaCoinLay.png" id="JCLay">
+            <img src="mcDown.png" id="mcDown">
+            <img src="mcUp.png" id="mcUp">
+            <img src="mcRight.png" id="mcRight">
+            <img src="JoshuaCoinLeft.png" id="JCL">
+            <img src="JoshuaCoinDown.png" id="JCD">
+            <img src="DeniseLockermanDown.png" id="DLD"> 
+            <img src="DeniseLockermanRight.png" id="DLR">
+            <img src="DeniseLockermanLeft.png" id="DLL">
+            <img src="DeniseLockermanWalkDown.gif" id="DLWalkDown">
+            <img src="DeniseLockermanPortrait.png" id="DLPortrait">
+            <img src="JoshuaCoinPortrait.png" id="JCPortrait">
+            <div id="chatBox"><br><br><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Denise Lockerman</p><br><p id="textBox"><span id='whatthehell'></span><br><br><button onclick='cruisin()'>he was cruisin for a bruisin</button><br><button onclick='toldme()'>he told me to!</button></p><br><br></div>
+          </body>
 
         <script>
+          const whatMsg = 'What the hell, Jack!!!'
+          const frMsg = 'Seriously? Thats your reasoning? I know you lost your memory and all, but please! Dont punch our friend! '
+          const actually = 'a-actually..i told him to punch me....my lungs feel deflated..'
 
+
+          const txtSpeed = 30; 
+          function opening() {
+            document.getElementById('DLL').style.animation = 'disappear 0.1s forwards'
+            document.getElementById('DLD').style.animation = 'appear 0.1s forwards'
+            function opening2() {
+              document.getElementById('DLD').style.animation = 'alert1 0.4s forwards'
+              function opening3() {
+                document.getElementById('DLD').style.animation = 'disappear 0.0000001s forwards'
+                document.getElementById('DLWalkDown').style.opacity = '1'
+                document.getElementById('DLWalkDown').style.animation = 'walkdown 0.5s forwards linear'
+                
+                function opening4() {
+                  document.getElementById('DLD').style.top = '60vh'
+                  document.getElementById('DLD').style.animation = 'appear 0.000000001s forwards'
+                  document.getElementById('DLWalkDown').style.opacity = '0'
+                  function opening5() {
+                    document.getElementById('DLD').style.animation = 'disappear 0.0000001s forwards'
+                    document.getElementById('DLL').style.top = '60vh'
+                    document.getElementById('DLL').style.animation = 'appear 0.00000001s forwards'
+                    document.getElementById('chatBox').style.opacity = '1'
+                    document.getElementById('DLPortrait').style.opacity = '1'
+                    document.getElementById('DLPortrait').style.zIndex = '3'
+                    let i = 0;
+                    const timerId = setInterval(typeWhat, txtSpeed);
+                    function typeWhat() {
+                    const whatText = document.getElementById("whatthehell");
+                    const currentText1 = whatText.innerHTML;
+                    if (i >= whatMsg.length) {
+                    clearInterval(timerId); 
+                    return;
+                    }
+                    const nextChar1 = whatMsg.charAt(i);
+                    const newText1 = currentText1 + nextChar1;
+                    whatText.innerHTML = newText1;
+                    i++;
+                  }
+                  }setTimeout(opening5,1000)
+                }setTimeout(opening4,550)
+              }setTimeout(opening3,500)
+            }setTimeout(opening2,500)
+          }
+          function cruisin() {
+            document.getElementById('textBox').innerHTML = ''
+            document.getElementById('textBox').innerHTML = "<span id='frspan'></span>"
+            let i = 0;
+            const timerId = setInterval(typeFr, txtSpeed);
+            function typeFr() {
+            const frText = document.getElementById("frspan");
+            const currentText2 = frText.innerHTML;
+            if (i >= frMsg.length) {
+            clearInterval(timerId); 
+            return;
+            }
+            const nextChar2 = frMsg.charAt(i);
+            const newText2 = currentText2 + nextChar2;
+            frText.innerHTML = newText2;
+            i++;
+            }
+            cruisin2()
+          }
+          //5000ms for cutoff
         </script>

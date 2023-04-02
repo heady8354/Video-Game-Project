@@ -5,6 +5,11 @@ var myVariable = sessionStorage.getItem('myVariable') || false;
 document.addEventListener('DOMContentLoaded', function() {
     var otherPageElement = document.getElementById('other-page-element');
     if (myVariable === 'true' && otherPageElement) {
-      otherPageElement.innerHTML = 'this was a development test and i kinda need the code in here so if u see this hey';
+      otherPageElement.innerHTML = 'his belly fat jiggled when he hit the ground';
     }
   });
+  function cruisin2() {
+              if (myVariable === true) {
+                document.getElementById('textBox').innerHTML = ''
+              }
+            }setTimeout(cruisin2,1000)
