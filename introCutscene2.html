@@ -140,6 +140,22 @@
           0% {top: 41vh}
           100% {top: 60vh}
         }
+        #JCRoll {
+          position: absolute;
+          height: 70px;
+          width: 70px;
+          left: 64vw;
+          top: 68vh;
+          opacity: 1;
+        }
+        @keyframes slowWalkDown {
+          0% {top: 60vh}
+          100% {top: 85vh; opacity: 0;}
+        }
+        @keyframes slowRollDown {
+          0% {top: 68vh}
+          100% {top: 85vh; opacity: 0;}
+        }
         </style>
 
         <body onload="setTimeout(opening,500)">
@@ -157,6 +173,7 @@
             <img src="DeniseLockermanWalkDown.gif" id="DLWalkDown">
             <img src="DeniseLockermanPortrait.png" id="DLPortrait">
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
+            <img src="JoshuaCoinRoll.gif" id="JCRoll">
             <div id="chatBox"><br><br><p id='charName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Denise Lockerman</p><br><p id="textBox"><span id='whatthehell'></span><br><br><button onclick='cruisin()'>he was cruisin for a bruisin</button><br><button onclick='toldme()'>he told me to!</button></p><br><br></div>
           </body>
 
@@ -165,6 +182,7 @@
           const frMsg = 'Seriously? Thats your reasoning? I know you lost your memory and all, but please! Dont punch our friend! '
           const actuallyMsg = 'a-actually..i told him to punch me....my lungs feel deflated..'
           const miseryMsg = '..oh..the misery..ouch..everybody wants to-cough cough, be my...enemy...'
+          const sighMsg = 'Sigh, well. I am going to take Joshua to the doctor. Meet us there later. I reccommend exploring a bit though, maybe it will jog your memory.'
 
           const txtSpeed = 30; 
           function opening() {
@@ -225,22 +243,54 @@
             i++;
             }
             function cruisin2() {
-  if (myVariable) {
-    document.getElementById('JCPortrait').style.opacity = '1'
-    document.getElementById('DLPortrait').style.opacity = '0'
-    document.getElementById('DLL').style.opacity = '0'
-    document.getElementById('DLD').style.opacity = '1'
-    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
-    typeText('textBox', 'actuallyspan', actuallyMsg);
-  } else {
-    document.getElementById('JCPortrait').style.opacity = '1'
-    document.getElementById('DLPortrait').style.opacity = '0'
-    document.getElementById('DLL').style.animation = 'disappear 0.000001s forwards'
-    document.getElementById('DLD').style.animation = 'appear 0.00000001s forwards'
-    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
-    typeText('textBox', 'miseryspan', miseryMsg);
-  }
-}
+            if (myVariable) {
+            document.getElementById('JCPortrait').style.opacity = '1'
+            document.getElementById('DLPortrait').style.opacity = '0'
+            document.getElementById('DLL').style.animation = 'disappear 0.000001s forwards'
+            document.getElementById('DLD').style.animation = 'appear 0.00000001s forwards'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
+            typeText('textBox', 'actuallyspan', actuallyMsg);
+          } else {
+            document.getElementById('JCPortrait').style.opacity = '1'
+            document.getElementById('DLPortrait').style.opacity = '0'
+            document.getElementById('DLL').style.animation = 'disappear 0.000001s forwards'
+            document.getElementById('DLD').style.animation = 'appear 0.00000001s forwards'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
+            typeText('textBox', 'miseryspan', miseryMsg);
+          }
+          function cruisin3() {
+            document.getElementById('DLL').style.animation = 'appear 0.000001s forwards'
+            document.getElementById('DLD').style.animation = 'disappear 0.00000001s forwards'
+            document.getElementById('JCPortrait').style.opacity = '0'
+            document.getElementById('DLPortrait').style.opacity = '1'
+            document.getElementById('textBox').innerHTML = ''
+            document.getElementById('textBox').innerHTML = "<span id='sighspan'></span>"
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Denise Lockerman'
+            let i = 0;
+            const timerId = setInterval(typeSigh, txtSpeed);
+            function typeSigh() {
+            const sighText = document.getElementById("sighspan");
+            const currentText4 = sighText.innerHTML;
+            if (i >= sighMsg.length) {
+            clearInterval(timerId); 
+            return;
+            }
+            const nextChar4 = sighMsg.charAt(i);
+            const newText4 = currentText4 + nextChar4;
+            sighText.innerHTML = newText4;
+            i++;
+            }
+            function cruisin4() {
+              document.getElementById('chatBox').style.opacity = '0'
+              document.getElementById('DLPortrait').style.opacity = '0'
+              document.getElementById('DLL').style.animation = 'disappear 0.000001s forwards'
+              document.getElementById('DLD').style.animation = 'disappear 0.00000001s forwards'
+              document.getElementById('DLWalkDown').style.opacity = '1'
+              document.getElementById('DLWalkDown').style.top = '60vh'
+              //add rolling and walking animations
+            }setTimeout(cruisin4,6000)
+          } setTimeout(cruisin3,5000)       
+        } setTimeout(cruisin2, 4000);
 
 function typeText(containerId, spanId, text) {
   document.getElementById(containerId).innerHTML = '';
@@ -259,8 +309,5 @@ function typeText(containerId, spanId, text) {
     i++;
   }, txtSpeed);
 }
-
-setTimeout(cruisin2, 4000);
-          }
-          //5000ms for cutoff
+} //cruisin end
         </script>
