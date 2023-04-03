@@ -157,13 +157,14 @@
             <img src="DeniseLockermanWalkDown.gif" id="DLWalkDown">
             <img src="DeniseLockermanPortrait.png" id="DLPortrait">
             <img src="JoshuaCoinPortrait.png" id="JCPortrait">
-            <div id="chatBox"><br><br><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Denise Lockerman</p><br><p id="textBox"><span id='whatthehell'></span><br><br><button onclick='cruisin()'>he was cruisin for a bruisin</button><br><button onclick='toldme()'>he told me to!</button></p><br><br></div>
+            <div id="chatBox"><br><br><p id='charName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Denise Lockerman</p><br><p id="textBox"><span id='whatthehell'></span><br><br><button onclick='cruisin()'>he was cruisin for a bruisin</button><br><button onclick='toldme()'>he told me to!</button></p><br><br></div>
           </body>
 
         <script>
           const whatMsg = 'What the hell, Jack!!!'
           const frMsg = 'Seriously? Thats your reasoning? I know you lost your memory and all, but please! Dont punch our friend! '
           const actuallyMsg = 'a-actually..i told him to punch me....my lungs feel deflated..'
+          const miseryMsg = '..oh..the misery..ouch..everybody wants to-cough cough, be my...enemy...'
 
           const txtSpeed = 30; 
           function opening() {
@@ -224,13 +225,42 @@
             i++;
             }
             function cruisin2() {
-              checkForHit()
-              }
+  if (myVariable) {
+    document.getElementById('JCPortrait').style.opacity = '1'
+    document.getElementById('DLPortrait').style.opacity = '0'
+    document.getElementById('DLL').style.opacity = '0'
+    document.getElementById('DLD').style.opacity = '1'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
+    typeText('textBox', 'actuallyspan', actuallyMsg);
+  } else {
+    document.getElementById('JCPortrait').style.opacity = '1'
+    document.getElementById('DLPortrait').style.opacity = '0'
+    document.getElementById('DLL').style.animation = 'disappear 0.000001s forwards'
+    document.getElementById('DLD').style.animation = 'appear 0.00000001s forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joshua Coin'
+    typeText('textBox', 'miseryspan', miseryMsg);
+  }
+}
+
+function typeText(containerId, spanId, text) {
+  document.getElementById(containerId).innerHTML = '';
+  document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+  let i = 0;
+  const timerId = setInterval(() => {
+    const span = document.getElementById(spanId);
+    const currentText = span.innerHTML;
+    if (i >= text.length) {
+      clearInterval(timerId);
+      return;
+    }
+    const nextChar = text.charAt(i);
+    const newText = currentText + nextChar;
+    span.innerHTML = newText;
+    i++;
+  }, txtSpeed);
+}
+
+setTimeout(cruisin2, 4000);
           }
-          function checkForHit() {
-            if (myVariable === true) {
-              
-              }
-            }
           //5000ms for cutoff
         </script>

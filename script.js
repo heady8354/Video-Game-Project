@@ -8,8 +8,4 @@ document.addEventListener('DOMContentLoaded', function() {
       otherPageElement.innerHTML = 'his belly fat jiggled when he hit the ground';
     }
   });
-  function cruisin2() {
-              if (myVariable === true) {
-                document.getElementById('textBox').innerHTML = ''
-              }
-            }setTimeout(cruisin2,1000)
+  
