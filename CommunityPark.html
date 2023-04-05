@@ -62,12 +62,12 @@
         mcDown = loadImage('mcDown.png');
         mcLeft = loadImage('mcLeft.png');
         mcRight = loadImage('mcRight.png');
-        currentImage = walkDown; // Set initial image
+        currentImage = mcDown; // Set initial image
     }
         function draw() {
             clear()
             // Draw image at current position
-        image(currentImage, x, y, 60, 60);
+        image(currentImage, x, y, 64, 64);
 
         if (keyIsDown(SHIFT)) {
             speed = 4;
