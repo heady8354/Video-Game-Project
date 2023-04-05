@@ -1,18 +1,16 @@
 Urgent:
-Combat Tutorial
 different bg options
-introcutscene finish
 credits
+movement and playability 
+add music to IC2 (i could right now but my cheapass headset broke)
 
 Near future:
-movement and playability 
+change menu bg to random areas 
 
 Later on indev:
 Emotion Portraits
-change menu bg to random areas 
+
 make retro big dog
 
 Maybe:
-repeating action prevention
-battle transitions
 rythym game minigame

@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js" integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+      integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+      <!--reference external JS-->
+      <script src="script.js"></script>
+      <title id="title">isnt this park so nice like take some time to appreicate it</title>
+  </head>
+
+  <style>
+    body {
+            overflow: hidden;
+            background-image: url(communityPark.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: black;
+        }
+    #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
+  </style>
+
+  <body>
+    <p id="fireasssong">now playing: Rabby - Bonzods</p>
+  </body>
+
+  <script>
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let x = window.innerWidth / 2
+    let y = window.innerHeight / 2
+    let speed = 2
+
+    function setup() {
+        createCanvas(w,h);
+        
+        walkUp = loadImage('mcWalkUp.gif')
+        walkDown = loadImage('mcWalkDown.gif')
+        walkLeft = loadImage('mcWalkLeft.gif')
+        walkRight = loadImage('mcWalkRight.gif')
+        mcUp = loadImage('mcUp.png');
+        mcDown = loadImage('mcDown.png');
+        mcLeft = loadImage('mcLeft.png');
+        mcRight = loadImage('mcRight.png');
+        currentImage = walkDown; // Set initial image
+    }
+        function draw() {
+            clear()
+            // Draw image at current position
+        image(currentImage, x, y, 60, 60);
+
+        if (keyIsDown(SHIFT)) {
+            speed = 4;
+        } else {
+            speed = 2;
+        }
+
+        // Move character based on key inputs
+        if (keyIsDown(65)) { // A key
+        x -= speed;
+        currentImage = walkLeft;
+        lastPressedKey = 'A';
+        }
+        if (keyIsDown(68)) { // D key
+        x += speed;
+        currentImage = walkRight;
+        lastPressedKey = 'D';
+        }
+        if (keyIsDown(87)) { // W key
+        y -= speed;
+        currentImage = walkUp;
+        lastPressedKey = 'W';
+        }
+        if (keyIsDown(83)) { // S key
+        y += speed;
+        currentImage = walkDown;
+        lastPressedKey = 'S';
+        }
+        
+        }
+        function keyPressed() {
+    // Update lastPressedKey variable when a key is pressed
+            if (key === 'A') {
+            lastPressedKey = 'A';
+            } else if (key === 'D') {
+            lastPressedKey = 'D';
+            } else if (key === 'W') {
+            lastPressedKey = 'W';
+            } else if (key === 'S') {
+            lastPressedKey = 'S';
+            }
+        }
+        function keyReleased() {
+    // Change image based on last pressed key when a key is released
+    if (lastPressedKey === 'A') {
+      currentImage = mcLeft;
+    } else if (lastPressedKey === 'D') {
+      currentImage = mcRight;
+    } else if (lastPressedKey === 'W') {
+      currentImage = mcUp;
+    } else if (lastPressedKey === 'S') {
+      currentImage = mcDown;
+    }
+}
+  </script>
