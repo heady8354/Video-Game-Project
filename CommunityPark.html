@@ -7,6 +7,7 @@
       integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
       <!--reference external JS-->
       <script src="script.js"></script>
       <title id="title">isnt this park so nice like take some time to appreicate it</title>
@@ -53,7 +54,6 @@
 
     function setup() {
         createCanvas(w,h);
-        
         walkUp = loadImage('mcWalkUp.gif')
         walkDown = loadImage('mcWalkDown.gif')
         walkLeft = loadImage('mcWalkLeft.gif')
@@ -63,11 +63,21 @@
         mcLeft = loadImage('mcLeft.png');
         mcRight = loadImage('mcRight.png');
         currentImage = mcDown; // Set initial image
+        
     }
         function draw() {
             clear()
             // Draw image at current position
         image(currentImage, x, y, 64, 64);
+        noFill()
+        noStroke()
+        rect(x,y,64,64)
+          
+        barrierLeft = collideRectRect(280,50,100,1000,x,y,64,64)
+        barrierRight = collideRectRect(1140,50,100,1000,x,y,64,64)
+        barrierUp = collideRectRect(280,0,1000,51,x,y,64,64)
+        barrierDown = collideRectRect(280,820,1000,51,x,y,64,64)
+        signBarrierLeft = collideRectRect(830,430,10,90,x,y,64,64)
 
         if (keyIsDown(SHIFT)) {
             speed = 4;
@@ -76,27 +86,37 @@
         }
 
         // Move character based on key inputs
-        if (keyIsDown(65)) { // A key
+        if (keyIsDown(65) && !barrierLeft) { // A key
         x -= speed;
         currentImage = walkLeft;
         lastPressedKey = 'A';
         }
-        if (keyIsDown(68)) { // D key
+        if (keyIsDown(68) && !barrierRight && !signBarrierLeft) { // D key
         x += speed;
         currentImage = walkRight;
         lastPressedKey = 'D';
         }
-        if (keyIsDown(87)) { // W key
+        if (keyIsDown(87) && !barrierUp) { // W key
         y -= speed;
         currentImage = walkUp;
         lastPressedKey = 'W';
         }
-        if (keyIsDown(83)) { // S key
+        if (keyIsDown(83) && !barrierDown) { // S key
         y += speed;
         currentImage = walkDown;
         lastPressedKey = 'S';
         }
-        
+        //world barriers
+        noFill()
+        noStroke()
+        rect(280,50,100,1000)
+        rect(1140,50,100,1000)
+        rect(280,0,1000,51)
+        rect (280,820,1000,51)
+        //object barriers
+        fill('red')
+        noStroke()
+        /* sign */ rect(840,430,10,90)
         }
         function keyPressed() {
     // Update lastPressedKey variable when a key is pressed
@@ -111,15 +131,15 @@
             }
         }
         function keyReleased() {
-    // Change image based on last pressed key when a key is released
-    if (lastPressedKey === 'A') {
-      currentImage = mcLeft;
-    } else if (lastPressedKey === 'D') {
-      currentImage = mcRight;
-    } else if (lastPressedKey === 'W') {
-      currentImage = mcUp;
-    } else if (lastPressedKey === 'S') {
-      currentImage = mcDown;
+     // Change image based on last pressed key when a key is released
+        if (lastPressedKey === 'A') {
+          currentImage = mcLeft;
+        } else if (lastPressedKey === 'D') {
+          currentImage = mcRight;
+        } else if (lastPressedKey === 'W') {
+          currentImage = mcUp;
+        } else if (lastPressedKey === 'S') {
+          currentImage = mcDown;
+        }
     }
-}
   </script>
