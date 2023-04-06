@@ -39,10 +39,36 @@
             50% {top: 90vh}
             100% {top: 100vh}
         }
+        #chatBox {
+            position: absolute;
+            width: 23vw;
+            height: 37vh;
+            left: 74vw;
+            top: 35vh;
+            z-index: 1;
+            opacity: 0;
+            background-color: gainsboro;
+            border: 5px solid gray;
+        }
+        #signPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+        }
+        @keyframes appear {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes disappear {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
   </style>
 
   <body>
     <p id="fireasssong">now playing: Rabby - Bonzods</p>
+    <div id="chatBox"><br><br><p id='charName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sir Sign the First</p><br><p id="textBox"><br><br><button onclick='alive()'>are you alive?</button><br><button onclick='thanks()'>thanks!</button><br><button onclick='east()'>whats east?</button></p><br><br></div>
   </body>
 
   <script>
@@ -51,6 +77,8 @@
     let x = window.innerWidth / 2
     let y = window.innerHeight / 2
     let speed = 2
+
+    const readMsg = 'NORTH: Forest SOUTH: Town enterance WEST: Beach'
 
     function setup() {
         createCanvas(w,h);
@@ -68,16 +96,25 @@
         function draw() {
             clear()
             // Draw image at current position
-        image(currentImage, x, y, 64, 64);
+        image(currentImage, x, y, 64, 64); //player
+        textFont('Arial', 12); // set font and size of text
         noFill()
         noStroke()
         rect(x,y,64,64)
           
-        barrierLeft = collideRectRect(280,50,100,1000,x,y,64,64)
-        barrierRight = collideRectRect(1140,50,100,1000,x,y,64,64)
-        barrierUp = collideRectRect(280,0,1000,51,x,y,64,64)
-        barrierDown = collideRectRect(280,820,1000,51,x,y,64,64)
-        signBarrierLeft = collideRectRect(830,430,10,90,x,y,64,64)
+        //barrier hitboxes
+        barrierLeft = collideRectRect(w/4.2,50,100,1000,x,y,64,64)
+        barrierRight = collideRectRect(w*0.7,50,100,1000,x,y,64,64)
+        barrierUp = collideRectRect(280,h*0.03,1000,51,x,y,64,64)
+        barrierDown = collideRectRect(280,h*0.91,1000,51,x,y,64,64)
+        signBarrierLeft = collideRectRect(w*0.539,h*0.5,10,40,x,y,64,64)
+        signBarrierTop = collideRectRect(w*0.55,h*0.5,50,10,x,y,64,64)
+        signBarrierBottom = collideRectRect(w*0.55,h*0.57,50,10,x,y,64,64)
+        signBarrierRight = collideRectRect(w*0.5659,h*0.5,10,40,x,y,64,64)
+        signInteract = collideRectRect(w*0.522,h*0.55,120,50,x,y,64,64)
+
+        //interaction hitboxes
+          
 
         if (keyIsDown(SHIFT)) {
             speed = 4;
@@ -86,7 +123,7 @@
         }
 
         // Move character based on key inputs
-        if (keyIsDown(65) && !barrierLeft) { // A key
+        if (keyIsDown(65) && !barrierLeft && !signBarrierRight) { // A key
         x -= speed;
         currentImage = walkLeft;
         lastPressedKey = 'A';
@@ -96,27 +133,66 @@
         currentImage = walkRight;
         lastPressedKey = 'D';
         }
-        if (keyIsDown(87) && !barrierUp) { // W key
+        if (keyIsDown(87) && !barrierUp && !signBarrierBottom) { // W key
         y -= speed;
         currentImage = walkUp;
         lastPressedKey = 'W';
         }
-        if (keyIsDown(83) && !barrierDown) { // S key
+        if (keyIsDown(83) && !barrierDown && !signBarrierTop) { // S key
         y += speed;
         currentImage = walkDown;
         lastPressedKey = 'S';
         }
+
+        //ifs 
+        if (signInteract) {
+          drawText()
+        }
+        if (signInteract && keyCode === 69) {
+          function signRead() {
+            document.getElementById('chatBox').style.animation = 'appear 0.00001s forwards'
+            typeText('textbox', readspan, readMsg)
+          }
+          function typeText(containerId, spanId, text) {
+            document.getElementById(containerId).innerHTML = '';
+            document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+            let i = 0;
+            let txtSpeed = 30
+            const timerId = setInterval(() => {
+              const span = document.getElementById(spanId);
+              const currentText = span.innerHTML;
+              if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+              }
+              const nextChar = text.charAt(i);
+              const newText = currentText + nextChar;
+              span.innerHTML = newText;
+              i++;
+            }, txtSpeed);
+          }
+        }
+
         //world barriers
         noFill()
         noStroke()
-        rect(280,50,100,1000)
-        rect(1140,50,100,1000)
-        rect(280,0,1000,51)
-        rect (280,820,1000,51)
+        rect(w/4.2,50,100,1000)
+        rect(w * 0.7 ,50,100,1000)
+        rect(280,h*0.03,1000,51)
+        rect (280,h*0.91,1000,51)
         //object barriers
-        fill('red')
+        noFill()
         noStroke()
-        /* sign */ rect(840,430,10,90)
+        /* sign left*/ rect(w*0.539,h*0.5,10,40)
+        /* sign top*/ rect(w*0.56,h*0.5,30,10) 
+        /* sign botom*/ rect(w*0.55,h*0.56,50,10)
+        /* sign right */ rect(w*0.5659,h*0.5,10,40)
+
+        //interact boxes
+        fill('gray')
+        /* sign */ rect(w*0.522,h*0.55,120,50)
+
+
         }
         function keyPressed() {
     // Update lastPressedKey variable when a key is pressed
@@ -142,4 +218,13 @@
           currentImage = mcDown;
         }
     }
+    function drawText() {
+    let textX = x; // x position of text
+    let textY = y - -80; // y position of text (20 pixels above player)
+    textAlign(LEFT);
+    fill(255);
+    stroke(0)
+    strokeWeight(3)
+    text('Press [E] to interact', textX, textY);
+}
   </script>
