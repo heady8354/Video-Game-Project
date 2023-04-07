@@ -1,8 +1,8 @@
 Urgent:
 different bg options
 credits
-movement and playability 
 add music to IC2 (i could right now but my cheapass headset broke)
+make interact work 
 
 Near future:
 change menu bg to random areas 

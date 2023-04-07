@@ -55,6 +55,9 @@
             left: 74vw;
             position: absolute;
             opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
         }
         @keyframes appear {
             0% {opacity: 0;}
@@ -68,7 +71,8 @@
 
   <body>
     <p id="fireasssong">now playing: Rabby - Bonzods</p>
-    <div id="chatBox"><br><br><p id='charName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sir Sign the First</p><br><p id="textBox"><br><br><button onclick='alive()'>are you alive?</button><br><button onclick='thanks()'>thanks!</button><br><button onclick='east()'>whats east?</button></p><br><br></div>
+    <div id="chatBox"><br><br><p id='charName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sir Sign the First</p><br><p id="textBox"><span id='readspan'></span></p><p id='buttons'><br><br><button onclick='whateast()'>whats east?</button><br><button onclick='thanks()'>thanks!</button><br><button onclick='exit()'>*exit chat*</button></p><br><br></div>
+    <img src="SignPortrait.png" id="signPortrait">
   </body>
 
   <script>
@@ -77,8 +81,72 @@
     let x = window.innerWidth / 2
     let y = window.innerHeight / 2
     let speed = 2
+    let hasrun = false
+    let inchat = false
+    let interactable = false
 
-    const readMsg = 'NORTH: Forest SOUTH: Town enterance WEST: Beach'
+    const readMsg = 'NORTH: Forest       SOUTH: Town Enterance       WEST: Beach'
+    const eastMsg = 'wouldnt you like to know,               tough guy'
+    const thxMsg = 'youre welcome!'
+
+    function whateast() {
+        typeText('textBox', 'eastspan', eastMsg)
+        document.getElementById('buttons').innerHTML = ''
+
+        function typeText(containerId, spanId, text) {
+          document.getElementById(containerId).innerHTML = '';
+          document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+          let i = 0;
+          let txtSpeed = 30
+          const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+              clearInterval(timerId);
+              return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+          }, txtSpeed);
+          setTimeout(exit, 2500)
+        }
+      }
+
+      function exit() {
+        
+        document.getElementById('textBox').innerHTML = ''
+        document.getElementById('chatBox').style.opacity = '0'
+        document.getElementById('signPortrait').style.animation = 'disappear 0.000001s forwards'
+        inchat = false
+        
+      }
+
+      function thanks() {
+        typeText('textBox', 'thxspan', thxMsg)
+        document.getElementById('buttons').innerHTML = ''
+
+        function typeText(containerId, spanId, text) {
+          document.getElementById(containerId).innerHTML = '';
+          document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+          let i = 0;
+          let txtSpeed = 30
+          const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+              clearInterval(timerId);
+              return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+          }, txtSpeed);
+          setTimeout(exit, 2000)
+        }
+      }
 
     function setup() {
         createCanvas(w,h);
@@ -107,11 +175,11 @@
         barrierRight = collideRectRect(w*0.7,50,100,1000,x,y,64,64)
         barrierUp = collideRectRect(280,h*0.03,1000,51,x,y,64,64)
         barrierDown = collideRectRect(280,h*0.91,1000,51,x,y,64,64)
-        signBarrierLeft = collideRectRect(w*0.539,h*0.5,10,40,x,y,64,64)
-        signBarrierTop = collideRectRect(w*0.55,h*0.5,50,10,x,y,64,64)
-        signBarrierBottom = collideRectRect(w*0.55,h*0.57,50,10,x,y,64,64)
+        signBarrierLeft = collideRectRect(w * 0.539, h * 0.5, 10, 50,x,y,64,64)
+        signBarrierTop = collideRectRect(w * 0.55, h * 0.5, 30, 10,x,y,64,64)
+        signBarrierBottom = collideRectRect(w * 0.54, h * 0.54, 60, 10,x,y,64,64)
         signBarrierRight = collideRectRect(w*0.5659,h*0.5,10,40,x,y,64,64)
-        signInteract = collideRectRect(w*0.522,h*0.55,120,50,x,y,64,64)
+        signInteract = collideRectRect(w * 0.54, h * 0.55, 50, 1,x,y,64,64)
 
         //interaction hitboxes
           
@@ -123,22 +191,22 @@
         }
 
         // Move character based on key inputs
-        if (keyIsDown(65) && !barrierLeft && !signBarrierRight) { // A key
+        if (keyIsDown(65) && !barrierLeft && !signBarrierRight && !inchat) { // A key
         x -= speed;
         currentImage = walkLeft;
         lastPressedKey = 'A';
         }
-        if (keyIsDown(68) && !barrierRight && !signBarrierLeft) { // D key
+        if (keyIsDown(68) && !barrierRight && !signBarrierLeft && !inchat) { // D key
         x += speed;
         currentImage = walkRight;
         lastPressedKey = 'D';
         }
-        if (keyIsDown(87) && !barrierUp && !signBarrierBottom) { // W key
+        if (keyIsDown(87) && !barrierUp && !signBarrierBottom && !inchat) { // W key
         y -= speed;
         currentImage = walkUp;
         lastPressedKey = 'W';
         }
-        if (keyIsDown(83) && !barrierDown && !signBarrierTop) { // S key
+        if (keyIsDown(83) && !barrierDown && !signBarrierTop && !inchat) { // S key
         y += speed;
         currentImage = walkDown;
         lastPressedKey = 'S';
@@ -147,30 +215,34 @@
         //ifs 
         if (signInteract) {
           drawText()
-        }
-        if (signInteract && keyCode === 69) {
-          function signRead() {
-            document.getElementById('chatBox').style.animation = 'appear 0.00001s forwards'
-            typeText('textbox', readspan, readMsg)
-          }
-          function typeText(containerId, spanId, text) {
-            document.getElementById(containerId).innerHTML = '';
-            document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
-            let i = 0;
-            let txtSpeed = 30
-            const timerId = setInterval(() => {
-              const span = document.getElementById(spanId);
-              const currentText = span.innerHTML;
-              if (i >= text.length) {
-                clearInterval(timerId);
-                return;
-              }
-              const nextChar = text.charAt(i);
-              const newText = currentText + nextChar;
-              span.innerHTML = newText;
-              i++;
-            }, txtSpeed);
-          }
+          if (keyCode === 69) {
+          document.getElementById('chatBox').style.opacity = '1'
+          document.getElementById('signPortrait').style.animation = 'appear 0.000001s forwards'
+          inchat = true
+          y = y+30
+          document.getElementById('buttons').innerHTML = "<br><br><button onclick='whateast()'>whats east?</button><br><button onclick='thanks()'>thanks!</button><br><button onclick='exit()'>*exit chat*</button></p>"
+          typeText('textBox', 'readspan', readMsg)
+
+            function typeText(containerId, spanId, text) {
+              document.getElementById(containerId).innerHTML = '';
+              document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+              let i = 0;
+              let txtSpeed = 30
+              const timerId = setInterval(() => {
+                const span = document.getElementById(spanId);
+                const currentText = span.innerHTML;
+                if (i >= text.length) {
+                  clearInterval(timerId);
+                  return;
+                }
+                const nextChar = text.charAt(i);
+                const newText = currentText + nextChar;
+                span.innerHTML = newText;
+                i++;
+              }, txtSpeed);
+            }
+
+        }          
         }
 
         //world barriers
@@ -181,16 +253,16 @@
         rect(280,h*0.03,1000,51)
         rect (280,h*0.91,1000,51)
         //object barriers
-        noFill()
+        fill('red')
         noStroke()
-        /* sign left*/ rect(w*0.539,h*0.5,10,40)
-        /* sign top*/ rect(w*0.56,h*0.5,30,10) 
-        /* sign botom*/ rect(w*0.55,h*0.56,50,10)
+        /* sign left*/ rect(w*0.539,h*0.5,10,50)
+        /* sign top*/ rect(w*0.55,h*0.5,30,10) 
+        /* sign botom*/ rect(w*0.54,h*0.54,60,10)
         /* sign right */ rect(w*0.5659,h*0.5,10,40)
 
         //interact boxes
-        fill('gray')
-        /* sign */ rect(w*0.522,h*0.55,120,50)
+        fill('grey')
+        /* sign */ rect(w*0.54,h*0.55,50,1)
 
 
         }
@@ -216,7 +288,7 @@
           currentImage = mcUp;
         } else if (lastPressedKey === 'S') {
           currentImage = mcDown;
-        }
+        } //else, show tip
     }
     function drawText() {
     let textX = x; // x position of text
