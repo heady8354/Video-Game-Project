@@ -67,12 +67,33 @@
             0% {opacity: 1;}
             100% {opacity: 0;}
         }
+        #wasd {
+          color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+        }
+        #morganfreemanPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
   </style>
 
   <body>
     <p id="fireasssong">now playing: Rabby - Bonzods</p>
+    <p id="wasd">use WASD to move. who uses arrow keys in 2023?</p>
     <div id="chatBox"><br><br><p id='charName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sir Sign the First</p><br><p id="textBox"><span id='readspan'></span></p><p id='buttons'><br><br><button onclick='whateast()'>whats east?</button><br><button onclick='thanks()'>thanks!</button><br><button onclick='exit()'>*exit chat*</button></p><br><br></div>
     <img src="SignPortrait.png" id="signPortrait">
+    <img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
   </body>
 
   <script>
@@ -88,6 +109,8 @@
     const readMsg = 'NORTH: Forest       SOUTH: Town Enterance       WEST: Beach'
     const eastMsg = 'wouldnt you like to know,               tough guy'
     const thxMsg = 'youre welcome!'
+    const thingsMsg = 'Your bag.             Full of 1 hour old fruits.'
+    const pickMsg = 'You try to pick up your bag but..            oh my..            it seems to be...                         super glued to the ground...             hmm...               strange.'
 
     function whateast() {
         typeText('textBox', 'eastspan', eastMsg)
@@ -119,6 +142,8 @@
         document.getElementById('textBox').innerHTML = ''
         document.getElementById('chatBox').style.opacity = '0'
         document.getElementById('signPortrait').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('morganfreemanPortrait').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('buttons').innerHTML = ''
         inchat = false
         
       }
@@ -148,6 +173,31 @@
         }
       }
 
+    function pickup() {
+      typeText('textBox', 'pickspan', pickMsg)
+      document.getElementById('buttons').innerHTML = ''
+
+      function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+          const span = document.getElementById(spanId);
+          const currentText = span.innerHTML;
+          if (i >= text.length) {
+            clearInterval(timerId);
+            return;
+          }
+          const nextChar = text.charAt(i);
+          const newText = currentText + nextChar;
+          span.innerHTML = newText;
+          i++;
+        }, txtSpeed);
+        setTimeout(exit, 6000)
+      }
+    }  
+
     function setup() {
         createCanvas(w,h);
         walkUp = loadImage('mcWalkUp.gif')
@@ -159,6 +209,8 @@
         mcLeft = loadImage('mcLeft.png');
         mcRight = loadImage('mcRight.png');
         currentImage = mcDown; // Set initial image
+        x = w/2.3
+        y = h*0.65
         
     }
         function draw() {
@@ -176,10 +228,17 @@
         barrierUp = collideRectRect(280,h*0.03,1000,51,x,y,64,64)
         barrierDown = collideRectRect(280,h*0.91,1000,51,x,y,64,64)
         signBarrierLeft = collideRectRect(w * 0.539, h * 0.5, 10, 50,x,y,64,64)
-        signBarrierTop = collideRectRect(w * 0.55, h * 0.5, 30, 10,x,y,64,64)
+        signBarrierTop = collideRectRect(w * 0.54, h * 0.5, 54, 10,x,y,64,64)
         signBarrierBottom = collideRectRect(w * 0.54, h * 0.54, 60, 10,x,y,64,64)
         signBarrierRight = collideRectRect(w*0.5659,h*0.5,10,40,x,y,64,64)
         signInteract = collideRectRect(w * 0.54, h * 0.55, 50, 1,x,y,64,64)
+        thingsBarrierRight = collideRectRect(w / 2.6, h / 2.2, 10, 999,x,y,64,64)
+        thingsBarrierTop = collideRectRect(w / 4.3, h / 2.2, 290, 10,x,y,64,64)
+        thingsInteract = collideRectRect(w / 2.57, h * 0.71, 1, 100,x,y,64,64)
+        treeBarrierBottom = collideRectRect(w / 2.35, h / 3.5, 160, 10,x,y,64,64)
+        treeBarrierLeft = collideRectRect(w / 2.35, h / 10, 10, 160,x,y,64,64)
+        treeBarrierRight = collideRectRect (w / 1.99999, h / 10, 10, 160,x,y,64,64)
+        beachEnter = collideRectRect(w / 3.4, h / 2.9, 10, 100,x,y,64,64) 
 
         //interaction hitboxes
           
@@ -191,33 +250,53 @@
         }
 
         // Move character based on key inputs
-        if (keyIsDown(65) && !barrierLeft && !signBarrierRight && !inchat) { // A key
+        if (keyIsDown(65) && !barrierLeft && !signBarrierRight && !inchat && !thingsBarrierRight && !treeBarrierRight) { // A key
         x -= speed;
         currentImage = walkLeft;
         lastPressedKey = 'A';
         }
-        if (keyIsDown(68) && !barrierRight && !signBarrierLeft && !inchat) { // D key
+        if (keyIsDown(68) && !barrierRight && !signBarrierLeft && !inchat && !treeBarrierLeft) { // D key
         x += speed;
         currentImage = walkRight;
         lastPressedKey = 'D';
         }
-        if (keyIsDown(87) && !barrierUp && !signBarrierBottom && !inchat) { // W key
+        if (keyIsDown(87) && !barrierUp && !signBarrierBottom && !inchat && !treeBarrierBottom) { // W key
         y -= speed;
         currentImage = walkUp;
         lastPressedKey = 'W';
         }
-        if (keyIsDown(83) && !barrierDown && !signBarrierTop && !inchat) { // S key
+        if (keyIsDown(83) && !barrierDown && !signBarrierTop && !inchat && !thingsBarrierTop) { // S key
         y += speed;
         currentImage = walkDown;
         lastPressedKey = 'S';
         }
 
         //ifs 
+        if (beachEnter) {
+          location.replace('Beach.html')
+        }
+
+        if (keyCode === 37) {
+          document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
+        }
+        if (keyCode === 38) {
+            document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
+          }
+          if (keyCode === 39) {
+            document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
+          }
+          if (keyCode === 40) {
+            document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
+          }
+        
         if (signInteract) {
           drawText()
           if (keyCode === 69) {
+          currentImage = mcUp
           document.getElementById('chatBox').style.opacity = '1'
           document.getElementById('signPortrait').style.animation = 'appear 0.000001s forwards'
+          document.getElementById('buttons').innerHTML = ''
+          document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sir Sign the First'
           inchat = true
           y = y+30
           document.getElementById('buttons').innerHTML = "<br><br><button onclick='whateast()'>whats east?</button><br><button onclick='thanks()'>thanks!</button><br><button onclick='exit()'>*exit chat*</button></p>"
@@ -241,10 +320,40 @@
                 i++;
               }, txtSpeed);
             }
-
         }          
         }
+        if (thingsInteract) {
+          drawText()
+          if (keyCode === 69) {
+            currentImage = mcLeft
+            document.getElementById('chatBox').style.opacity = '1'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; morgan freeman (narrator)'
+            document.getElementById('morganfreemanPortrait').style.animation = 'appear 0.000001s forwards'
+            inchat = true
+            x = x + 30
+            document.getElementById('buttons').innerHTML = "<br><br><button onclick='pickup()'>*Pick Up*</button><br><button onclick='exit()''>*exit*</button></p>"
+            typeText('textBox', 'thingsspan', thingsMsg)
 
+            function typeText(containerId, spanId, text) {
+              document.getElementById(containerId).innerHTML = '';
+              document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+              let i = 0;
+              let txtSpeed = 30
+              const timerId = setInterval(() => {
+                const span = document.getElementById(spanId);
+                const currentText = span.innerHTML;
+                if (i >= text.length) {
+                  clearInterval(timerId);
+                  return;
+                }
+                const nextChar = text.charAt(i);
+                const newText = currentText + nextChar;
+                span.innerHTML = newText;
+                i++;
+              }, txtSpeed);
+            }
+        }
+      }
         //world barriers
         noFill()
         noStroke()
@@ -253,18 +362,27 @@
         rect(280,h*0.03,1000,51)
         rect (280,h*0.91,1000,51)
         //object barriers
-        fill('red')
+        //fill('red')
+        noFill()
         noStroke()
         /* sign left*/ rect(w*0.539,h*0.5,10,50)
-        /* sign top*/ rect(w*0.55,h*0.5,30,10) 
+        /* sign top*/ rect(w*0.54,h*0.5,54,10) 
         /* sign botom*/ rect(w*0.54,h*0.54,60,10)
         /* sign right */ rect(w*0.5659,h*0.5,10,40)
+        /* things right */ rect(w/2.6,h/2.2,10,999)
+        /*things top */ rect(w/4.3,h/2.2,290,10)
+        /* tree bottom */ rect(w/2.35,h/3.5,160,10)
+        /* tree left */ rect(w / 2.35, h / 10, 10, 160)
+        /* tree right */ rect(w / 1.99999, h / 10, 10, 160)
 
         //interact boxes
-        fill('grey')
+        noFill()
+        //fill('grey')
         /* sign */ rect(w*0.54,h*0.55,50,1)
+        /*things*/ rect(w/2.57,h*0.71,1,100)
 
-
+        //doors
+        /* beach */ rect(w/3.4,h/2.9,10,100)
         }
         function keyPressed() {
     // Update lastPressedKey variable when a key is pressed

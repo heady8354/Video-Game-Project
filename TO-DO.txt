@@ -1,11 +1,11 @@
 Urgent:
 different bg options
 credits
-add music to IC2 (i could right now but my cheapass headset broke)
-make interact work 
+add music to IC2
+attack options using sessionStorage
+interactable terrain
 
 Near future:
-change menu bg to random areas 
 
 Later on indev:
 Emotion Portraits
