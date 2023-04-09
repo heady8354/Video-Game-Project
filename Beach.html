@@ -47,26 +47,70 @@ body {
             background-color: gainsboro;
             border: 5px solid gray;
         }
+        #SKL {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            opacity: 1;
+        }
+        #SKR {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            opacity: 0;
+        }
+        #morganfreemanPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
+        @keyframes appear {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes disappear {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        #SandKidPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
 </style>
 
 <body>
     <p id="fireasssong">now playing: ??? - ???</p>
     <div id="chatBox"><br><br>
         <p id='charName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><br><p id="textBox"><span id='readspan'></span></p><p id='buttons'>
-        <img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
         </div>
-
+<img src="SandKidLeft.png" id="SKL">
+<img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
+<img src="SandKidPortrait.png" id="SandKidPortrait">
+<img src="SandKidRight.png" id="SKR">
 </body>
 
 <script>
-        
-
+        const swordMsg = 'a metalic tool in the ground..         maybe a shovel..?         maybe a mighty greatsword?         we shall never know until you pull that sucker out of the sand.'
+        const pickupMsg = 'ah,    this object seems to be super glu-                  wait.             nevermind you are just too weak.         perhaps if you hit the GYM a little more instead of laying on the floor and LOSING YOUR MEMORY youd have a little more gains,                 small fry. '
+        const kidMsg = 'hi! please dont knock over my sand castle.      i have to rebuild it when you go away. '
+        const sadMsg = ':('
         let w = window.innerWidth;
         let h = window.innerHeight;
         let x = window.innerWidth / 2
         let y = window.innerHeight / 2
         let speed = 2
         let inchat = false
+        var sandCastleHit = false
+        let hit = false
 
     function setup() {
         createCanvas(w, h);
@@ -81,7 +125,7 @@ body {
         currentImage = mcLeft; // Set initial image
         x = w*0.6
         y = h/2.5
-
+        
 
     }
     function draw() {
@@ -98,7 +142,21 @@ body {
             barrierRight = collideRectRect(w * 0.7, 50, 100, 1000, x, y, 64, 64)
             barrierUp = collideRectRect(280, h * 0.03, 1000, 51, x, y, 64, 64)
             barrierDown = collideRectRect(280, h * 0.91, 1000, 51, x, y, 64, 64)
-            sandCastleHit = collideRectRect(w * 0.41, h / 2.5, 75, 75,x,y,64,64)
+            sandCastleHit = collideRectRect(w * 0.41, h / 2.3, 75, 15,x,y,64,64)
+            communityparkEnter = collideRectRect(w * 0.69, h / 2.5, 10, 75,x,y,64,64)
+            kidandswordbarrierright = collideRectRect(w * 0.48, h / 3.2, 10, 170,x,y,64,64)
+            kidandswordbarriertop = collideRectRect(w * 0.45, h / 3.2, 70, 10,x,y,64,64)
+            kidandswordbarrierleft = collideRectRect(w * 0.45, h / 3.2, 10, 170,x,y,64,64)
+            kidandswordbarrierbottom = collideRectRect(w * 0.45, h / 2, 70, 10,x,y,64,64)
+            swordinteract = collideRectRect(w * 0.485, h / 3.1, 1, 40,x,y,64,64)
+            kidinteract = collideRectRect(w * 0.485, h / 2.2, 1, 20,x,y,64,64)
+            northernrocks = collideRectRect(w / 3, h * 0.08, 500, 50,x,y,64,64)
+            sea = collideRectRect(w / 3, h * 0.08, 50, 1000,x,y,64,64)
+            southernrocks = collideRectRect(w / 3, h * 0.77, 500, 50,x,y,64,64)
+            northtreeleft = collideRectRect(w * 0.6, h * 0.08, 10, 200,x,y,64,64)
+            northtreebottom = collideRectRect(w * 0.6, h * 0.3, 200, 10,x,y,64,64)
+            southtreetop = collideRectRect(w * 0.6, h * 0.64, 200, 10,x,y,64,64)
+            southtreeleft = collideRectRect(w * 0.6, h * 0.64, 10, 200,x,y,64,64)
 
             if (keyIsDown(SHIFT)) {
             speed = 4;
@@ -106,32 +164,139 @@ body {
             speed = 2;
         }
 
-
+        
+        
         //ifs
-        if (sandCastleHit) {
-            document.body.style.backgroundImage = 'url("beachSandCastleDown.png")'
+        
+        if (kidinteract) {
+            drawText()
+        }
+        if (kidinteract && keyCode === 69) {
+            if (hit) {
+                document.getElementById('chatBox').style.opacity = '1'
+                document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sand Kid'
+                document.getElementById('SandKidPortrait').style.animation = 'appear 0.000001s forwards'
+                document.getElementById('buttons').innerHTML = ""
+                inchat = true
+                x = x + 30
+                document.getElementById('SKL').style.animation = 'disappear 0.00001s forwards'
+                document.getElementById('SKR').style.animation = 'appear 0.00001s forwards'
+                typeText('textBox', 'sadspan', sadMsg)
+
+                function typeText(containerId, spanId, text) {
+                    document.getElementById(containerId).innerHTML = '';
+                    document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                    let i = 0;
+                    let txtSpeed = 30
+                    const timerId = setInterval(() => {
+                        const span = document.getElementById(spanId);
+                        const currentText = span.innerHTML;
+                        if (i >= text.length) {
+                            clearInterval(timerId);
+                            return;
+                        }
+                        const nextChar = text.charAt(i);
+                        const newText = currentText + nextChar;
+                        span.innerHTML = newText;
+                        i++;
+                    }, txtSpeed);
+                } setTimeout(exit, 2000)
+            } else {
+document.getElementById('chatBox').style.opacity = '1'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sand Kid'
+            document.getElementById('SandKidPortrait').style.animation = 'appear 0.000001s forwards'
+            document.getElementById('buttons').innerHTML = ""
+            inchat = true
+            x = x + 30
+            document.getElementById('SKL').style.animation = 'disappear 0.00001s forwards'
+            document.getElementById('SKR').style.animation = 'appear 0.00001s forwards'
+            typeText('textBox', 'kidspan', kidMsg)
+
+            function typeText(containerId, spanId, text) {
+                document.getElementById(containerId).innerHTML = '';
+                document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                let i = 0;
+                let txtSpeed = 30
+                const timerId = setInterval(() => {
+                    const span = document.getElementById(spanId);
+                    const currentText = span.innerHTML;
+                    if (i >= text.length) {
+                        clearInterval(timerId);
+                        return;
+                    }
+                    const nextChar = text.charAt(i);
+                    const newText = currentText + nextChar;
+                    span.innerHTML = newText;
+                    i++;
+                }, txtSpeed);
+            } setTimeout(exit,4000)
+            }
+            
+        }
+        if (swordinteract) {
+            drawText()
+        }
+        if (swordinteract && keyCode === 69) {
+            document.getElementById('chatBox').style.opacity = '1'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; morgan freeman (narrator)'
+            document.getElementById('morganfreemanPortrait').style.animation = 'appear 0.000001s forwards'
+            document.getElementById('buttons').innerHTML = "<br><br><button onclick='pull()'>*pull out*</button><br><button onclick='exit()'>*exit*</button>"
+            inchat = true
+            x = x + 30
+            typeText('textBox', 'swordspan', swordMsg)
+
+            function typeText(containerId, spanId, text) {
+                document.getElementById(containerId).innerHTML = '';
+                document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                let i = 0;
+                let txtSpeed = 30
+                const timerId = setInterval(() => {
+                    const span = document.getElementById(spanId);
+                    const currentText = span.innerHTML;
+                    if (i >= text.length) {
+                        clearInterval(timerId);
+                        return;
+                    }
+                    const nextChar = text.charAt(i);
+                    const newText = currentText + nextChar;
+                    span.innerHTML = newText;
+                    i++;
+                }, txtSpeed);
+            }
+        }
+        if (communityparkEnter) {
+            location.replace('CommunityParkBeachEnter.html')
         }
 
-        if (keyIsDown(65) && !barrierLeft && !inchat) { // A key
+        if (sandCastleHit) {
+            hit = true
+        }
+        if (hit) {
+            document.body.style.backgroundImage = 'url("beachSandCastleDown.png")'
+        }
+        if (keyIsDown(65) && !barrierLeft && !inchat && !kidandswordbarrierright && !sea) { // A key
             x -= speed;
             currentImage = walkLeft;
             lastPressedKey = 'A';
         }
-        if (keyIsDown(68) && !barrierRight && !inchat) { // D key
+        if (keyIsDown(68) && !barrierRight && !inchat && !kidandswordbarrierleft && !northtreeleft && !southtreeleft) { // D key
             x += speed;
             currentImage = walkRight;
             lastPressedKey = 'D';
         }
-        if (keyIsDown(87) && !barrierUp && !inchat) { // W key
+        if (keyIsDown(87) && !barrierUp && !inchat && !kidandswordbarrierbottom && !northernrocks && !northtreebottom) { // W key
             y -= speed;
             currentImage = walkUp;
             lastPressedKey = 'W';
         }
-        if (keyIsDown(83) && !barrierDown && !inchat) { // S key
+        if (keyIsDown(83) && !barrierDown && !inchat && !kidandswordbarriertop && !southernrocks && !southtreetop) { // S key
             y += speed;
             currentImage = walkDown;
             lastPressedKey = 'S';
         }
+
+        
+
 
         //world barriers
         noFill()
@@ -143,7 +308,29 @@ body {
         //interactable barriers
         noFill()
         //fill('red')
-        /*sand castle*/ rect(w*0.41,h/2.5,75,75)
+        /*sand castle*/ rect(w*0.41,h/2.3,75,15)
+        /* kid and sword barrier right*/ rect(w*0.48,h/3.2,10,170)
+        /* kid and sword barrier top */ rect(w * 0.45, h / 3.2, 70, 10)
+        /* kid and sword barrier left */ rect(w * 0.45, h / 3.2, 10, 170)
+        /* kid and sword barrier bottom*/ rect(w * 0.45, h / 2, 70, 10)
+        /* northern rocks */ rect(w / 3, h*0.08, 500, 50)
+        /* sea */ rect(w / 3, h * 0.08, 50, 1000)
+        /* southern rocks */ rect(w / 3, h * 0.77, 500, 50)
+        /* north tree left */ rect(w*0.6, h * 0.08, 10, 200)
+        /* north tree bottom */ rect(w * 0.6, h * 0.3, 200, 10)
+        /* south tree top */ rect(w * 0.6, h * 0.64, 200, 10)
+        /* south tree left */ rect(w * 0.6, h * 0.64, 10, 200)
+
+        //interact hitboxes
+        //fill('grey')
+        noFill()
+        /* sword */ rect(w * 0.485, h / 3.2, 1, 50)
+        /* kid */ rect(w * 0.485, h / 2.1, 1, 20)
+
+        //doors
+        //fill('grey')
+        noFill()
+        rect(w*0.69,h/2.5,10,75)
 
     }
         function keyPressed() {
@@ -172,11 +359,46 @@ body {
         }
         function drawText() {
             let textX = x; // x position of text
-            let textY = y - -80; // y position of text (20 pixels above player)
+            let textY = y - -80; // y position of text (20 pixels above player) outdated but idc
             textAlign(LEFT);
             fill(255);
             stroke(0)
             strokeWeight(3)
             text('Press [E] to interact', textX, textY);
         }
+        function pull() {
+                typeText('textBox', 'pickupspan', pickupMsg)
+                document.getElementById('buttons').innerHTML = ''
+
+                function typeText(containerId, spanId, text) {
+                    document.getElementById(containerId).innerHTML = '';
+                    document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                    let i = 0;
+                    let txtSpeed = 30
+                    const timerId = setInterval(() => {
+                        const span = document.getElementById(spanId);
+                        const currentText = span.innerHTML;
+                        if (i >= text.length) {
+                            clearInterval(timerId);
+                            return;
+                        }
+                        const nextChar = text.charAt(i);
+                        const newText = currentText + nextChar;
+                        span.innerHTML = newText;
+                        i++;
+                    }, txtSpeed);
+                    setTimeout(exit, 8500)
+                }
+            }
+        function exit() {
+                document.getElementById('textBox').innerHTML = ''
+                document.getElementById('chatBox').style.opacity = '0'
+                document.getElementById('SandKidPortrait').style.animation = 'disappear 0.000001s forwards'
+                document.getElementById('morganfreemanPortrait').style.animation = 'disappear 0.000001s forwards'
+                document.getElementById('buttons').innerHTML = ''
+                document.getElementById('SKL').style.animation = 'appear 0.00001s forwards'
+            document.getElementById('SKR').style.animation = 'disappear 0.00001s forwards'
+                inchat = false
+            }
+
 </script>

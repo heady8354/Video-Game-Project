@@ -1,5 +1,5 @@
 // Get the value of the variable from localStorage
-var myVariable = sessionStorage.getItem('myVariable') || false;
+var myVariable = localStorage.getItem('myVariable') || false;
 
 // Check the value of the variable and update the element on the other HTML page if necessary
 document.addEventListener('DOMContentLoaded', function() {

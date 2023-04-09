@@ -1,0 +1,454 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title id="title">isnt this park so nice like take some time to appreicate it</title>
+</head>
+
+<style>
+    body {
+        overflow: hidden;
+        background-image: url(communityPark.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: black;
+    }
+
+    #fireasssong {
+        color: white;
+        text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        position: absolute;
+        top: 100vh;
+        animation-name: getinformedaboutthisfireasssong;
+        animation-fill-mode: forwards;
+        animation-duration: 10s;
+    }
+
+    @keyframes getinformedaboutthisfireasssong {
+        0% {
+            top: 100vh
+        }
+
+        50% {
+            top: 90vh
+        }
+
+        100% {
+            top: 100vh
+        }
+    }
+
+    #chatBox {
+        position: absolute;
+        width: 23vw;
+        height: 37vh;
+        left: 74vw;
+        top: 35vh;
+        z-index: 1;
+        opacity: 0;
+        background-color: gainsboro;
+        border: 5px solid gray;
+    }
+
+    #signPortrait {
+        top: 35vh;
+        left: 74vw;
+        position: absolute;
+        opacity: 0;
+        z-index: 10;
+        height: 128px;
+        width: 128px;
+    }
+
+    @keyframes appear {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes disappear {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    #wasd {
+        color: white;
+        text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        position: absolute;
+        top: 100vh;
+    }
+
+    #morganfreemanPortrait {
+        top: 35vh;
+        left: 74vw;
+        position: absolute;
+        opacity: 0;
+        z-index: 10;
+        height: 128px;
+        width: 128px;
+    }
+</style>
+
+<body>
+    <p id="fireasssong">now playing: Rabby - Bonzods</p>
+    <p id="wasd">use WASD to move. who uses arrow keys in 2023?</p>
+    <div id="chatBox"><br><br>
+        <p id='charName'>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sir
+            Sign the First</p><br>
+        <p id="textBox"><span id='readspan'></span></p>
+        <p id='buttons'><br><br><button onclick='whateast()'>whats east?</button><br><button
+                onclick='thanks()'>thanks!</button><br><button onclick='exit()'>*exit chat*</button></p><br><br>
+    </div>
+    <img src="SignPortrait.png" id="signPortrait">
+    <img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
+</body>
+
+<script>
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let x = window.innerWidth / 2
+    let y = window.innerHeight / 2
+    let speed = 2
+    let hasrun = false
+    let inchat = false
+    let interactable = false
+
+    const readMsg = 'NORTH: Forest       SOUTH: Town Enterance       WEST: Beach'
+    const eastMsg = 'wouldnt you like to know,               tough guy'
+    const thxMsg = 'youre welcome!'
+    const thingsMsg = 'Your bag.             Full of 1 hour old fruits.'
+    const pickMsg = 'You try to pick up your bag but..            oh my..            it seems to be...                         super glued to the ground...             hmm...               strange.'
+
+    function whateast() {
+        typeText('textBox', 'eastspan', eastMsg)
+        document.getElementById('buttons').innerHTML = ''
+
+        function typeText(containerId, spanId, text) {
+            document.getElementById(containerId).innerHTML = '';
+            document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+            let i = 0;
+            let txtSpeed = 30
+            const timerId = setInterval(() => {
+                const span = document.getElementById(spanId);
+                const currentText = span.innerHTML;
+                if (i >= text.length) {
+                    clearInterval(timerId);
+                    return;
+                }
+                const nextChar = text.charAt(i);
+                const newText = currentText + nextChar;
+                span.innerHTML = newText;
+                i++;
+            }, txtSpeed);
+            setTimeout(exit, 2500)
+        }
+    }
+
+    function exit() {
+
+        document.getElementById('textBox').innerHTML = ''
+        document.getElementById('chatBox').style.opacity = '0'
+        document.getElementById('signPortrait').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('morganfreemanPortrait').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('buttons').innerHTML = ''
+        inchat = false
+
+    }
+
+    function thanks() {
+        typeText('textBox', 'thxspan', thxMsg)
+        document.getElementById('buttons').innerHTML = ''
+
+        function typeText(containerId, spanId, text) {
+            document.getElementById(containerId).innerHTML = '';
+            document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+            let i = 0;
+            let txtSpeed = 30
+            const timerId = setInterval(() => {
+                const span = document.getElementById(spanId);
+                const currentText = span.innerHTML;
+                if (i >= text.length) {
+                    clearInterval(timerId);
+                    return;
+                }
+                const nextChar = text.charAt(i);
+                const newText = currentText + nextChar;
+                span.innerHTML = newText;
+                i++;
+            }, txtSpeed);
+            setTimeout(exit, 2000)
+        }
+    }
+
+    function pickup() {
+        typeText('textBox', 'pickspan', pickMsg)
+        document.getElementById('buttons').innerHTML = ''
+
+        function typeText(containerId, spanId, text) {
+            document.getElementById(containerId).innerHTML = '';
+            document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+            let i = 0;
+            let txtSpeed = 30
+            const timerId = setInterval(() => {
+                const span = document.getElementById(spanId);
+                const currentText = span.innerHTML;
+                if (i >= text.length) {
+                    clearInterval(timerId);
+                    return;
+                }
+                const nextChar = text.charAt(i);
+                const newText = currentText + nextChar;
+                span.innerHTML = newText;
+                i++;
+            }, txtSpeed);
+            setTimeout(exit, 6000)
+        }
+    }
+
+    function setup() {
+        createCanvas(w, h);
+        walkUp = loadImage('mcWalkUp.gif')
+        walkDown = loadImage('mcWalkDown.gif')
+        walkLeft = loadImage('mcWalkLeft.gif')
+        walkRight = loadImage('mcWalkRight.gif')
+        mcUp = loadImage('mcUp.png');
+        mcDown = loadImage('mcDown.png');
+        mcLeft = loadImage('mcLeft.png');
+        mcRight = loadImage('mcRight.png');
+        currentImage = mcRight; // Set initial image
+        x = w / 3
+        y = h / 2.9
+
+    }
+    function draw() {
+        clear()
+        // Draw image at current position
+        image(currentImage, x, y, 64, 64); //player
+        textFont('Arial', 12); // set font and size of text
+        noFill()
+        noStroke()
+        rect(x, y, 64, 64)
+
+        //barrier hitboxes
+        barrierLeft = collideRectRect(w / 4.2, 50, 100, 1000, x, y, 64, 64)
+        barrierRight = collideRectRect(w * 0.7, 50, 100, 1000, x, y, 64, 64)
+        barrierUp = collideRectRect(280, h * 0.03, 1000, 51, x, y, 64, 64)
+        barrierDown = collideRectRect(280, h * 0.91, 1000, 51, x, y, 64, 64)
+        signBarrierLeft = collideRectRect(w * 0.539, h * 0.5, 10, 50, x, y, 64, 64)
+        signBarrierTop = collideRectRect(w * 0.54, h * 0.5, 54, 10, x, y, 64, 64)
+        signBarrierBottom = collideRectRect(w * 0.54, h * 0.54, 60, 10, x, y, 64, 64)
+        signBarrierRight = collideRectRect(w * 0.5659, h * 0.5, 10, 40, x, y, 64, 64)
+        signInteract = collideRectRect(w * 0.54, h * 0.55, 50, 1, x, y, 64, 64)
+        thingsBarrierRight = collideRectRect(w / 2.6, h / 2.2, 10, 999, x, y, 64, 64)
+        thingsBarrierTop = collideRectRect(w / 4.3, h / 2.2, 290, 10, x, y, 64, 64)
+        thingsInteract = collideRectRect(w / 2.55, h * 0.71, 1, 100, x, y, 64, 64)
+        treeBarrierBottom = collideRectRect(w / 2.35, h / 3.5, 160, 10, x, y, 64, 64)
+        treeBarrierLeft = collideRectRect(w / 2.35, h / 10, 10, 160, x, y, 64, 64)
+        treeBarrierRight = collideRectRect(w / 1.99999, h / 10, 10, 160, x, y, 64, 64)
+        beachEnter = collideRectRect(w / 3.4, h / 2.9, 10, 100, x, y, 64, 64)
+
+        //interaction hitboxes
+
+
+        if (keyIsDown(SHIFT)) {
+            speed = 4;
+        } else {
+            speed = 2;
+        }
+
+        // Move character based on key inputs
+        if (keyIsDown(65) && !barrierLeft && !signBarrierRight && !inchat && !thingsBarrierRight && !treeBarrierRight) { // A key
+            x -= speed;
+            currentImage = walkLeft;
+            lastPressedKey = 'A';
+        }
+        if (keyIsDown(68) && !barrierRight && !signBarrierLeft && !inchat && !treeBarrierLeft) { // D key
+            x += speed;
+            currentImage = walkRight;
+            lastPressedKey = 'D';
+        }
+        if (keyIsDown(87) && !barrierUp && !signBarrierBottom && !inchat && !treeBarrierBottom) { // W key
+            y -= speed;
+            currentImage = walkUp;
+            lastPressedKey = 'W';
+        }
+        if (keyIsDown(83) && !barrierDown && !signBarrierTop && !inchat && !thingsBarrierTop) { // S key
+            y += speed;
+            currentImage = walkDown;
+            lastPressedKey = 'S';
+        }
+
+        //ifs 
+        if (beachEnter) {
+            location.replace('Beach.html')
+        }
+
+        if (keyCode === 37) {
+            document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
+        }
+        if (keyCode === 38) {
+            document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
+        }
+        if (keyCode === 39) {
+            document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
+        }
+        if (keyCode === 40) {
+            document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
+        }
+
+        if (signInteract) {
+            drawText()
+            if (keyCode === 69) {
+                currentImage = mcUp
+                document.getElementById('chatBox').style.opacity = '1'
+                document.getElementById('signPortrait').style.animation = 'appear 0.000001s forwards'
+                document.getElementById('buttons').innerHTML = ''
+                document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sir Sign the First'
+                inchat = true
+                y = y + 30
+                document.getElementById('buttons').innerHTML = "<br><br><button onclick='whateast()'>whats east?</button><br><button onclick='thanks()'>thanks!</button><br><button onclick='exit()'>*exit chat*</button></p>"
+                typeText('textBox', 'readspan', readMsg)
+
+                function typeText(containerId, spanId, text) {
+                    document.getElementById(containerId).innerHTML = '';
+                    document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                    let i = 0;
+                    let txtSpeed = 30
+                    const timerId = setInterval(() => {
+                        const span = document.getElementById(spanId);
+                        const currentText = span.innerHTML;
+                        if (i >= text.length) {
+                            clearInterval(timerId);
+                            return;
+                        }
+                        const nextChar = text.charAt(i);
+                        const newText = currentText + nextChar;
+                        span.innerHTML = newText;
+                        i++;
+                    }, txtSpeed);
+                }
+            }
+        }
+        if (thingsInteract) {
+            drawText()
+            if (keyCode === 69) {
+                currentImage = mcLeft
+                document.getElementById('chatBox').style.opacity = '1'
+                document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; morgan freeman (narrator)'
+                document.getElementById('morganfreemanPortrait').style.animation = 'appear 0.000001s forwards'
+                inchat = true
+                x = x + 30
+                document.getElementById('buttons').innerHTML = "<br><br><button onclick='pickup()'>*Pick Up*</button><br><button onclick='exit()''>*exit*</button></p>"
+                typeText('textBox', 'thingsspan', thingsMsg)
+
+                function typeText(containerId, spanId, text) {
+                    document.getElementById(containerId).innerHTML = '';
+                    document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                    let i = 0;
+                    let txtSpeed = 30
+                    const timerId = setInterval(() => {
+                        const span = document.getElementById(spanId);
+                        const currentText = span.innerHTML;
+                        if (i >= text.length) {
+                            clearInterval(timerId);
+                            return;
+                        }
+                        const nextChar = text.charAt(i);
+                        const newText = currentText + nextChar;
+                        span.innerHTML = newText;
+                        i++;
+                    }, txtSpeed);
+                }
+            }
+        }
+        //world barriers
+        noFill()
+        noStroke()
+        rect(w / 4.2, 50, 100, 1000)
+        rect(w * 0.7, 50, 100, 1000)
+        rect(280, h * 0.03, 1000, 51)
+        rect(280, h * 0.91, 1000, 51)
+        //object barriers
+        //fill('red')
+        noFill()
+        noStroke()
+        /* sign left*/ rect(w * 0.539, h * 0.5, 10, 50)
+        /* sign top*/ rect(w * 0.54, h * 0.5, 54, 10)
+        /* sign botom*/ rect(w * 0.54, h * 0.54, 60, 10)
+        /* sign right */ rect(w * 0.5659, h * 0.5, 10, 40)
+        /* things right */ rect(w / 2.6, h / 2.2, 10, 999)
+        /*things top */ rect(w / 4.3, h / 2.2, 290, 10)
+        /* tree bottom */ rect(w / 2.35, h / 3.5, 160, 10)
+        /* tree left */ rect(w / 2.35, h / 10, 10, 160)
+        /* tree right */ rect(w / 1.99999, h / 10, 10, 160)
+
+        //interact boxes
+        noFill()
+        //fill('grey')
+        /* sign */ rect(w * 0.54, h * 0.55, 50, 1)
+        /*things*/ rect(w / 2.55, h * 0.71, 1, 100)
+
+        //doors
+        /* beach */ rect(w / 3.4, h / 2.9, 10, 100)
+    }
+    function keyPressed() {
+        // Update lastPressedKey variable when a key is pressed
+        if (key === 'A') {
+            lastPressedKey = 'A';
+        } else if (key === 'D') {
+            lastPressedKey = 'D';
+        } else if (key === 'W') {
+            lastPressedKey = 'W';
+        } else if (key === 'S') {
+            lastPressedKey = 'S';
+        }
+    }
+    function keyReleased() {
+        // Change image based on last pressed key when a key is released
+        if (lastPressedKey === 'A') {
+            currentImage = mcLeft;
+        } else if (lastPressedKey === 'D') {
+            currentImage = mcRight;
+        } else if (lastPressedKey === 'W') {
+            currentImage = mcUp;
+        } else if (lastPressedKey === 'S') {
+            currentImage = mcDown;
+        } //else, show tip
+    }
+    function drawText() {
+        let textX = x; // x position of text
+        let textY = y - -80; // y position of text (20 pixels above player)
+        textAlign(LEFT);
+        fill(255);
+        stroke(0)
+        strokeWeight(3)
+        text('Press [E] to interact', textX, textY);
+    }
+</script>

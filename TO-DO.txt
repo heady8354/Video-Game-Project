@@ -4,8 +4,10 @@ credits
 add music to IC2
 attack options using sessionStorage
 interactable terrain
+test and fix other resolutions
 
 Near future:
+clear data 
 
 Later on indev:
 Emotion Portraits
