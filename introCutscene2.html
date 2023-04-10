@@ -400,4 +400,20 @@ function typeText(containerId, spanId, text) {
   }, txtSpeed);
 }
 } //cruisin end
+  function preload() {
+    soundFormats('mp3', 'ogg');
+    goes = loadSound('goes forward-bonzods.mp3')
+    goes.setVolume(0.1)
+  }
+
+  function goesPlay() {
+    goes.play()
+    goes.loop()
+
+  }
+
+  function setup() {
+    userStartAudio()
+    goesPlay()
+  }
         </script>

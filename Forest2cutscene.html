@@ -1,0 +1,174 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title id="title">gah! darn monsters...</title>
+</head>
+<style>
+body {
+        overflow: hidden;
+        background-image: url(Forest2.png);
+        background-repeat: no-repeat;            
+        background-position: center;
+        background-color: black;
+        }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
+        #chatBox {
+            position: absolute;
+            width: 23vw;
+            height: 37vh;
+            left: 74vw;
+            top: 35vh;
+            z-index: 1;
+            opacity: 0;
+            background-color: gainsboro;
+            border: 5px solid gray;
+        }
+        @keyframes appear {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes disappear {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+        #GL {
+            position: absolute;
+
+        }
+        #GD {
+            position: absolute;
+            opacity: 0;
+        }
+        #GR {
+            position: absolute;
+            opacity: 0;
+        }
+        #GU {
+            position: absolute;
+            opacity: 0;
+        }
+        #mcLeft {
+            position: absolute;
+            opacity: 0;
+        }
+        #mcDown {
+            position: absolute;
+            opacity: 0;
+        }
+        #mcUp {
+            position: absolute;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+        }
+        #mcRight {
+            position: absolute;
+            opacity: 0;
+        }
+        #JPD {
+            position: absolute;
+            opacity: 0;
+        }
+        #JPL {
+            position: absolute;
+            opacity: 0;
+            left: 55%;
+            top: 37%
+        }
+        #JPR {
+            position: absolute;
+            opacity: 0;
+        }
+        #JPU {
+            position: absolute;
+            opacity: 0;
+        }
+        #JPWalkLeft {
+            position: absolute;
+            opacity: 1;
+            height: 64px;
+            width: 64px;
+            left: 45%;
+            top: 37%;
+        }
+        #mcWalkUp {
+            position: absolute;
+            opacity: 1;
+            height: 64px;
+            width: 64px;
+            left: 50%;
+            top: 85%;
+        }
+        @keyframes mcwalktowardsppl {
+            0% {top: 85%}
+            100% {top: 50%}
+        }
+        @keyframes jamesbackup {
+            0% {left: 45%}
+            100% {left:55%}
+        }
+</style>
+<body onload="opening()">
+<p id="fireasssong">now playing: goes forward - bonzods</p>
+<div id="chatBox"><br><br>
+    <p id='charName'>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </p><br>
+    <p id="textBox"><span id='readspan'></span></p>
+    <p id='buttons'>
+</div>
+<img src="GoblinLeft.png" id="GL">
+<img src="GoblinDown.png" id="GD">
+<img src="GoblinRight.png" id="GR">
+<img src="GoblinUp.png" id="GU">
+<img src="mcLeft.png" id="mcLeft">
+<img src="mcDown.png" id="mcDown">
+<img src="mcUp.png" id="mcUp">
+<img src="mcRight.png" id="mcRight">
+<img src="JamesPhillipsDown.png" id="JPD">
+<img src="JamesPhillipsLeft.png" id="JPL">
+<img src="JamesPhillipsRight.png" id="JPR">
+<img src="JamesPhillipsUp.png" id="JPU">
+<img src="JamesPhillipsWalkLeft.gif" id="JPWalkLeft">
+<img src="mcWalkUp.gif" id="mcWalkUp">
+</body>
+<script>
+function opening() {
+    document.getElementById('mcWalkUp').style.animation = 'mcwalktowardsppl 3s linear forwards'
+    document.getElementById('JPWalkLeft').style.animation = 'jamesbackup 3s linear forwards'
+    
+}setTimeout(opening2,3000)
+    function opening2() {
+        document.getElementById('mcWalkUp').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('JPWalkLeft').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('mcUp').style.animation = 'appear 0.000001s forwards'
+        document.getElementById('JPL').style.animation = 'appear 0.000001s forwards'
+    }
+</script>

@@ -97,6 +97,10 @@
   </body>
 
   <script>
+    
+
+     
+
     let w = window.innerWidth;
     let h = window.innerHeight;
     let x = window.innerWidth / 2
@@ -211,7 +215,8 @@
         currentImage = mcDown; // Set initial image
         x = w/2.3
         y = h*0.65
-        
+        userStartAudio()
+        rabbyPlay()
     }
         function draw() {
             clear()
@@ -239,6 +244,7 @@
         treeBarrierLeft = collideRectRect(w / 2.35, h / 10, 10, 160,x,y,64,64)
         treeBarrierRight = collideRectRect (w / 1.99999, h / 10, 10, 160,x,y,64,64)
         beachEnter = collideRectRect(w / 3.4, h / 2.9, 10, 100,x,y,64,64) 
+        forestenter = collideRectRect(w / 1.7, h / 9, 100, 10,x,y,64,64)
 
         //interaction hitboxes
           
@@ -275,7 +281,9 @@
         if (beachEnter) {
           location.replace('Beach.html')
         }
-
+        if (forestenter) {
+          location.replace('forest1.html')
+        }
         if (keyCode === 37) {
           document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
         }
@@ -382,7 +390,9 @@
         /*things*/ rect(w/2.57,h*0.71,1,100)
 
         //doors
+        
         /* beach */ rect(w/3.4,h/2.9,10,100)
+        /* forest */ rect(w / 1.7, h / 9, 100, 10)
         }
         function keyPressed() {
     // Update lastPressedKey variable when a key is pressed
@@ -417,4 +427,15 @@
     strokeWeight(3)
     text('Press [E] to interact', textX, textY);
 }
+  function preload() {
+        soundFormats('mp3', 'ogg');
+        rabby = loadSound('rabby-bonzods.mp3')
+        rabby.setVolume(0.1)
+      }
+
+      function rabbyPlay() {
+        rabby.play()
+        rabby.loop()
+
+      }
   </script>

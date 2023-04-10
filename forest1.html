@@ -1,0 +1,255 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title id="title">this place feels familiar..</title>
+</head>
+
+<style>
+body {
+        overflow: hidden;
+        background-image: url(Forest1.png);
+        background-repeat: no-repeat;            
+        background-position: center;
+        background-color: black;
+        }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
+        #chatBox {
+            position: absolute;
+            width: 23vw;
+            height: 37vh;
+            left: 74vw;
+            top: 35vh;
+            z-index: 1;
+            opacity: 0;
+            background-color: gainsboro;
+            border: 5px solid gray;
+        }
+        #morganfreemanPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
+        @keyframes appear {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes disappear {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+</style>
+<body>
+<p id="fireasssong">now playing: b toony - bonzods</p>
+<div id="chatBox"><br><br>
+    <p id='charName'>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </p><br>
+    <p id="textBox"><span id='readspan'></span></p>
+    <p id='buttons'>
+</div>
+    <img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
+
+</body>
+<script>
+    const fruitMsg = 'a fruit,      smushed against the ground as if it fell.        Maybe you dropped this out of your bag?       what could lie ahead?'
+
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let x = window.innerWidth / 2
+    let y = window.innerHeight / 2
+    let speed = 2
+    let inchat = false
+
+    function exit() {
+            document.getElementById('textBox').innerHTML = ''
+            document.getElementById('chatBox').style.opacity = '0'
+            document.getElementById('morganfreemanPortrait').style.animation = 'disappear 0.000001s forwards'
+            document.getElementById('buttons').innerHTML = ''
+            inchat = false
+        }
+
+    function setup() {
+            createCanvas(w, h);
+            walkUp = loadImage('mcWalkUp.gif')
+            walkDown = loadImage('mcWalkDown.gif')
+            walkLeft = loadImage('mcWalkLeft.gif')
+            walkRight = loadImage('mcWalkRight.gif')
+            mcUp = loadImage('mcUp.png');
+            mcDown = loadImage('mcDown.png');
+            mcLeft = loadImage('mcLeft.png');
+            mcRight = loadImage('mcRight.png');
+            currentImage = mcUp; // Set initial image
+            x = w / 2
+            y = h * 0.8
+            userStartAudio()
+            toonyPlay()
+    }
+    function draw() {
+    clear()
+        // Draw image at current position
+        image(currentImage, x, y, 64, 64); //player
+        textFont('Arial', 12); // set font and size of text
+        noFill()
+        noStroke()
+        rect(x, y, 64, 64)
+        
+        
+
+        barrierLeft = collideRectRect(w * 0.43, 50, 100, 1000, x, y, 64, 64)
+        barrierRight = collideRectRect(w * 0.55, 50, 100, 1000, x, y, 64, 64)
+        barrierUp = collideRectRect(280, h * 0.03, 1000, 51, x, y, 64, 64)
+        barrierDown = collideRectRect(280, h * 0.91, 1000, 51, x, y, 64, 64)
+        fruitinteract = collideRectRect(w * 0.55, h / 2, 1, 50,x,y,64,64)
+        communityparkenter = collideRectRect(w * 0.46, h * 0.9, 200, 10,x,y,64,64)
+        forest2enter = collideRectRect(w * 0.46, h * 0.1, 200, 10,x,y,64,64)
+
+        if (communityparkenter) {
+            location.replace('CommunityParkForestEnter.html')
+        }
+        if (keyIsDown(SHIFT)) {
+            speed = 4;
+        } else {
+            speed = 2;
+        }
+        if (fruitinteract) {
+            drawText()
+        }
+        if (fruitinteract && keyCode === 69) {
+            document.getElementById('chatBox').style.opacity = '1'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; morgan freeman (narrator)'
+            document.getElementById('morganfreemanPortrait').style.animation = 'appear 0.000001s forwards'
+            inchat = true
+            x = x - 30
+            typeText('textBox', 'fruitspan', fruitMsg)
+
+            function typeText(containerId, spanId, text) {
+                document.getElementById(containerId).innerHTML = '';
+                document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                let i = 0;
+                let txtSpeed = 30
+                const timerId = setInterval(() => {
+                    const span = document.getElementById(spanId);
+                    const currentText = span.innerHTML;
+                    if (i >= text.length) {
+                        clearInterval(timerId);
+                        return;
+                    }
+                    const nextChar = text.charAt(i);
+                    const newText = currentText + nextChar;
+                    span.innerHTML = newText;
+                    i++;
+                }, txtSpeed);
+            }setTimeout(exit,4500)
+        }
+        if (keyIsDown(65) && !barrierLeft && !inchat ) { // A key
+            x -= speed;
+            currentImage = walkLeft;
+            lastPressedKey = 'A';
+        }
+        if (keyIsDown(68) && !barrierRight && !inchat ) { // D key
+            x += speed;
+            currentImage = walkRight;
+            lastPressedKey = 'D';
+        }
+        if (keyIsDown(87) && !barrierUp && !inchat ) { // W key
+            y -= speed;
+            currentImage = walkUp;
+            lastPressedKey = 'W';
+        }
+        if (keyIsDown(83) && !barrierDown && !inchat ) { // S key
+            y += speed;
+            currentImage = walkDown;
+            lastPressedKey = 'S';
+        }
+        //world barriers
+        noFill()
+        noStroke()
+        rect(w / 4.2, 50, 100, 1000)
+        rect(w * 0.7, 50, 100, 1000)
+        rect(280, h * 0.03, 1000, 51)
+        rect(280, h * 0.91, 1000, 51)
+
+        //interactable
+        
+        rect(w * 0.55, h / 2, 1, 50)
+
+        //doors 
+        rect(w * 0.46, h * 0.9, 200, 10)
+        rect(w * 0.46, h * 0.1, 200, 10)
+    }
+    function keyPressed() {
+            // Update lastPressedKey variable when a key is pressed
+            if (key === 'A') {
+                lastPressedKey = 'A';
+            } else if (key === 'D') {
+                lastPressedKey = 'D';
+            } else if (key === 'W') {
+                lastPressedKey = 'W';
+            } else if (key === 'S') {
+                lastPressedKey = 'S';
+            }
+        }
+        function keyReleased() {
+            // Change image based on last pressed key when a key is released
+            if (lastPressedKey === 'A') {
+                currentImage = mcLeft;
+            } else if (lastPressedKey === 'D') {
+                currentImage = mcRight;
+            } else if (lastPressedKey === 'W') {
+                currentImage = mcUp;
+            } else if (lastPressedKey === 'S') {
+                currentImage = mcDown;
+            } //else, show tip
+        }
+        function drawText() {
+            let textX = x; // x position of text
+            let textY = y - -80; // y position of text (20 pixels above player) outdated but idc
+            textAlign(LEFT);
+            fill(255);
+            stroke(0)
+            strokeWeight(3)
+            text('Press [E] to interact', textX, textY);
+        }
+        function preload() {
+                soundFormats('mp3', 'ogg');
+                toony = loadSound('b toony-bonzods.mp3')
+                toony.setVolume(0.1)
+            }
+
+            function toonyPlay() {
+                toony.play()
+                toony.loop()
+
+            }
+</script>

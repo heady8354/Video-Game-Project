@@ -242,9 +242,9 @@
         mcDown = loadImage('mcDown.png');
         mcLeft = loadImage('mcLeft.png');
         mcRight = loadImage('mcRight.png');
-        currentImage = mcRight; // Set initial image
-        x = w / 3
-        y = h / 2.9
+        currentImage = mcDown; // Set initial image
+        x = w / 1.7
+        y = h / 7.5
         userStartAudio()
         rabbyPlay()
     }
@@ -457,14 +457,14 @@
         text('Press [E] to interact', textX, textY);
     }
     function preload() {
-            soundFormats('mp3', 'ogg');
-            rabby = loadSound('rabby-bonzods.mp3')
-            rabby.setVolume(0.1)
-        }
+        soundFormats('mp3', 'ogg');
+        rabby = loadSound('rabby-bonzods.mp3')
+        rabby.setVolume(0.1)
+    }
 
-        function rabbyPlay() {
-            rabby.play()
-            rabby.loop()
+    function rabbyPlay() {
+        rabby.play()
+        rabby.loop()
 
-        }
+    }
 </script>

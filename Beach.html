@@ -85,10 +85,23 @@ body {
             height: 128px;
             width: 128px;
         }
+        #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
 </style>
 
 <body>
-    <p id="fireasssong">now playing: ??? - ???</p>
+    <p id="fireasssong">now playing: wet cave - Bubbley552</p>
     <div id="chatBox"><br><br>
         <p id='charName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><br><p id="textBox"><span id='readspan'></span></p><p id='buttons'>
         </div>
@@ -125,7 +138,8 @@ body {
         currentImage = mcLeft; // Set initial image
         x = w*0.6
         y = h/2.5
-        
+        userStartAudio()
+        wetPlay()
 
     }
     function draw() {
@@ -400,5 +414,17 @@ document.getElementById('chatBox').style.opacity = '1'
             document.getElementById('SKR').style.animation = 'disappear 0.00001s forwards'
                 inchat = false
             }
+    function preload() {
+        soundFormats('mp3', 'ogg');
+        wet = loadSound('wet cave-Bubbley552.mp3')
+        wet.setVolume(0.1)
+    }
 
+    function wetPlay() {
+        wet.play()
+        wet.loop()
+
+    }
+
+  
 </script>
