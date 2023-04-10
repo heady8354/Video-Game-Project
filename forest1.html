@@ -128,12 +128,14 @@ body {
 
         barrierLeft = collideRectRect(w * 0.43, 50, 100, 1000, x, y, 64, 64)
         barrierRight = collideRectRect(w * 0.55, 50, 100, 1000, x, y, 64, 64)
-        barrierUp = collideRectRect(280, h * 0.03, 1000, 51, x, y, 64, 64)
+        barrierUp = collideRectRect(280, h * 0.02, 1000, 51, x, y, 64, 64)
         barrierDown = collideRectRect(280, h * 0.91, 1000, 51, x, y, 64, 64)
         fruitinteract = collideRectRect(w * 0.55, h / 2, 1, 50,x,y,64,64)
         communityparkenter = collideRectRect(w * 0.46, h * 0.9, 200, 10,x,y,64,64)
         forest2enter = collideRectRect(w * 0.46, h * 0.1, 200, 10,x,y,64,64)
-
+        if (forest2enter) {
+            location.replace('Forest2cutscene.html')
+        }
         if (communityparkenter) {
             location.replace('CommunityParkForestEnter.html')
         }

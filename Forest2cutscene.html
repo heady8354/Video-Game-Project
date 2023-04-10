@@ -126,6 +126,24 @@ body {
             left: 50%;
             top: 85%;
         }
+        #JPPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
+        #GoblinPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
         @keyframes mcwalktowardsppl {
             0% {top: 85%}
             100% {top: 50%}
@@ -156,19 +174,53 @@ body {
 <img src="JamesPhillipsLeft.png" id="JPL">
 <img src="JamesPhillipsRight.png" id="JPR">
 <img src="JamesPhillipsUp.png" id="JPU">
+<img src="JamesPhillipsPortrait.png" id="JPPortrait">
 <img src="JamesPhillipsWalkLeft.gif" id="JPWalkLeft">
+<img src="GoblinPortrait.png" id="GoblinPortrait">
 <img src="mcWalkUp.gif" id="mcWalkUp">
 </body>
 <script>
+    const troubleMsg = 'Listen,             I dont want any trouble.            Im running out of supplies to give you.   Leave me alone!'
+
 function opening() {
     document.getElementById('mcWalkUp').style.animation = 'mcwalktowardsppl 3s linear forwards'
     document.getElementById('JPWalkLeft').style.animation = 'jamesbackup 3s linear forwards'
     
 }setTimeout(opening2,3000)
-    function opening2() {
+    function opening2() { //add goblin sprites + animations
         document.getElementById('mcWalkUp').style.animation = 'disappear 0.000001s forwards'
         document.getElementById('JPWalkLeft').style.animation = 'disappear 0.000001s forwards'
         document.getElementById('mcUp').style.animation = 'appear 0.000001s forwards'
         document.getElementById('JPL').style.animation = 'appear 0.000001s forwards'
-    }
+    }setTimeout(opening3,4000) 
+    function opening3() {
+            document.getElementById('chatBox').style.animation = 'appear 0.00001s forwards'
+            document.getElementById('JPPortrait').style.opacity = '1'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ???'  
+            typeText('textBox', 'troublespan', troubleMsg)
+
+function typeText(containerId, spanId, text) {
+    document.getElementById(containerId).innerHTML = '';
+    document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+    let i = 0;
+    let txtSpeed = 30
+    const timerId = setInterval(() => {
+        const span = document.getElementById(spanId);
+        const currentText = span.innerHTML;
+        if (i >= text.length) {
+            clearInterval(timerId);
+            return;
+        }
+        const nextChar = text.charAt(i);
+        const newText = currentText + nextChar;
+        span.innerHTML = newText;
+        i++;
+    }, txtSpeed);
+}setTimeout(opening4,6000)
+        }
+function opening4() {
+    document.getElementById('JPPortrait').style.opacity = '0'
+    document.getElementById('GoblinPortrait').style.opacity = '1'
+    document.getElementById //char name
+}
 </script>
