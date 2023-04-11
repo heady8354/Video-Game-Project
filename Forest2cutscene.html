@@ -135,7 +135,34 @@ body {
             height: 128px;
             width: 128px;
         }
-        #GoblinPortrait {
+        #GoblinRaider1Portrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
+        #GoblinInstigatorPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
+        #GoblinRaider2Portrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
+        #GoblinDJPortrait {
             top: 35vh;
             left: 74vw;
             position: absolute;
@@ -176,11 +203,20 @@ body {
 <img src="JamesPhillipsUp.png" id="JPU">
 <img src="JamesPhillipsPortrait.png" id="JPPortrait">
 <img src="JamesPhillipsWalkLeft.gif" id="JPWalkLeft">
-<img src="GoblinPortrait.png" id="GoblinPortrait">
+<img src="Goblin Raider 1 Portrait.png" id="GoblinRaider1Portrait">
+<img src="GoblinInstigatorPortrait.png" id="GoblinInstigatorPortrait">
+<img src="Goblin Raider 2 Portrait.png" id="GoblinRaider2Portrait">
+<img src="GoblinDJPortrait.png" id="GoblinDJPortrait">
 <img src="mcWalkUp.gif" id="mcWalkUp">
 </body>
 <script>
     const troubleMsg = 'Listen,             I dont want any trouble.            Im running out of supplies to give you.   Leave me alone!'
+    const hahMsg = 'Hah!     Well,   you better hand over those boxes,    else we taking everything..    by FORCE!   '
+    const oooMsg = 'ooo...    damn bruh...     id NEVER in my       LIFE get spoken to like that and take it so peacefully...'
+    const manMsg = 'man shutcho ass up!       we came here to take this dudes loot,    we brought you along for decoration!     '
+    const thatMsg = 'that better not include me.'
+    const heyMsg = 'Hey look!   That       DORK   showed up! Hahahahahh!      Wanna try us again,    little man?    Or have you came to your senses??? AHAHAHAH!!!! '
+    const ohMsg = 'Oh great, just had to make things worse,    didnt you Jack?     Do all of us a favor and take a hike.   Ive got enough annoyances to handle. '
 
 function opening() {
     document.getElementById('mcWalkUp').style.animation = 'mcwalktowardsppl 3s linear forwards'
@@ -216,11 +252,157 @@ function typeText(containerId, spanId, text) {
         span.innerHTML = newText;
         i++;
     }, txtSpeed);
-}setTimeout(opening4,6000)
+}setTimeout(opening4,5000)
         }
 function opening4() {
     document.getElementById('JPPortrait').style.opacity = '0'
-    document.getElementById('GoblinPortrait').style.opacity = '1'
-    document.getElementById //char name
+    document.getElementById('GoblinRaider1Portrait').style.opacity = '1'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 1'
+    typeText('textBox', 'hahspan', hahMsg)
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } setTimeout(opening5, 4000)
+}
+function opening5() {
+    document.getElementById('GoblinRaider1Portrait').style.opacity = '0'
+    document.getElementById('GoblinInstigatorPortrait').style.opacity = '1'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Instigator'
+    typeText('textBox', 'ooospan', oooMsg)
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } setTimeout(opening6, 4000)
+}
+function opening6() {
+    document.getElementById('GoblinInstigatorPortrait').style.opacity = '0'
+    document.getElementById('GoblinRaider2Portrait').style.opacity = '1'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 2'
+    typeText('textBox', 'manspan', manMsg)
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } setTimeout(opening7, 4000)
+}
+function opening7() {
+    document.getElementById('GoblinRaider2Portrait').style.opacity = '0'
+    document.getElementById('GoblinDJPortrait').style.opacity = '1'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin DJ'
+    typeText('textBox', 'thatspan', thatMsg)
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } setTimeout(opening8, 1500)
+}
+function opening8() {
+    document.getElementById('GoblinDJPortrait').style.opacity = '0'
+    document.getElementById('GoblinRaider1Portrait').style.opacity = '1'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 1'
+    typeText('textBox', 'heyspan', heyMsg)
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } setTimeout(opening9, 5000)
+}
+function opening9() {
+    document.getElementById('GoblinRaider1Portrait').style.opacity = '0'
+    document.getElementById('JPPortrait').style.opacity = '1'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;???'
+    document.getElementById('buttons').innerHTML = "<br><br><button onclick='bye()'>ok, bye.</button><br><button onclick='help()'>I want to help</button>"
+    typeText('textBox', 'ohspan', ohMsg)
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } 
 }
 </script>
