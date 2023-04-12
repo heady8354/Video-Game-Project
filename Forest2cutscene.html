@@ -58,22 +58,6 @@ body {
             animation-fill-mode: forwards;
             animation-duration: 10s;
         }
-        #GL {
-            position: absolute;
-
-        }
-        #GD {
-            position: absolute;
-            opacity: 0;
-        }
-        #GR {
-            position: absolute;
-            opacity: 0;
-        }
-        #GU {
-            position: absolute;
-            opacity: 0;
-        }
         #mcLeft {
             position: absolute;
             opacity: 0;
@@ -95,6 +79,8 @@ body {
         #JPD {
             position: absolute;
             opacity: 0;
+            left: 55%;
+            top: 37%
         }
         #JPL {
             position: absolute;
@@ -171,13 +157,139 @@ body {
             height: 128px;
             width: 128px;
         }
+        #GR1D {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+            top: 39%;
+            left: 40%;
+        }
+        #GR1U {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+        }
+        #GR1L {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+        }
+        #GR1R {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 1;
+            top: 39%;
+            left: 40%;
+        }
+        #GR2U {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+        }
+        #GR2D {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+            left: 43%;
+            top: 35%;
+        }
+        #GR2L {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+            left: 43%;
+            top: 35%;
+        }
+        #GR2R {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 1;
+            left: 43%;
+            top: 35%;
+        }
+        #GIU {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+        }
+        #GID {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+            top: 37%;
+            left: 35%;
+        }
+        #GIL {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+        }
+        #GIR {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 1;
+            top: 37%;
+            left: 35%;
+        }
         @keyframes mcwalktowardsppl {
             0% {top: 85%}
             100% {top: 50%}
         }
+        #GDU {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+        }
+        #GDD {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+            top: 35%;
+            left: 37%;
+        }
+        #GDL {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+        }
+        #GDR {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 1;
+            top: 35%;
+            left: 37%;
+        }
+        #mcWalkDown {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            opacity: 0;
+            height: 64px;
+            width: 64px;
+        }
         @keyframes jamesbackup {
             0% {left: 45%}
             100% {left:55%}
+        }
+        @keyframes mcwalkaway {
+            0% {top: 50%}
+            100% {top: 85%}
         }
 </style>
 <body onload="opening()">
@@ -189,10 +301,7 @@ body {
     <p id="textBox"><span id='readspan'></span></p>
     <p id='buttons'>
 </div>
-<img src="GoblinLeft.png" id="GL">
-<img src="GoblinDown.png" id="GD">
-<img src="GoblinRight.png" id="GR">
-<img src="GoblinUp.png" id="GU">
+<img src="mcWalkDown.gif" id="mcWalkDown">
 <img src="mcLeft.png" id="mcLeft">
 <img src="mcDown.png" id="mcDown">
 <img src="mcUp.png" id="mcUp">
@@ -208,6 +317,22 @@ body {
 <img src="Goblin Raider 2 Portrait.png" id="GoblinRaider2Portrait">
 <img src="GoblinDJPortrait.png" id="GoblinDJPortrait">
 <img src="mcWalkUp.gif" id="mcWalkUp">
+<img src="GoblinRaider1Down.png" id="GR1D">
+<img src="GoblinRaider1Left.png" id="GR1L">
+<img src="GoblinRaider1Up.png" id="GR1U">
+<img src="GoblinRaider1Right.png" id="GR1R">
+<img src="GoblinRaider2Up.png" id="GR2U">
+<img src="GoblinRaider2Down.png" id="GR2D">
+<img src="GoblinRaider2Left.png" id="GR2L">
+<img src="GoblinRaider2Right.png" id="GR2R">
+<img src="GoblinInstigatorDown.png" id="GID">
+<img src="GoblinInstigatorUp.png" id="GIU">
+<img src="GoblinInstigatorLeft.png" id="GIL">
+<img src="GoblinInstigatorRight.png" id="GIR">
+<img src="GoblinDJDown.png" id="GDD">
+<img src="GoblinDJLeft.png" id="GDL">
+<img src="GoblinDJRight.png" id="GDR">
+<img src="GoblinDJUp.png" id="GDU">
 </body>
 <script>
     const troubleMsg = 'Listen,             I dont want any trouble.            Im running out of supplies to give you.   Leave me alone!'
@@ -217,6 +342,7 @@ body {
     const thatMsg = 'that better not include me.'
     const heyMsg = 'Hey look!   That       DORK   showed up! Hahahahahh!      Wanna try us again,    little man?    Or have you came to your senses??? AHAHAHAH!!!! '
     const ohMsg = 'Oh great, just had to make things worse,    didnt you Jack?     Do all of us a favor and take a hike.   Ive got enough annoyances to handle. '
+    const yeahMsg = 'Yeah kid, scram! hahahahahhaha! watch your back kiddo! '
 
 function opening() {
     document.getElementById('mcWalkUp').style.animation = 'mcwalktowardsppl 3s linear forwards'
@@ -308,6 +434,8 @@ function opening6() {
     document.getElementById('GoblinInstigatorPortrait').style.opacity = '0'
     document.getElementById('GoblinRaider2Portrait').style.opacity = '1'
     document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 2'
+    document.getElementById('GR2R').style.animation = 'disappear 0.00001s forwards'
+    document.getElementById('GR2L').style.animation = 'appear 0.00001s forwards'
     typeText('textBox', 'manspan', manMsg)
 
     function typeText(containerId, spanId, text) {
@@ -333,6 +461,8 @@ function opening7() {
     document.getElementById('GoblinRaider2Portrait').style.opacity = '0'
     document.getElementById('GoblinDJPortrait').style.opacity = '1'
     document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin DJ'
+     document.getElementById('GR2R').style.animation = 'appear 0.00001s forwards'
+    document.getElementById('GR2L').style.animation = 'disappear 0.00001s forwards'
     typeText('textBox', 'thatspan', thatMsg)
 
     function typeText(containerId, spanId, text) {
@@ -358,6 +488,14 @@ function opening8() {
     document.getElementById('GoblinDJPortrait').style.opacity = '0'
     document.getElementById('GoblinRaider1Portrait').style.opacity = '1'
     document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 1'
+    document.getElementById('GR1R').style.animation = 'disappear 0.00001s forwards'
+    document.getElementById('GR1D').style.animation = 'appear 0.00001s forwards'
+    document.getElementById('GR2R').style.animation = 'disappear 0.00001s forwards'
+    document.getElementById('GR2D').style.animation = 'appear 0.00001s forwards'
+    document.getElementById('GDR').style.animation = 'disappear 0.00001s forwards'
+    document.getElementById('GDD').style.animation = 'appear 0.00001s forwards'
+    document.getElementById('GIR').style.animation = 'disappear 0.00001s forwards'
+    document.getElementById('GID').style.animation = 'appear 0.00001s forwards'
     typeText('textBox', 'heyspan', heyMsg)
 
     function typeText(containerId, spanId, text) {
@@ -383,6 +521,8 @@ function opening9() {
     document.getElementById('GoblinRaider1Portrait').style.opacity = '0'
     document.getElementById('JPPortrait').style.opacity = '1'
     document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;???'
+    document.getElementById('JPL').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('JPD').style.animation = 'appear 0.0001s forwards'
     document.getElementById('buttons').innerHTML = "<br><br><button onclick='bye()'>ok, bye.</button><br><button onclick='help()'>I want to help</button>"
     typeText('textBox', 'ohspan', ohMsg)
 
@@ -404,5 +544,34 @@ function opening9() {
             i++;
         }, txtSpeed);
     } 
+}
+function bye() {
+    document.getElementById('mcUp').style.animation = 'disappear 0.00001s forwards'
+    document.getElementById('mcWalkDown').style.animation = 'appear 0.00001s forwards, mcwalkaway 5s forwards'
+    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinRaider1Portrait').style.animation = 'appear 0.0001s forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 1'
+    document.getElementById('buttons').innerHTML = ''
+    typeText('textBox', 'yeahspan', yeahMsg)
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } 
+
 }
 </script>
