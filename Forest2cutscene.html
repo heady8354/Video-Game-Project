@@ -342,7 +342,9 @@ body {
     const thatMsg = 'that better not include me.'
     const heyMsg = 'Hey look!   That       DORK   showed up! Hahahahahh!      Wanna try us again,    little man?    Or have you came to your senses??? AHAHAHAH!!!! '
     const ohMsg = 'Oh great, just had to make things worse,    didnt you Jack?     Do all of us a favor and take a hike.   Ive got enough annoyances to handle. '
+    const huhMsg = 'Huh?         Help?     That is certiantly unlike you Jack.      I suppose I wouldnt mind a helping hand against these goons,        for now.'
     const yeahMsg = 'Yeah kid, scram! hahahahahhaha! watch your back kiddo! '
+    const ohyeaMsg = 'Oh yeah!         Thats what I like to hear.          Bring it,       suckers!'
 
 function opening() {
     document.getElementById('mcWalkUp').style.animation = 'mcwalktowardsppl 3s linear forwards'
@@ -545,9 +547,60 @@ function opening9() {
         }, txtSpeed);
     } 
 }
+function help() {
+    document.getElementById('buttons').innerHTML = ''
+    typeText('textBox', 'huhspan', huhMsg)
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } setTimeout(help2,5000)
+
+}
+function help2() {
+    document.getElementById('GoblinRaider1Portrait').style.animation = 'appear 0.0001s forwards'
+    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 1 '
+    typeText('textBox', 'ohyeaspan', ohyeaMsg)
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }setTimeout(help3,3000)
+}
+function help3() {
+    location.replace('ForestFight.html')
+}
 function bye() {
+    localStorage.setItem('left',true)
     document.getElementById('mcUp').style.animation = 'disappear 0.00001s forwards'
-    document.getElementById('mcWalkDown').style.animation = 'appear 0.00001s forwards, mcwalkaway 5s forwards'
+    document.getElementById('mcWalkDown').style.animation = 'appear 0.00001s forwards, mcwalkaway 5s linear forwards'
     document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinRaider1Portrait').style.animation = 'appear 0.0001s forwards'
     document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 1'
@@ -571,7 +624,10 @@ function bye() {
             span.innerHTML = newText;
             i++;
         }, txtSpeed);
-    } 
+    }setTimeout(bye2,5000)
 
+} //make bye have an ending with the community park updates OR try to use local storage....
+function bye2() {
+    location.replace('ForestDecision.html')
 }
 </script>
