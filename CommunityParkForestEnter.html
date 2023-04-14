@@ -312,7 +312,11 @@
             location.replace('Beach.html')
         }
         if (forestenter) {
-            location.replace('forest1.html')
+            if (left) {
+            location.replace('ForestDecision2.html')
+            } else {
+                location.replace('forest1.html')
+            }
         }
         if (keyCode === 37) {
             document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'

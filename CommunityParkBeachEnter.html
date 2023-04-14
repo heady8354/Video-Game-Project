@@ -312,7 +312,11 @@
             location.replace('Beach.html')
         }
         if (forestenter) {
-            location.replace('forest1.html')
+            if (left) {
+                location.replace('ForestDecision2.html')
+            } else {
+                location.replace('forest1.html')
+            }
         }
         if (keyCode === 37) {
             document.getElementById('wasd').style.animation = 'getinformedaboutthisfireasssong 5s forwards'
@@ -457,14 +461,14 @@
         text('Press [E] to interact', textX, textY);
     }
     function preload() {
-            soundFormats('mp3', 'ogg');
-            rabby = loadSound('rabby-bonzods.mp3')
-            rabby.setVolume(0.1)
-        }
+        soundFormats('mp3', 'ogg');
+        rabby = loadSound('rabby-bonzods.mp3')
+        rabby.setVolume(0.1)
+    }
 
-        function rabbyPlay() {
-            rabby.play()
-            rabby.loop()
+    function rabbyPlay() {
+        rabby.play()
+        rabby.loop()
 
-        }
+    }
 </script>

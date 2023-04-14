@@ -601,7 +601,6 @@ element.innerHTML = newText;
 }setTimeout(firstturn,6500)
 
 function punch1() {
-    
     TDM.stop()
     crithit.play()
     document.getElementById('punchIconImg').style.animation = 'punch 0.5s ease-in-out forwards'
@@ -832,7 +831,7 @@ function talk1anim5() {
     i++;
 }
     function talk1anim6() { 
-        localStorage.setItem('myVariable', true);
+        sessionStorage.setItem('myVariable', true);
         console.log('buttons updatedpooooop')
         document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch1()'>Punch</button><button id='defend' onclick='defend1()'>Defend</button><button id='talk' onclick='talk1()'>Talk</button>"
         document.getElementById('actions').style.left = '42vw'

@@ -1,0 +1,359 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title>do NOT kill the DJ...</title>
+</head>
+<style>
+body {
+            background-image: url('battlescreen.gif');
+            overflow: hidden;
+        }
+        #MCL {
+            position: absolute;
+            top: 52vh;
+            left: 78vw;
+            animation: stretch 0.398s steps(153) infinite;
+            animation-timing-function: ease-out;
+        }
+        #dialogue {
+            position: absolute;
+            height: 30vh;
+            width: 40vw;
+            background-color: gainsboro;
+            border: 5px solid gray;
+            left: 31vw;
+        }
+        #charName {
+             font-size: 40px;
+            font-family: fantasy
+        }
+        #GoblinRaider1Portrait {
+            position: absolute;
+            left: 31vw;
+            height: 128px;
+            width: 128px;
+        }
+        #JPPortrait {
+            position: absolute;
+            left: 31vw;
+            height: 128px;
+            width: 128px;
+            opacity: 0;
+        }
+        @keyframes appear {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes disappear {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        #actions {
+            display: inline-block;
+            position: absolute;
+            height: 9vh;
+            padding: 5px;
+            background-color: gainsboro;
+            border: 5px solid gray;
+            left: 42vw;
+            top: 120vh;
+            animation-name: actionBarRise;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-delay: 6.5s;
+        }
+        @keyframes actionBarRise {
+            0% {top: 120vh}
+            100% {top: 65vh}
+        }
+        @keyframes actionBarDescend {
+            0% {top: 65vh}
+            100% {top: 120vh}
+        }
+        #punch {
+        padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+
+        #punch:hover {background-color: #6e02cc}
+
+        #punch:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+
+        #defend {
+        padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+
+        #defend:hover {background-color: #6e02cc}
+
+        #defend:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+
+        #talk {
+        padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+
+        #talk:hover {background-color: #6e02cc}
+
+        #talk:active {
+        background-color: #6e02cc;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+         @keyframes stretch {
+            0% {
+                transform: scaleY(1);
+            }
+            50% {
+                transform: scaleY(1.1);
+            }
+            100% {
+                transform: scaleY(1);
+            }
+            }
+        #actionLog {
+             position: absolute;
+            z-index: 1;
+            width: 15vw;
+            height: 27vh;
+            background-color: gainsboro;
+            border: 5px solid gray;
+            top: 4vh;
+            left: 71vw;
+            text-align: right;
+            overflow: auto;
+        }
+        #GR1R {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            top: 51%;
+            left: 20%;
+            animation: stretch 0.398s steps(153) infinite;
+            animation-timing-function: ease-out;
+        }
+        #GR2R {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            top: 49%;
+            left: 26%;
+            animation: stretch 0.398s steps(153) infinite;
+            animation-timing-function: ease-out;
+        }
+        #GDR {
+            position: absolute;
+            top: 50%;
+            left: 14%;
+            animation: stretch 0.398s steps(153) infinite;
+            animation-timing-function: ease-out;
+        }
+        #GIR {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            top: 48%;
+            left: 8%;
+            animation: stretch 0.398s steps(153) infinite;
+            animation-timing-function: ease-out;
+        }
+        #GoblinRaider2Portrait {
+            position: absolute;
+            left: 31vw;
+            height: 128px;
+            width: 128px;
+            opacity: 0;
+        }
+        #GoblinDJPortrait {
+            position: absolute;
+            left: 31vw;
+            height: 128px;
+            width: 128px;
+            opacity: 0;
+        }
+        #GoblinInstigatorPortrait {
+            position: absolute;
+            left: 31vw;
+            height: 128px;
+            width: 128px;
+            opacity: 0;
+        }
+        #JPL {
+            position: absolute;
+            top: 49vh;
+            left: 86vw;
+            animation: stretch 0.398s steps(153) infinite;
+            animation-timing-function: ease-out;
+        }
+        #peace {
+        padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+        #musicchange {
+        padding: 5px 15px;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #8803fc;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        }
+</style>
+<body onload="opening()">
+<img src="mcLeft.png" id="MCL">
+            <div id="dialogue">
+                <p id='charName'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Goblin Raider 1</p><br><p id="textBox"></p>
+            </div>
+<img src="Goblin Raider 1 Portrait.png" id="GoblinRaider1Portrait">
+<img src="JamesPhillipsPortrait.png" id="JPPortrait">
+<div id="actions"><br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button></div>
+<div id="actionLog"></div>
+<button onclick="stopBG()" id="bgbutton">Stop Background</button>
+<br>
+<button onclick="playBG()" id="bgbutton">Play Background</button>
+<img src="GoblinRaider1Right.png" id="GR1R">
+<img src="GoblinRaider2Right.png" id="GR2R">
+<img src="GoblinDJRight.png" id="GDR">
+<img src="GoblinInstigatorRight.png" id="GIR">
+<img src="Goblin Raider 2 Portrait.png" id="GoblinRaider2Portrait">
+<img src="GoblinDJPortrait.png" id="GoblinDJPortrait">
+<img src="GoblinInstigatorPortrait.png" id="GoblinInstigatorPortrait">
+<img src="JamesPhillipsLeft.png" id="JPL">
+</body>
+<script>
+    const wereMsg = 'We are gonna mess yall up!!'
+    const notMsg = 'Not if we have anything to say about it,               lets get em, Jack. '
+
+    function stopBG() {
+            document.body.style.backgroundImage = 'url("battlescreenStill.png")'
+        }
+        function playBG() {
+            document.body.style.backgroundImage = 'url("battlescreen.gif")'
+        }
+function opening() {
+    typeText('textBox', 'werespan', wereMsg)
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } setTimeout(opening2, 3000)
+}
+function opening2() {
+    document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('JPPortrait').style.animation = 'appear 0.0001s forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;???'
+    typeText('textBox', 'notspan', notMsg)
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } setTimeout(firstturn, 3000)
+}
+    
+function firstturn() {
+    var element = document.getElementById("actionLog");
+    var currentText = element.innerHTML;
+    var newText = currentText + " <br> Battle begins!"
+    element.innerHTML = newText;
+}
+    function actionBarRise() {
+        document.getElementById('actions').style.animation = 'actionBarRise 1s forwards'
+    }
+    function actionBarDescend() {
+        document.getElementById('actions').style.animation = 'actionBarDescend 1s forwards'
+    }
+function talk() {
+    actionBarDescend()
+    function talk2() {
+        actionBarRise()
+        document.getElementById('actions').style.left = '35vw'
+        document.getElementById('actions').innerHTML = "<br><button id='peace' onclick='peace()'>Cant we handle this peacefully?</button><button id='musicchange' onclick='musicchange()'>Can you change the music?</button>"
+    }setTimeout(talk2,1000)
+}
+
+</script>

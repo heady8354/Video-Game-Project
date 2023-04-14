@@ -260,6 +260,7 @@ body {
             opacity: 0;
             top: 35%;
             left: 37%;
+            z-index: -1;
         }
         #GDL {
             position: absolute;
@@ -335,6 +336,9 @@ body {
 <img src="GoblinDJUp.png" id="GDU">
 </body>
 <script>
+    function draw() {
+        console.log(left)
+    }
     const troubleMsg = 'Listen,             I dont want any trouble.            Im running out of supplies to give you.   Leave me alone!'
     const hahMsg = 'Hah!     Well,   you better hand over those boxes,    else we taking everything..    by FORCE!   '
     const oooMsg = 'ooo...    damn bruh...     id NEVER in my       LIFE get spoken to like that and take it so peacefully...'
@@ -598,7 +602,7 @@ function help3() {
     location.replace('ForestFight.html')
 }
 function bye() {
-    localStorage.setItem('left',true)
+    sessionStorage.setItem('left',true)
     document.getElementById('mcUp').style.animation = 'disappear 0.00001s forwards'
     document.getElementById('mcWalkDown').style.animation = 'appear 0.00001s forwards, mcwalkaway 5s linear forwards'
     document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
@@ -630,4 +634,20 @@ function bye() {
 function bye2() {
     location.replace('ForestDecision.html')
 }
+    function preload() {
+        soundFormats('mp3', 'ogg');
+        goes = loadSound('goes forward-bonzods.mp3')
+        goes.setVolume(0.1)
+    }
+
+    function goesPlay() {
+        goes.play()
+        goes.loop()
+
+    }
+
+    function setup() {
+        userStartAudio()
+        goesPlay()
+    }
 </script>
