@@ -255,6 +255,77 @@ body {
         border-radius: 15px;
         box-shadow: 0 9px #999;
         }
+        @keyframes punchJJ {
+        0% {
+        transform: scale(0.8) rotate(-30deg);
+        }
+        50% {
+        transform: scale(1.4) rotate(10deg);
+        }
+        80% {
+            transform: scale(1.1) rotate(0);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(0)
+        }
+        }
+        #punchIconImg {
+            height: 128px;
+            width: 128px;
+            position: absolute;
+            opacity: 0;
+            top: 48vh;
+            left: 78vw;
+            /* animation: punch 0.5s ease-in-out forwards; */
+        }
+        #hit1 {
+            color: red;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        }
+        #heal1 {
+            color: lime;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        }
+        #morale1 {
+            color: cyan;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        }
+        #defendIconImg {
+            height: 128px;
+            width: 128px;
+            position: absolute;
+            z-index: 9999;
+            top: 48vh;
+            left: 70vw;
+            opacity: 0;
+        }
+        @keyframes slam-fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(-200px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 </style>
 <body onload="opening()">
 <img src="mcLeft.png" id="MCL">
@@ -278,10 +349,17 @@ body {
 <img src="GoblinDJPortrait.png" id="GoblinDJPortrait">
 <img src="GoblinInstigatorPortrait.png" id="GoblinInstigatorPortrait">
 <img src="JamesPhillipsLeft.png" id="JPL">
+<img src="punchIcon.png" id="punchIconImg"  alt="Punch Icon">
+<img src="defendIcon.gif" id="defendIconImg">
 </body>
 <script>
     const wereMsg = 'We are gonna mess yall up!!'
     const notMsg = 'Not if we have anything to say about it,               lets get em, Jack. '
+    const hahaMsg = 'blhahahah!       solve      THIS      peacefully,    NERD! '
+    const damnitMsg = 'Dammit Jack,    theres no reasoning with these      ANIMALS.     Take this,    and deliver a KO. '
+    const itsinMsg = 'Its in your highest regard to defend,   cause these punches are too much for you,   lil bro!  '
+
+    let told = false
 
     function stopBG() {
             document.body.style.backgroundImage = 'url("battlescreenStill.png")'
@@ -355,5 +433,85 @@ function talk() {
         document.getElementById('actions').innerHTML = "<br><button id='peace' onclick='peace()'>Cant we handle this peacefully?</button><button id='musicchange' onclick='musicchange()'>Can you change the music?</button>"
     }setTimeout(talk2,1000)
 }
-
+function peace() {
+    var element = document.getElementById("actionLog");
+    var currentText = element.innerHTML;
+    var newText = currentText + " <br> Jack uses talk!"
+    element.innerHTML = newText;
+    actionBarDescend()
+    document.getElementById('GoblinRaider2Portrait').style.animation = 'appear 0.0001s forwards'
+    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 2'
+    typeText('textBox', 'hahaspan', hahaMsg)
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    } 
+    function peace2() {
+        //sound needed
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> <p id='hit1'>Goblin Raider 2 smacks Jack silly!"
+        element.innerHTML = newText;
+        document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+        function peace3() {
+            document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+            document.getElementById('JPPortrait').style.animation = 'appear 0.0001s forwards'
+            document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards' 
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ???'
+            typeText('textBox', 'damnitspan', damnitMsg)
+            function peace4() {
+                told = true
+                var element = document.getElementById("actionLog");
+                var currentText = element.innerHTML;
+                var newText = currentText + " <br> <p id='heal1'>??? heals Jack! "
+                element.innerHTML = newText;
+                function peace5() {
+                    var element = document.getElementById("actionLog");
+                    var currentText = element.innerHTML;
+                    var newText = currentText + " <br> <p id='morale1'>??? encourages Jack! "
+                    element.innerHTML = newText;
+                    document.getElementById('actions').style.left = '40vw'
+                    document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='musicchange()'>Change Music</button>"
+                    actionBarRise()
+                }setTimeout(peace5,2500)
+            }setTimeout(peace4,2500)
+        }setTimeout(peace3,1000)
+    }setTimeout(peace2, 2000)
+}
+function defend() {
+    document.getElementById('defendIconImg').style.animation = 'slam-fade-in 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards'
+    var element = document.getElementById("actionLog");
+    var currentText = element.innerHTML;
+    var newText = currentText + " <br> Jack defends! "
+    element.innerHTML = newText;
+    actionBarDescend()
+    function defend2() {
+        typeText('textBox','itsinspan',itsinMsg)
+        document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('GoblinRaider1Portrait').style.animation = 'appear 0.0001s forwards'
+        document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin Raider 1'
+        function defend3() {
+            var element = document.getElementById("actionLog");
+            var currentText = element.innerHTML;
+            var newText = currentText + " <br> <p id='hit1'>Goblin Raider 1 hits Jack!"
+            element.innerHTML = newText;
+            document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+        }setTimeout(defend3,2000)
+    }setTimeout(defend2,1500)
+}
 </script>
