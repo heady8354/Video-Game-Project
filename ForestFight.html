@@ -326,6 +326,38 @@ body {
                 transform: translateY(0);
             }
         }
+        #punchIconGR1 {
+            height: 128px;
+            width: 128px;
+            position: absolute;
+            opacity: 0;
+            top: 48vh;
+            left: 18vw;
+        }
+        #punchIconGR2 {
+            height: 128px;
+            width: 128px;
+            position: absolute;
+            opacity: 0;
+            top: 46vh;
+            left: 25vw;
+        }
+        #punchIconGD {
+            height: 128px;
+            width: 128px;
+            position: absolute;
+            opacity: 0;
+            top: 47vh;
+            left: 12vw;
+        }
+        #punchIconGI {
+            height: 128px;
+            width: 128px;
+            position: absolute;
+            opacity: 0;
+            top: 46vh;
+            left: 6vw;
+        }
 </style>
 <body onload="opening()">
 <img src="mcLeft.png" id="MCL">
@@ -350,6 +382,10 @@ body {
 <img src="GoblinInstigatorPortrait.png" id="GoblinInstigatorPortrait">
 <img src="JamesPhillipsLeft.png" id="JPL">
 <img src="punchIcon.png" id="punchIconImg"  alt="Punch Icon">
+<img src="punchIcon.png" id="punchIconGR1" alt="Punch Icon">
+<img src="punchIcon.png" id="punchIconGR2" alt="Punch Icon">
+<img src="punchIcon.png" id="punchIconGI" alt="Punch Icon">
+<img src="punchIcon.png" id="punchIconGD" alt="Punch Icon">
 <img src="defendIcon.gif" id="defendIconImg">
 </body>
 <script>
@@ -358,6 +394,12 @@ body {
     const hahaMsg = 'blhahahah!       solve      THIS      peacefully,    NERD! '
     const damnitMsg = 'Dammit Jack,    theres no reasoning with these      ANIMALS.     Take this,    and deliver a KO. '
     const itsinMsg = 'Its in your highest regard to defend,   cause these punches are too much for you,   lil bro!  '
+    const damnbruhMsg = 'damn bruh.......ur just gonna let him small talk u    ANNND hit you?????? thats crazy bruh if that was me id hit him back or smth bruh caus dats crazy bruh how u jus gon let a mf hit u like that and small talk u in the same turn like thats crazy damn bruh that is just absolutely wicked wild caus dat would neva eva be me cause i aint da type to jus let smth like dat happen to me ykwim im the real type shi where i hit back n shi and o damn my text goin off da text box cuh thats how crazy it is my text be flyin off da box n shi 💀💀💀💀💀💀💀💀💀💀💀💀'
+    const argMsg = 'argh!     guess you needed your little    BOYFRIEND over there to tell you how to throw a punch? '
+    const grahMsg = 'grahg!   since when could you hurt me???'
+    const blarghMsg = 'blargh!!     that hurts more than I remember!   '
+    const yowchMsg = 'yowchies!!       damm bruh,   if i were me,    id NEVER let thats slide....id like....hit you back or something.      hey wait a second! '
+    const notcoolMsg = '..not cool man'
 
     let told = false
 
@@ -439,6 +481,10 @@ function peace() {
     var newText = currentText + " <br> Jack uses talk!"
     element.innerHTML = newText;
     actionBarDescend()
+    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinDJPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinRaider2Portrait').style.animation = 'appear 0.0001s forwards'
     document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 2'
@@ -471,6 +517,10 @@ function peace() {
         function peace3() {
             document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
             document.getElementById('JPPortrait').style.animation = 'appear 0.0001s forwards'
+            document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
+            document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
+            document.getElementById('GoblinDJPortrait').style.animation = 'disappear 0.0001s forwards'
+            document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
             document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards' 
             document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ???'
             typeText('textBox', 'damnitspan', damnitMsg)
@@ -503,15 +553,220 @@ function defend() {
     function defend2() {
         typeText('textBox','itsinspan',itsinMsg)
         document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('GoblinDJPortrait').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
         document.getElementById('GoblinRaider1Portrait').style.animation = 'appear 0.0001s forwards'
         document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin Raider 1'
+        function typeText(containerId, spanId, text) {
+            document.getElementById(containerId).innerHTML = '';
+            document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+            let i = 0;
+            let txtSpeed = 30
+            const timerId = setInterval(() => {
+                const span = document.getElementById(spanId);
+                const currentText = span.innerHTML;
+                if (i >= text.length) {
+                    clearInterval(timerId);
+                    return;
+                }
+                const nextChar = text.charAt(i);
+                const newText = currentText + nextChar;
+                span.innerHTML = newText;
+                i++;
+            }, txtSpeed);
+        } 
         function defend3() {
             var element = document.getElementById("actionLog");
             var currentText = element.innerHTML;
             var newText = currentText + " <br> <p id='hit1'>Goblin Raider 1 hits Jack!"
             element.innerHTML = newText;
             document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+            function defend4() {
+                document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+                document.getElementById('defendIconImg').style.animation = 'disappear 1s forwards'
+                function defend5() {
+                    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+                    document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
+                    document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
+                    document.getElementById('GoblinDJPortrait').style.animation = 'disappear  0.0001s forwards'
+                    document.getElementById('GoblinInstigatorPortrait').style.animation = 'appear 0.0001s forwards'
+                    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin Instigator'
+                    typeText('textBox','damnbruhspan',damnbruhMsg)
+                    function defend6() {
+                        var element = document.getElementById("actionLog");
+                        var currentText = element.innerHTML;
+                        var newText = currentText + " <br> <p id='morale1'>Goblin Instigator makes Goblin Raider 1 feel better about himself!"
+                        element.innerHTML = newText;
+                        actionBarRise()
+                    }setTimeout(defend6,18000)
+                }setTimeout(defend5,1500)
+            }setTimeout(defend4,1500)
         }setTimeout(defend3,2000)
     }setTimeout(defend2,1500)
+}
+    function PGR1() {
+        actionBarDescend()
+        var element = document.getElementById("actionLog");
+        var currentText = element.innerHTML;
+        var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 1!! "
+        element.innerHTML = newText;
+        document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('GoblinRaider1Portrait').style.animation = 'appear 0.0001s forwards'
+        document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('GoblinDJPortrait').style.animation = 'disappear  0.0001s forwards'
+        document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin Raider 1 '
+        document.getElementById('punchIconGR1').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+        typeText('textBox','blarghspan',blarghMsg)
+        function typeText(containerId, spanId, text) {
+            document.getElementById(containerId).innerHTML = '';
+            document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+            let i = 0;
+            let txtSpeed = 30
+            const timerId = setInterval(() => {
+                const span = document.getElementById(spanId);
+                const currentText = span.innerHTML;
+                if (i >= text.length) {
+                    clearInterval(timerId);
+                    return;
+                }
+                const nextChar = text.charAt(i);
+                const newText = currentText + nextChar;
+                span.innerHTML = newText;
+                i++;
+            }, txtSpeed);
+        }
+        function PGR12() {
+            actionBarRise()
+            document.getElementById('punchIconGR1').style.animation = 'disappear 1s forwards'
+            document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button>"
+        }setTimeout(PGR12,2000)
+    }
+function PGI() {
+    actionBarDescend()
+    var element = document.getElementById("actionLog");
+    var currentText = element.innerHTML;
+    var newText = currentText + " <br> <p id='hit1'>Jack shows Goblin Instigator a crazy hit!! "
+    element.innerHTML = newText;
+    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinDJPortrait').style.animation = 'disappear  0.0001s forwards'
+    document.getElementById('GoblinInstigatorPortrait').style.animation = 'appear 0.0001s forwards'
+    document.getElementById('punchIconGI').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin Instigator '
+    typeText('textBox', 'yowchspan', yowchMsg)
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+    function PGI2() {
+        actionBarRise()
+        document.getElementById('punchIconGI').style.animation = 'disappear 1s forwards'
+        document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button>"
+    }setTimeout(PGI2,2500)
+}
+function PGD() {
+    actionBarDescend()
+    var element = document.getElementById("actionLog");
+    var currentText = element.innerHTML;
+    var newText = currentText + " <br> <p id='hit1'>Jack rudely attacks Goblin DJ.. "
+    element.innerHTML = newText;
+    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinDJPortrait').style.animation = 'appear  0.0001s forwards'
+    document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('punchIconGD').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin DJ '
+    typeText('textBox', 'notcoolspan', notcoolMsg)
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+    function PGD2() {
+        actionBarRise()
+        document.getElementById('punchIconGD').style.animation = 'disappear 1s forwards'
+        document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button>"
+    }setTimeout(PGD2,2000)
+}
+function punch() {
+    actionBarDescend()
+    function punch2() {
+        actionBarRise()
+        document.getElementById('actions').innerHTML = "<button id='talk' onclick='PGR1()'>Goblin Raider 1</button><button id='talk' onclick='PGR2()'>Goblin Raider 2</button><br><button id='talk' onclick='PGI()'>Goblin Instigator</button><button id='talk' onclick='PGD()'>Goblin DJ</button>"
+    }setTimeout(punch2,1000)
+}
+function PGR2() {
+    actionBarDescend()
+    var element = document.getElementById("actionLog");
+    var currentText = element.innerHTML;
+    var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 2!! "
+    element.innerHTML = newText;
+    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('GoblinRaider2Portrait').style.animation = 'appear 0.0001s forwards'
+    document.getElementById('GoblinDJPortrait').style.animation = 'disappear  0.0001s forwards'
+    document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin Raider 2 '
+    document.getElementById('punchIconGR2').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+    if (told) {
+    typeText('textBox','argspan', argMsg)
+    } else {
+        typeText('textBox','grahspan',grahMsg)
+    }
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+    function PGR22() {
+        actionBarRise()
+        document.getElementById('punchIconGR2').style.animation = 'disappear 1s forwards'
+        document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button>"
+    }setTimeout(PGR22,2000)
 }
 </script>
