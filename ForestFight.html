@@ -478,7 +478,7 @@ body {
             </div>
 <img src="Goblin Raider 1 Portrait.png" id="GoblinRaider1Portrait">
 <img src="JamesPhillipsPortrait.png" id="JPPortrait">
-<div id="actions"><br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button></div>
+<div id="actions"><br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button></div>
 <div id="actionLog"></div>
 <button onclick="stopBG()" id="bgbutton">Stop Background</button>
 <br>
@@ -535,6 +535,17 @@ body {
     const goblinhurt3Msg = 'eek!   stop hitting me!'
     const surethingMsg = 'sure thing boss'
     const youshowedMsg = 'dang bruh...  how u gonna get small talked and hit in the same turn...'
+    const taunt1 = 'your nipples look like rotten pepperoni!'
+    const taunt2j = 'Yo mamas so fat,               when she fell I didnt laugh,         but the sidewalk cracked up.'
+    const taunt3 = 'Do I smell soiled baby diaper??'
+    const taunt4 = 'didya really need an instigator to make you feel better about yourself?'
+    const taunt5 = 'you need to kill yourself NOW!   you serve ZERO purpose!   your life means NOTHING!'
+    const taunt6 = 'his next punch is gonna hurt reaaaaal bad!'
+    const taunt7 = 'how are you struggling in a 4v1?? you guys suck!'
+    const taunt8 = "Yo mama's so fat, if she buys a fur coat, a whole species will become extinct."
+    const taunt9 = "Yo mama so dumb, it takes her an hour to cook minute rice."
+    const taunt10 = "Yo mama's so ugly, she threw a boomerang and it refused to come back."
+    const healMsg = 'here,    take this.  itll heal you up. '
 
     let told = false
     let firstpunch = true
@@ -614,99 +625,139 @@ function firstturn() {
     function actionBarDescend() {
         document.getElementById('actions').style.animation = 'actionBarDescend 1s forwards'
     }
-function talk() {
-    actionBarDescend()
-    function talk2() {
-        actionBarRise()
-        document.getElementById('actions').style.left = '35vw'
-        document.getElementById('actions').innerHTML = "<br><button id='peace' onclick='peace()'>Cant we handle this peacefully?</button><button id='musicchange' onclick='musicchange()'>Can you change the music?</button>"
-    }setTimeout(talk2,1000)
-}
-function peace() {
-    var element = document.getElementById("actionLog");
+function taunt() {
+   var element = document.getElementById("actionLog");
     var currentText = element.innerHTML;
-    var newText = currentText + " <br> Jack uses talk!"
+    var newText = currentText + " <br> Jack tells ??? to Taunt the enemies!"
     element.innerHTML = newText;
     actionBarDescend()
-    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('JPPortrait').style.animation = 'appear 0.0001s forwards'
     document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinDJPortrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
-    document.getElementById('GoblinRaider2Portrait').style.animation = 'appear 0.0001s forwards'
-    document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
-    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 2'
-    typeText('textBox', 'hahaspan', hahaMsg)
-    function typeText(containerId, spanId, text) {
-        document.getElementById(containerId).innerHTML = '';
-        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
-        let i = 0;
-        let txtSpeed = 30
-        const timerId = setInterval(() => {
-            const span = document.getElementById(spanId);
-            const currentText = span.innerHTML;
-            if (i >= text.length) {
-                clearInterval(timerId);
-                return;
-            }
-            const nextChar = text.charAt(i);
-            const newText = currentText + nextChar;
-            span.innerHTML = newText;
-            i++;
-        }, txtSpeed);
-    } 
-    function peace2() {
-        //sound needed
+    document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;???'
+    var randomNumber = Math.floor(Math.random() * 10) + 1;
+
+    if (randomNumber === 1) {
+        typeText('textBox', 'taunt1span', taunt1)
+    } else if (randomNumber === 2) {
+        typeText('textBox', 'taunt2span', taunt2j)
+    } else if (randomNumber === 3) {
+        typeText('textBox', 'taunt3span', taunt3)
+    } else if (randomNumber === 4) {
+        typeText('textBox', 'taunt4span', taunt4)
+    } else if (randomNumber === 5) {
+        typeText('textBox', 'taunt5span', taunt5)
+    } else if (randomNumber === 6) {
+        typeText('textBox', 'taunt6span', taunt6)
+    } else if (randomNumber === 7) {
+        typeText('textBox', 'taunt7span', taunt7)
+    } else if (randomNumber === 8) {
+        typeText('textBox', 'taunt8span', taunt8)
+    } else if (randomNumber === 9) {
+        typeText('textBox', 'taunt9span', taunt9)
+    } else {
+        typeText('textBox', 'taunt10span', taunt10)
+    }
+    function taunt2() {
+        var randMoraleheal = Math.floor(Math.random() * 50) + 1
+        mcMorale += randMoraleheal
+        document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
         var element = document.getElementById("actionLog");
         var currentText = element.innerHTML;
-        var newText = currentText + " <br> <p id='hit1'>Goblin Raider 2 smacks Jack silly!"
+        var newText = currentText + " <br> <p id='morale1'> Jack feels more confident!"
         element.innerHTML = newText;
-        var randHPDmg = Math.floor(Math.random() * 35) + 1
-        var randMoraleDmg = Math.floor(Math.random() * 50) + 1
-        mcHP -= randHPDmg
-        mcMorale -= randMoraleDmg
-        document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
-        document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
-        document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
-        function peace3() {
-            document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
-            document.getElementById('JPPortrait').style.animation = 'appear 0.0001s forwards'
+        function taunt3() {
+            document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
             document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
-            document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
             document.getElementById('GoblinDJPortrait').style.animation = 'disappear 0.0001s forwards'
             document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
-            document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards' 
-            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ???'
-            typeText('textBox', 'damnitspan', damnitMsg)
-            function peace4() {
-                told = true
-                var element = document.getElementById("actionLog");
-                var currentText = element.innerHTML;
-                var newText = currentText + " <br> <p id='heal1'>??? heals Jack! "
-                element.innerHTML = newText;
-                var randHPheal = Math.floor(Math.random() * 50) + 1;
-                mcHP += randHPheal;
-                document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
-                function peace5() {
-                    var element = document.getElementById("actionLog");
-                    var currentText = element.innerHTML;
-                    var newText = currentText + " <br> <p id='morale1'>??? encourages Jack! "
-                    element.innerHTML = newText;
-                    var randMoraleheal = Math.floor(Math.random() * 50) + 1
-                    mcMorale += randMoraleheal
-                    document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
-                    document.getElementById('actions').style.left = '40vw'
-                    document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='musicchange()'>Change Music</button>"
-                    actionBarRise()
-                }setTimeout(peace5,2500)
-            }setTimeout(peace4,2500)
-        }setTimeout(peace3,1000)
-    }setTimeout(peace2, 2000)
+            document.getElementById('GoblinRaider2Portrait').style.animation = 'appear 0.0001s forwards'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goblin Raider 2'
+            document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+            var randomNumber = Math.floor(Math.random() * 10) + 1;
+
+            if (randomNumber === 1) {
+                typeText('textBox', 'goblinattack1span', goblinattack1Msg)
+            } else if (randomNumber === 2) {
+                typeText('textBox', 'goblinattack2span', goblinattack2Msg)
+            } else if (randomNumber === 3) {
+                typeText('textBox', 'goblinattack3span', goblinattack3Msg)
+            } else if (randomNumber === 4) {
+                typeText('textBox', 'goblinattack4span', goblinattack4Msg)
+            } else if (randomNumber === 5) {
+                typeText('textBox', 'goblinattack5span', goblinattack5Msg)
+            } else if (randomNumber === 6) {
+                typeText('textBox', 'goblinattack6span', goblinattack6Msg)
+            } else if (randomNumber === 7) {
+                typeText('textBox', 'goblinattack7span', goblinattack7Msg)
+            } else if (randomNumber === 8) {
+                typeText('textBox', 'goblinattack8span', goblinattack8Msg)
+            } else if (randomNumber === 9) {
+                typeText('textBox', 'goblinattack9span', goblinattack9Msg)
+            } else {
+                typeText('textBox', 'goblinattack10span', goblinattack10Msg)
+            }
+            var element = document.getElementById("actionLog");
+            var currentText = element.innerHTML;
+            var newText = currentText + " <br> <p id='hit1'>Goblin Raider 2 hits Jack!  "
+            element.innerHTML = newText;
+            var randHPDmg = Math.floor(Math.random() * 35) + 1
+            var randMoraleDmg = Math.floor(Math.random() * 30) + 1
+            mcHP -= randHPDmg
+            mcMorale -= randMoraleDmg
+            document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
+            document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
+            document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
+            function taunt4() {
+                if (mcHP > 50) {
+                actionBarRise()
+                document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+                } else {
+                    var randomNumber = Math.floor(Math.random() * 5) + 1;
+
+                    if (randomNumber === 1) {
+                        typeText('textBox', 'healspan', healMsg)
+                        document.getElementById('JPPortrait').style.animation = 'appear 0.0001s forwards'
+                        document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
+                        document.getElementById('GoblinDJPortrait').style.animation = 'disappear 0.0001s forwards'
+                        document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
+                        document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
+                        document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;???'
+                        var randHPheal = Math.floor(Math.random() * 50) + 1;
+                        mcHP += randHPheal;
+                        document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
+                        var element = document.getElementById("actionLog");
+                        var currentText = element.innerHTML;
+                        var newText = currentText + " <br> <p id='heal1'>??? Heals Jack!  "
+                        document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+                        element.innerHTML = newText;
+                        actionBarRise()
+                    } else if (randomNumber === 2) {
+                        actionBarRise()
+                        document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+                    } else if (randomNumber === 3) {
+                        actionBarRise()
+                        document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+                    } else if (randomNumber === 4) {
+                        actionBarRise()
+                        document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+                    } else  {
+                        actionBarRise()
+                        document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+                    }
+                }
+            }setTimeout(taunt4,2000)
+        }setTimeout(taunt3,2000)
+    }setTimeout(taunt2,3000)
 }
 function defend() {
     document.getElementById('defendIconImg').style.animation = 'slam-fade-in 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards'
     var element = document.getElementById("actionLog");
     var currentText = element.innerHTML;
     var newText = currentText + " <br> Jack defends! "
+    
     element.innerHTML = newText;
     actionBarDescend()
     function defend2() {
@@ -768,12 +819,19 @@ function defend() {
                         var currentText = element.innerHTML;
                         var newText = currentText + " <br> <p id='morale1'>Goblin Instigator makes Goblin Raider 1 feel better about himself!"
                         element.innerHTML = newText;
+                        var randMoraleheal = Math.floor(Math.random() * 50) + 1
+                        GR1Morale += randMoraleheal
+                        document.getElementById('GR1Moralehtml').innerHTML = GR1Morale + '%'
                         actionBarRise()
                     } if (firstpunch) {
                         setTimeout(defend6,18000)
                     } else {
                         setTimeout(defend6,3000)
                     }
+                    if (mcHP < 0) {
+                        location.replace('death.html')
+                    }
+                    firstpunch = false
                 }setTimeout(defend5,1500)
             }setTimeout(defend4,1500)
         }setTimeout(defend3,2000)
@@ -785,6 +843,12 @@ function defend() {
         var currentText = element.innerHTML;
         var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 1!! "
         element.innerHTML = newText;
+        var randHPDmg = Math.floor(Math.random() * 35) + 1
+        var randMoraleDmg = Math.floor(Math.random() * 30) + 1
+        GR1HP = (GR1HP - randHPDmg * (mcMorale / 100)).toFixed(2);
+        GR1Morale -= randMoraleDmg
+        document.getElementById('GR1HPhtml').innerHTML = GR1HP + '/100'
+        document.getElementById('GR1Moralehtml').innerHTML = GR1Morale + '%'
         document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
         document.getElementById('GoblinRaider1Portrait').style.animation = 'appear 0.0001s forwards'
         document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
@@ -835,17 +899,20 @@ function defend() {
             element.innerHTML = newText;
             var randHPDmg = Math.floor(Math.random() * 35) + 1
             var randMoraleDmg = Math.floor(Math.random() * 30) + 1
-            mcHP -= randHPDmg
+            mcHP = (mcHP - randHPDmg * (GR1Morale/100)).toFixed(2)
             mcMorale -= randMoraleDmg
             document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
             document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
             document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
             document.getElementById('punchIconGR1').style.animation = 'disappear 1s forwards'
-            document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button>"
+            document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
                 function PGR13() {
                     firstpunch = false
                     actionBarRise()
                     document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
+                    if (mcHP < 0) {
+                        location.replace('death.html')
+                    }
                 }setTimeout(PGR13,2000)
         }setTimeout(PGR12,2000)
     }
@@ -855,6 +922,12 @@ function PGI() {
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack shows Goblin Instigator a crazy hit!! "
     element.innerHTML = newText;
+    var randHPDmg = Math.floor(Math.random() * 35) + 1
+    var randMoraleDmg = Math.floor(Math.random() * 30) + 1
+    GIHP = (GIHP - randHPDmg * (mcMorale / 100)).toFixed(2);
+    GIMorale -= randMoraleDmg
+    document.getElementById('GIHPhtml').innerHTML = GIHP + '/100'
+    document.getElementById('GIMoralehtml').innerHTML = GIMorale + '%'
     document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
@@ -905,17 +978,20 @@ function PGI() {
         element.innerHTML = newText;
         var randHPDmg = Math.floor(Math.random() * 35) + 1
         var randMoraleDmg = Math.floor(Math.random() * 30) + 1
-        mcHP -= randHPDmg
+        mcHP = (mcHP - randHPDmg * (GIMorale / 100)).toFixed(2)
         mcMorale -= randMoraleDmg
         document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
         document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
         document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
-        document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button>"
+        document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
         document.getElementById('punchIconGI').style.animation = 'disappear 1s forwards'
         function PGI3() {
             firstpunch = false
             document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
             actionBarRise()
+            if (mcHP < 0) {
+                location.replace('death.html')
+            }
         }setTimeout(PGI3,2000)
     } if (firstpunch) {
         setTimeout(PGI2,4700)
@@ -929,12 +1005,19 @@ function PGD() {
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack rudely attacks Goblin DJ.. "
     element.innerHTML = newText;
+    var randHPDmg = Math.floor(Math.random() * 35) + 1
+    var randMoraleDmg = Math.floor(Math.random() * 30) + 1
+    GDHP = (GDHP - randHPDmg * (mcMorale / 100)).toFixed(2);
+    GDMorale -= randMoraleDmg
+    document.getElementById('GDHPhtml').innerHTML = GDHP + '/100'
+    document.getElementById('GDMoralehtml').innerHTML = GDMorale + '%'
     document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinRaider2Portrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinDJPortrait').style.animation = 'appear  0.0001s forwards'
     document.getElementById('GoblinInstigatorPortrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('punchIconGD').style.animation = 'punchJJ 0.5s ease-in-out forwards'
+    document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
     document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin DJ '
     typeText('textBox', 'notcoolspan', notcoolMsg)
     function typeText(containerId, spanId, text) {
@@ -973,6 +1056,12 @@ function PGR2() {
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 2!! "
     element.innerHTML = newText;
+    var randHPDmg = Math.floor(Math.random() * 35) + 1
+    var randMoraleDmg = Math.floor(Math.random() * 30) + 1
+    GR2HP = (GR2HP - randHPDmg * (mcMorale / 100)).toFixed(2);
+    GR2Morale -= randMoraleDmg
+    document.getElementById('GR2HPhtml').innerHTML = GR2HP + '/100'
+    document.getElementById('GR2Moralehtml').innerHTML = GR2Morale + '%'
     document.getElementById('JPPortrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinRaider1Portrait').style.animation = 'disappear 0.0001s forwards'
     document.getElementById('GoblinRaider2Portrait').style.animation = 'appear 0.0001s forwards'
@@ -1051,10 +1140,13 @@ function PGR2() {
         document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
         document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
         document.getElementById('punchIconGR2').style.animation = 'disappear 1s forwards'
-        document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='talk()'>Talk</button>"
+        document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
         function PGR23() {
             firstpunch = false
             actionBarRise()
+            if (mcHP < 0) {
+                location.replace('death.html')
+            }
             document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
         }setTimeout(PGR23,2000)
     }setTimeout(PGR22,2000)

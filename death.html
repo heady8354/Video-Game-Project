@@ -1,0 +1,149 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title>L BOZO!!!!!!!</title>
+</head>
+<style>
+body {
+    background-color: black;
+    overflow: hidden;
+}
+#mcDead {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation-name: appear;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 1.5s;
+}
+@keyframes appear {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes disappear {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+#dead {
+    font-size: 100px;
+    color: red;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    1px 1px 0 #000,
+    1px 1px 0 #000;
+    font-family: fantasy;
+    left: 37%;
+    top: 20%;
+    position: absolute;
+    animation-name: appear;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 3s;
+}
+#retry {
+    font-size: 20px;
+    background-color: lime;
+    color: black;
+    position: absolute;
+    top: 60%;
+    left: 45%;
+    position: absolute;
+    animation-name: appear;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 4s;
+}
+#retry:hover {
+    background-color: green;
+}
+#retry:active {
+    background-color: limegreen;
+}
+#giveup {
+    font-size: 20px;
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: 60%;
+    left: 55%;
+    position: absolute;
+    animation-name: appear;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 4.5s;
+}
+#giveup:hover {
+    background-color: darkred;
+}
+#giveup:active {
+    background-color: red;
+}
+@keyframes revive {
+    0% {top: 50%}
+    100% {top: 0%;}
+}
+@keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
+#fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+</style>
+<html>
+    <p id="fireasssong">now playing: High Charity - Aden Mayo</p>
+<img src="mcDead.png" id="mcDead">
+<h1 id='dead'>You are dead.</h1>
+<button id='retry' onclick="retry()">Retry</button>
+<button id="giveup" onclick='giveup()'>Give up.</button>
+</html>
+<script>
+function giveup() {
+    window.close()
+}
+function retry() {
+    location.replace('ForestFight.html')
+}
+    function preload() {
+        soundFormats('mp3', 'ogg');
+        high = loadSound('highcharity-itemasylum.mp3')
+        high.setVolume(0.1)
+    }
+
+    function highPlay() {
+        high.play()
+        high.loop()
+
+    }
+
+    function setup() {
+        userStartAudio()
+        highPlay()
+    }
+</script>
