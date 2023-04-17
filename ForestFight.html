@@ -549,6 +549,10 @@ body {
 
     let told = false
     let firstpunch = true
+    let GR1dead = false
+    let GR2dead = false
+    let GIdead = false
+    let GDdead = false
 
     var mcHP = 100
     let mcMorale = 100
@@ -705,7 +709,7 @@ function taunt() {
             element.innerHTML = newText;
             var randHPDmg = Math.floor(Math.random() * 35) + 1
             var randMoraleDmg = Math.floor(Math.random() * 30) + 1
-            mcHP -= randHPDmg
+            mcHP = (mcHP - randHPDmg * (GR2Morale / 100)).toFixed(2)
             mcMorale -= randMoraleDmg
             document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
             document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
@@ -734,6 +738,9 @@ function taunt() {
                         document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
                         element.innerHTML = newText;
                         actionBarRise()
+                        if (mcHP < 0) {
+                            location.replace('death.html')
+                        }
                     } else if (randomNumber === 2) {
                         actionBarRise()
                         document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
@@ -747,6 +754,9 @@ function taunt() {
                         actionBarRise()
                         document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
                     }
+                }
+                if (mcHP < 0) {
+                    location.replace('death.html')
                 }
             }setTimeout(taunt4,2000)
         }setTimeout(taunt3,2000)
@@ -843,7 +853,7 @@ function defend() {
         var currentText = element.innerHTML;
         var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 1!! "
         element.innerHTML = newText;
-        var randHPDmg = Math.floor(Math.random() * 35) + 1
+        var randHPDmg = Math.floor(Math.random() * 9999) + 1
         var randMoraleDmg = Math.floor(Math.random() * 30) + 1
         GR1HP = (GR1HP - randHPDmg * (mcMorale / 100)).toFixed(2);
         GR1Morale -= randMoraleDmg
@@ -869,6 +879,23 @@ function defend() {
                 typeText('textBox', 'goblinhurt3span', goblinhurt3Msg)
             }
         }
+        if (GR1HP < 0) {
+            GR1dead = true
+            actionBarDescend()
+            var element = document.getElementById("actionLog");
+            var currentText = element.innerHTML;
+            var newText = currentText + " <br> <p id='hit1'>Goblin Raider 1 meets their fate!"
+            element.innerHTML = newText;
+            document.getElementById('GR1R').style.animation = 'disappear 1s forwards'
+            document.getElementById('GR1HPhtml').style.animation = 'disappear 1s forwards'
+            document.getElementById('GR1Moralehtml').style.animation = 'disappear 1s forwards'
+            document.getElementById('punchIconGR1').style.animation = 'disappear 1s forwards'
+            function poepoe() {
+                document.getElementById('punchIconGR1').style.animation = 'disappear 1s forwards'
+                actionBarRise()
+                document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
+            }setTimeout(poepoe,1000)
+        } else {
         function PGR12() {
             var randomNumber = Math.floor(Math.random() * 10) + 1;
 
@@ -916,6 +943,7 @@ function defend() {
                 }setTimeout(PGR13,2000)
         }setTimeout(PGR12,2000)
     }
+}
 function PGI() {
     actionBarDescend()
     var element = document.getElementById("actionLog");
@@ -948,6 +976,22 @@ function PGI() {
             typeText('textBox', 'goblinhurt3span', goblinhurt3Msg)
         }
     }
+    if (GIHP < 0) {
+        GR1dead = true
+            actionBarDescend()
+            var element = document.getElementById("actionLog");
+            var currentText = element.innerHTML;
+            var newText = currentText + " <br> <p id='hit1'>Goblin Instigator just died bruh!"
+            element.innerHTML = newText;
+            document.getElementById('GIR').style.animation = 'diappear 1s forwards'
+            document.getElementById('GIHPhtml').style.animation = 'disappear 1s forwards'
+            document.getElementById('GIMoralehtml').style.animation = 'disappear 1s forwards'
+            document.getElementById('punchIconGI').style.animation = 'disappear 1s forwards'
+            function risedelay() {
+                 document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
+                actionBarRise()
+            }
+    } else {
     function PGI2() {
         var randomNumber = Math.floor(Math.random() * 10) + 1;
 
@@ -999,6 +1043,7 @@ function PGI() {
         setTimeout(PGI2,2000)
     }
 }
+}
 function PGD() {
     actionBarDescend()
     var element = document.getElementById("actionLog");
@@ -1038,16 +1083,39 @@ function PGD() {
             i++;
         }, txtSpeed);
     }
+    if (GDHP < 0) {
+        GDdead = true
+            actionBarRise()
+            var element = document.getElementById("actionLog");
+            var currentText = element.innerHTML;
+            var newText = currentText + " <br> <p id='hit1'>R.I.P Goblin DJ."
+            element.innerHTML = newText;
+            document.getElementById('GDR').style.animation = 'diappear 1s forwards'
+            document.getElementById('GDHPhtml').style.animation = 'disappear 1s forwards'
+            document.getElementById('GDMoralehtml').style.animation = 'disappear 1s forwards'
+            document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
+    } else {
     function PGD2() {
         actionBarRise()
         document.getElementById('punchIconGD').style.animation = 'disappear 1s forwards'
     }setTimeout(PGD2,2000)
 }
+}
 function punch() {
     actionBarDescend()
     function punch2() {
         actionBarRise()
-        document.getElementById('actions').innerHTML = "<button id='talk' onclick='PGR1()'>Goblin Raider 1</button><button id='talk' onclick='PGR2()'>Goblin Raider 2</button><br><button id='talk' onclick='PGI()'>Goblin Instigator</button><button id='talk' onclick='PGD()'>Goblin DJ</button>"
+        if (GR1dead) {
+        document.getElementById('actions').innerHTML = "<button id='talk' onclick='PGR2()'>Goblin Raider 2</button><br><button id='talk' onclick='PGI()'>Goblin Instigator</button><button id='talk' onclick='PGD()'>Goblin DJ</button>"
+        } else if (GR2dead) {
+            document.getElementById('actions').innerHTML = "<button id='talk' onclick='PGR1()'>Goblin Raider 1</button><br><button id='talk' onclick='PGI()'>Goblin Instigator</button><button id='talk' onclick='PGD()'>Goblin DJ</button>"
+        } else if (GIdead) {
+            document.getElementById('actions').innerHTML = "<button id='talk' onclick='PGR1()'>Goblin Raider 1</button><button id='talk' onclick='PGR2()'>Goblin Raider 2</button><br><button id='talk' onclick='PGD()'>Goblin DJ</button>"
+        } else if (GDdead) {
+            document.getElementById('actions').innerHTML = "<button id='talk' onclick='PGR1()'>Goblin Raider 1</button><button id='talk' onclick='PGR2()'>Goblin Raider 2</button><br><button id='talk' onclick='PGI()'>Goblin Instigator</button>"
+        } else {
+            document.getElementById('actions').innerHTML = "<button id='talk' onclick='PGR1()'>Goblin Raider 1</button><button id='talk' onclick='PGR2()'>Goblin Raider 2</button><br><button id='talk' onclick='PGI()'>Goblin Instigator</button><button id='talk' onclick='PGD()'>Goblin DJ</button>"
+        }
     }setTimeout(punch2,1000)
 }
 function PGR2() {
@@ -1056,7 +1124,7 @@ function PGR2() {
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 2!! "
     element.innerHTML = newText;
-    var randHPDmg = Math.floor(Math.random() * 35) + 1
+    var randHPDmg = Math.floor(Math.random() * 9999) + 1
     var randMoraleDmg = Math.floor(Math.random() * 30) + 1
     GR2HP = (GR2HP - randHPDmg * (mcMorale / 100)).toFixed(2);
     GR2Morale -= randMoraleDmg
@@ -1104,6 +1172,22 @@ function PGR2() {
             i++;
         }, txtSpeed);
     }
+    if (GR2HP < 0) {
+        GR2dead = true
+            actionBarDescend()
+            var element = document.getElementById("actionLog");
+            var currentText = element.innerHTML;
+            var newText = currentText + " <br> <p id='hit1'>Goblin Raider 2 falls!"
+            element.innerHTML = newText;
+            document.getElementById('GR2R').style.animation = 'disappear 1s forwards'
+            document.getElementById('GR2HPhtml').style.animation = 'disappear 1s forwards'
+            document.getElementById('GR2Moralehtml').style.animation = 'disappear 1s forwards'
+            function plplplp() {
+            document.getElementById('actions').innerHTML = "<br><button id='punch' onclick='punch()'>Punch</button><button id='defend' onclick='defend()'>Defend</button><button id='talk' onclick='taunt()'>Taunt</button>"
+            document.getElementById('punchIconGR2').style.animation = 'disappear 1s forwards'
+            actionBarRise()
+            }setTimeout(plplplp,1000)
+        } else {
     function PGR22() {
         document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
         var randomNumber = Math.floor(Math.random() * 10) + 1;
@@ -1135,7 +1219,7 @@ function PGR2() {
         element.innerHTML = newText;
         var randHPDmg = Math.floor(Math.random() * 35) + 1
         var randMoraleDmg = Math.floor(Math.random() * 30) + 1
-        mcHP -= randHPDmg
+        mcHP = (mcHP - randHPDmg * (GR2Morale / 100)).toFixed(2)
         mcMorale -= randMoraleDmg
         document.getElementById('mcHPhtml').innerHTML = mcHP + '/100'
         document.getElementById('mcMoralehtml').innerHTML = mcMorale + '%'
@@ -1150,6 +1234,7 @@ function PGR2() {
             document.getElementById('punchIconImg').style.animation = 'disappear 1s forwards'
         }setTimeout(PGR23,2000)
     }setTimeout(PGR22,2000)
+}
 }
 
 
