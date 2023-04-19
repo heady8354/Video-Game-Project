@@ -1,0 +1,356 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title>that was quite the battle but gj</title>
+</head>
+<style>
+body {
+        overflow: hidden;
+        background-image: url(Forest2.png);
+        background-repeat: no-repeat;            
+        background-position: center;
+        background-color: black;
+        }
+        #JPD {
+            position: absolute;
+            opacity: 0;
+            left: 55%;
+            top: 37%
+        }
+        #JPL {
+            position: absolute;
+            opacity: 1;
+            left: 55%;
+            top: 33%
+        }
+        #JPR {
+            position: absolute;
+            opacity: 0;
+        }
+        #JPU {
+            position: absolute;
+            opacity: 0;
+        }
+        #mcLeft {
+            position: absolute;
+            opacity: 1;
+            top: 38%;
+            left: 50%;
+        }
+        #mcDown {
+            position: absolute;
+            opacity: 0;
+        }
+        #mcUp {
+            position: absolute;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+        }
+        #mcRight {
+            position: absolute;
+            opacity: 0;
+            top: 38%;
+            left: 50%;
+        }
+        #chatBox {
+            position: absolute;
+            width: 23vw;
+            height: 37vh;
+            left: 74vw;
+            top: 35vh;
+            z-index: 1;
+            opacity: 0;
+            background-color: gainsboro;
+            border: 5px solid gray;
+        }
+        @keyframes appear {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes disappear {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+        #JPPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
+        @keyframes JPjump {
+            0% {top: 33%}
+            50% {top: 30%;}
+            100% {top:33%}
+        }
+</style>
+<body onload="opening()">
+<img src="mcLeft.png" id="mcLeft">
+<img src="mcDown.png" id="mcDown">
+<img src="mcUp.png" id="mcUp">
+<img src="mcRight.png" id="mcRight">
+<img src="JamesPhillipsDown.png" id="JPD">
+<img src="JamesPhillipsLeft.png" id="JPL">
+<img src="JamesPhillipsRight.png" id="JPR">
+<img src="JamesPhillipsUp.png" id="JPU">
+<img src="JamesPhillipsPortrait.png" id="JPPortrait">
+
+<p id="fireasssong">now playing: ??? - ???</p>
+
+<div id="chatBox"><br><br>
+    <p id='charName'>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </p><br>
+    <p id="textBox"><span id='readspan'></span></p>
+    <p id='buttons'><button onclick="we()">we?</button><br><button onclick="probs()">probably because I lost my memory.</button> </p>
+</div>
+
+
+</body>
+<script>
+    const hellyeahMsg = 'Hell yeah Jack!!    We got them!   Nice going Jack, something really changed about you. '
+    const waytoMsg = 'dude, I was encouraging you, healing you, and if anything making it EASIER for you. The goblins are too stupid to attack two people at once so youre welcome for being nice enough to even enter the battle and not let you get you ass kicked AGAIN by those freaks.'
+    const itsokayMsg = 'its okay, sorry for getting mad, ill heal more next time. Im just happy we are getting along again. youre always free to stop by here, you may go if youd like.'
+    const iknewMsg = 'I knew you didnt change, running like you always do.          DONT COME BACK!'
+    const frMsg = 'Seriously? HAH!   thats funny.                 Sorry.    Well, my name is James Phillips, we..     well. We hate eachother, but Im hoping we can fix that. '
+    const explanationMsg = 'it started with you distancing from me as a friend because your other two friends - which I hopefully assume youve met - Joshua and Denise were "better than me". after that I just took off. Id like to have you back though, so whaddya say? '
+    const friendMsg = 'great! im happy to be your friend again Mr. Winston, im trying to change for the better so,           Ill see ya around :) '
+    const nofriendMsg = 'WHA- ahem.                 I understand, I hope we can at least be accomplices though.  See ya, Jack.'
+
+
+    function opening() {
+    document.getElementById('JPL').style.animation = 'JPjump 0.3s forwards'
+    function opening2() {
+        document.getElementById('mcLeft').style.animation = 'disappear 0.0001s forwards'
+        document.getElementById('mcRight').style.animation = 'appear 0.0001s forwards'
+        document.getElementById('chatBox').style.animation = 'appear 0.00001s forwards'
+        document.getElementById('JPPortrait').style.opacity = '1'
+        document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ???'
+        typeText('textBox', 'hellyeahspan', hellyeahMsg)
+
+        
+    }setTimeout(opening2,1000)
+
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+}
+function we() {
+    typeText('textBox', 'waytospan', waytoMsg)
+    document.getElementById('buttons').innerHTML = "<button onclick='sorry()'>sorry, I didnt notice.</button><br><button onclick='bye()'>whatever, bye</button>"
+
+
+
+
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+}
+function sorry() {
+    typeText('textBox', 'itsokayspan', itsokayMsg)
+    document.getElementById('buttons').innerHTML = ""
+     function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+    function sorry2() {
+        location.replace('humbleabode.html')
+    }setTimeout(sorry2,6000)
+}
+function bye() {
+    sessionStorage.setItem('left',true)
+    typeText('textBox', 'iknewspan', iknewMsg)
+    document.getElementById('buttons').innerHTML = ""
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+    function bye2() {
+        location.replace('forestDecision.html')
+    }setTimeout(bye2,3000)
+}
+function probs() {
+    typeText('textBox', 'frspan', frMsg)
+    document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; James Phillips '
+    document.getElementById('buttons').innerHTML = "<button onclick='why()'>Why do we hate eachother?</button><br><button onclick='friend()'>Sure, you seem cool.</button><br><button onclick='nofriend()'>No, youre annoying.</button>"
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+}
+function why() {
+    typeText('textBox', 'explanationspan', explanationMsg)
+    document.getElementById('buttons').innerHTML = "<button onclick='friend()'>you seem cool, lets put that aside.</button><br><button onclick='nofriend()'>yeah theyre better. no thanks.</button>"
+
+
+
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+}
+function friend() {
+    typeText('textBox', 'friendspan', friendMsg)
+    document.getElementById('buttons').innerHTML = ''
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+    function friend2() {
+        location.replace('humbleabode.html')
+    }setTimeout(friend2,4000)
+}
+function nofriend() {
+    typeText('textBox', 'nofriendspan', nofriendMsg)
+    document.getElementById('buttons').innerHTML = ''
+    function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+    function nofriend2() {
+        location.replace('humbleabode.html')
+    } setTimeout(nofriend2, 3500)
+}
+</script> 

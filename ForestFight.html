@@ -468,8 +468,27 @@ body {
             top: 55%;
             left: 8%;
         }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
+         #fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
 </style>
 <body onload="opening()">
+    <p id="fireasssong">now playing: Meta Knight's Revenge (Kirby) - aden mayo</p>
 <img src="mcLeft.png" id="MCL">
             <div id="dialogue">
                 <p id='charName'>
@@ -551,9 +570,9 @@ body {
 
     let told = false
     let firstpunch = true
-    let GR1dead = true
-    let GR2dead = true
-    let GIdead = true
+    let GR1dead = false
+    let GR2dead = false
+    let GIdead = false
     let GDdead = false
 
     var mcHP = 100
@@ -700,6 +719,7 @@ function taunt() {
                 typeText('textBox', 'goblinattack5span', goblinattack5Msg)
             } else if (randomNumber === 6) {
                 typeText('textBox', 'goblinattack6span', goblinattack6Msg)
+                bricks.play()
             } else if (randomNumber === 7) {
                 typeText('textBox', 'goblinattack7span', goblinattack7Msg)
             } else if (randomNumber === 8) {
@@ -709,11 +729,12 @@ function taunt() {
             } else {
                 typeText('textBox', 'goblinattack10span', goblinattack10Msg)
             }
+            punchSFX.play()
             var element = document.getElementById("actionLog");
             var currentText = element.innerHTML;
             var newText = currentText + " <br> <p id='hit1'>Goblin Raider 2 hits Jack!  "
             element.innerHTML = newText;
-            var randHPDmg = Math.floor(Math.random() * 35) + 1
+            var randHPDmg = Math.floor(Math.random() * 35) + 1 //original dmg is 35
             var randMoraleDmg = Math.floor(Math.random() * 30) + 1
             mcHP = (mcHP - randHPDmg * (GR2Morale / 100)).toFixed(2)
             mcMorale -= randMoraleDmg
@@ -772,6 +793,7 @@ function taunt() {
 }
 
 function defend() {
+    defendSFX.play()
     document.getElementById('defendIconImg').style.animation = 'slam-fade-in 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards'
     var element = document.getElementById("actionLog");
     var currentText = element.innerHTML;
@@ -843,6 +865,7 @@ function defend() {
             }, txtSpeed);
         } 
         function defend4() {
+            punchSFX.play()
             var element = document.getElementById("actionLog");
             var currentText = element.innerHTML;
             var newText = currentText + " <br> <p id='hit1'>Goblin Raider 1 hits Jack!"
@@ -921,11 +944,12 @@ function defend() {
                 actionBarRise()
             }setTimeout(argggg,1000)
         } else {
+            punchSFX.play()
         var element = document.getElementById("actionLog");
         var currentText = element.innerHTML;
         var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 1!! "
         element.innerHTML = newText;
-        var randHPDmg = Math.floor(Math.random() * 35) + 1
+        var randHPDmg = Math.floor(Math.random() * 9999) + 1 //orignal dmg is 35
         var randMoraleDmg = Math.floor(Math.random() * 30) + 1
         GR1HP = (GR1HP - randHPDmg * (mcMorale / 100)).toFixed(2);
         GR1Morale -= randMoraleDmg
@@ -970,6 +994,7 @@ function defend() {
             }setTimeout(poepoe,1000)
         } else {
         function PGR12() {
+            punchSFX.play()
             var randomNumber = Math.floor(Math.random() * 10) + 1;
 
             if (randomNumber === 1) {
@@ -984,6 +1009,7 @@ function defend() {
                 typeText('textBox', 'goblinattack5span', goblinattack5Msg)
             } else if (randomNumber === 6) {
                 typeText('textBox', 'goblinattack6span', goblinattack6Msg)
+                bricks.play()
             } else if (randomNumber === 7) {
                 typeText('textBox', 'goblinattack7span', goblinattack7Msg)
             } else if (randomNumber === 8) {
@@ -1035,11 +1061,12 @@ function PGI() {
             actionBarRise()
         } setTimeout(argggg, 1000)
     } else {
+        punchSFX.play()
     var element = document.getElementById("actionLog");
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack shows Goblin Instigator a crazy hit!! "
     element.innerHTML = newText;
-    var randHPDmg = Math.floor(Math.random() * 50) + 1
+    var randHPDmg = Math.floor(Math.random() * 9999) + 1 //original dmg is 50
     var randMoraleDmg = Math.floor(Math.random() * 30) + 1
     GIHP = (GIHP - randHPDmg * (mcMorale / 100)).toFixed(2);
     GIMorale -= randMoraleDmg
@@ -1084,6 +1111,7 @@ function PGI() {
             }setTimeout(risedelay,1000)
     } else {
     function PGI2() {
+        punchSFX.play()
         var randomNumber = Math.floor(Math.random() * 10) + 1;
 
         if (randomNumber === 1) {
@@ -1098,6 +1126,7 @@ function PGI() {
             typeText('textBox', 'goblinattack5span', goblinattack5Msg)
         } else if (randomNumber === 6) {
             typeText('textBox', 'goblinattack6span', goblinattack6Msg)
+            bricks.play()
         } else if (randomNumber === 7) {
             typeText('textBox', 'goblinattack7span', goblinattack7Msg)
         } else if (randomNumber === 8) {
@@ -1172,11 +1201,12 @@ function PGD() {
             actionBarRise()
         } setTimeout(argggg, 1000)
     } else {
+        punchSFX.play()
     var element = document.getElementById("actionLog");
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack rudely attacks Goblin DJ.. "
     element.innerHTML = newText;
-    var randHPDmg = Math.floor(Math.random() * 50) + 1
+    var randHPDmg = Math.floor(Math.random() * 9999) + 1 //original dmg is 75
     var randMoraleDmg = Math.floor(Math.random() * 30) + 1
     GDHP = (GDHP - randHPDmg * (mcMorale / 100)).toFixed(2);
     GDMorale -= randMoraleDmg
@@ -1278,11 +1308,12 @@ function PGR2() {
             actionBarRise()
         } setTimeout(argggg, 1000)
     } else {
+        punchSFX.play()
     var element = document.getElementById("actionLog");
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 2!! "
     element.innerHTML = newText;
-    var randHPDmg = Math.floor(Math.random() * 35) + 1
+    var randHPDmg = Math.floor(Math.random() * 9999) + 1 //original dmg is 35
     var randMoraleDmg = Math.floor(Math.random() * 20) + 1
     GR2HP = (GR2HP - randHPDmg * (mcMorale / 100)).toFixed(2);
     GR2Morale -= randMoraleDmg
@@ -1347,6 +1378,7 @@ function PGR2() {
             }setTimeout(plplplp,1000)
         } else {
     function PGR22() {
+        punchSFX.play()
         document.getElementById('punchIconImg').style.animation = 'punchJJ 0.5s ease-in-out forwards'
         var randomNumber = Math.floor(Math.random() * 10) + 1;
 
@@ -1362,6 +1394,7 @@ function PGR2() {
             typeText('textBox', 'goblinattack5span', goblinattack5Msg)
         } else if (randomNumber === 6) {
             typeText('textBox', 'goblinattack6span', goblinattack6Msg)
+            bricks.play()
         } else if (randomNumber === 7) {
             typeText('textBox', 'goblinattack7span', goblinattack7Msg)
         } else if (randomNumber === 8) {
@@ -1395,20 +1428,49 @@ function PGR2() {
 }
     }
 }
-    if ((GR1dead && GR2dead && GIdead) || (GR1dead && GR2dead && GIdead && !GDdead)) {
-        function victory() {
-            if (sessionStorage.getItem('DJdead') === 'true') {
-                location.replace('postForestFightDJdead.html')
-            } else {
-                location.replace('postForestFight.html')
-            }
-        }setTimeout(victory,1000)
+    
+    function draw() {
+    if (GDdead) {
+        metaknight.stop()
     }
+    if ((GR1dead && GR2dead && GIdead) || (GR1dead && GR2dead && GIdead && GDdead)) {
+            function victory() {
+                if (sessionStorage.getItem('DJdead') === 'true') {
+                    location.replace('postForestFightDJdead.html')
+                } else {
+                    location.replace('postForestFight.html')
+                }
+            } setTimeout(victory, 3000)
+        }
+}
+    function preload() {
+            soundFormats('mp3', 'ogg');
+            metaknight = loadSound('metaknightsrevenge-adenmayo.mp3', onSoundLoaded);
+            punchSFX = loadSound('punch.mp3')
+            punchSFX.setVolume(0.1)
+            defendSFX = loadSound('DRbattlestart.mp3')
+            defendSFX.setVolume(0.3)
+            bricks = loadSound('bricks.mp3')
+            bricks.setVolume(0.2)
+        }
 
+        function onSoundLoaded() {
+            soundLoaded = true;
+            metaknight.setVolume(0.1); // Set the volume once the sound is loaded
+        }
 
+        function metaPlay() {
+            metaknight.loop();
+        }
 
-
-
+        function setup() {
+            if (soundLoaded) {
+                userStartAudio();
+                metaPlay();
+            } else {
+                setTimeout(setup, 100);
+            }
+        }
 
 
 

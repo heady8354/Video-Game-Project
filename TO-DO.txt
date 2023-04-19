@@ -1,15 +1,10 @@
 Urgent:
-different bg options
 credits
-random damage numbers
-attack individual enemies
-damage x morale multiplier
+HURRY TF UP!!!!!!
 
 Near future:
 
 Later on indev:
 Emotion Portraits
-make retro big dog
 
 Maybe:
-rythym game minigame
