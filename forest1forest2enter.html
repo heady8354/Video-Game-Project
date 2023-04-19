@@ -75,7 +75,7 @@ body {
     <p id='charName'>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </p><br>
-    <p id="textBox"><span id='readspan'></span></p><br>
+    <p id="textBox"><span id='readspan'></span></p>
     <p id='buttons'>
 </div>
     <img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
@@ -109,9 +109,9 @@ body {
             mcDown = loadImage('mcDown.png');
             mcLeft = loadImage('mcLeft.png');
             mcRight = loadImage('mcRight.png');
-            currentImage = mcUp; // Set initial image
+            currentImage = mcDown; // Set initial image
             x = w / 2
-            y = h * 0.8
+            y = h * 0.2
             userStartAudio()
             toonyPlay()
     }
@@ -134,7 +134,7 @@ body {
         communityparkenter = collideRectRect(w * 0.46, h * 0.9, 200, 10,x,y,64,64)
         forest2enter = collideRectRect(w * 0.46, h * 0.1, 200, 10,x,y,64,64)
         if (forest2enter) {
-            location.replace('Forest2cutscene.html')
+            location.replace('humbleabode.html')
         }
         if (communityparkenter) {
             location.replace('CommunityParkForestEnter.html')
@@ -253,5 +253,5 @@ body {
                 toony.play()
                 toony.loop()
 
-            }
+            } //test local storage
 </script>
