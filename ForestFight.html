@@ -949,7 +949,7 @@ function defend() {
         var currentText = element.innerHTML;
         var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 1!! "
         element.innerHTML = newText;
-        var randHPDmg = Math.floor(Math.random() * 9999) + 1 //orignal dmg is 35
+        var randHPDmg = Math.floor(Math.random() * 35) + 1 //orignal dmg is 35
         var randMoraleDmg = Math.floor(Math.random() * 30) + 1
         GR1HP = (GR1HP - randHPDmg * (mcMorale / 100)).toFixed(2);
         GR1Morale -= randMoraleDmg
@@ -1066,7 +1066,7 @@ function PGI() {
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack shows Goblin Instigator a crazy hit!! "
     element.innerHTML = newText;
-    var randHPDmg = Math.floor(Math.random() * 9999) + 1 //original dmg is 50
+    var randHPDmg = Math.floor(Math.random() * 50) + 1 //original dmg is 50
     var randMoraleDmg = Math.floor(Math.random() * 30) + 1
     GIHP = (GIHP - randHPDmg * (mcMorale / 100)).toFixed(2);
     GIMorale -= randMoraleDmg
@@ -1206,7 +1206,7 @@ function PGD() {
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack rudely attacks Goblin DJ.. "
     element.innerHTML = newText;
-    var randHPDmg = Math.floor(Math.random() * 9999) + 1 //original dmg is 75
+    var randHPDmg = Math.floor(Math.random() * 75) + 1 //original dmg is 75
     var randMoraleDmg = Math.floor(Math.random() * 30) + 1
     GDHP = (GDHP - randHPDmg * (mcMorale / 100)).toFixed(2);
     GDMorale -= randMoraleDmg
@@ -1313,7 +1313,7 @@ function PGR2() {
     var currentText = element.innerHTML;
     var newText = currentText + " <br> <p id='hit1'>Jack delivers a mean blow to Goblin Raider 2!! "
     element.innerHTML = newText;
-    var randHPDmg = Math.floor(Math.random() * 9999) + 1 //original dmg is 35
+    var randHPDmg = Math.floor(Math.random() * 35) + 1 //original dmg is 35
     var randMoraleDmg = Math.floor(Math.random() * 20) + 1
     GR2HP = (GR2HP - randHPDmg * (mcMorale / 100)).toFixed(2);
     GR2Morale -= randMoraleDmg
@@ -1433,10 +1433,10 @@ function PGR2() {
     if (GDdead) {
         metaknight.stop()
     }
-    if ((GR1dead && GR2dead && GIdead) || (GR1dead && GR2dead && GIdead && GDdead)) {
+    if (GR1dead && GR2dead && GIdead && GDdead) {
             function victory() {
                 if (sessionStorage.getItem('DJdead') === 'true') {
-                    location.replace('postForestFightDJdead.html')
+                    location.replace('postForestFight.html')
                 } else {
                     location.replace('postForestFight.html')
                 }

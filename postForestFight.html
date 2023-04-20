@@ -108,6 +108,39 @@ body {
             50% {top: 30%;}
             100% {top:33%}
         }
+        #GDL {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+        }
+        #GDR {
+            position: absolute;
+            height: 64px;
+            width: 64px;
+            opacity: 0;
+            top: 35%;
+            left: 37%;;
+        }
+        @keyframes move-and-fade {
+			0% {
+				transform: rotateY(0);
+				opacity: 1;
+			}
+			25% {
+				transform: rotateY(180deg);
+				opacity: 1;
+			}
+			50% {
+				transform: rotateY(360deg);
+				opacity: 1;
+			}
+			100% {
+				transform: translateY(-50px);
+				opacity: 0;
+			}
+		}
+		
 </style>
 <body onload="opening()">
 <img src="mcLeft.png" id="mcLeft">
@@ -119,6 +152,8 @@ body {
 <img src="JamesPhillipsRight.png" id="JPR">
 <img src="JamesPhillipsUp.png" id="JPU">
 <img src="JamesPhillipsPortrait.png" id="JPPortrait">
+<img src="GoblinDJLeft.png" id="GDL">
+<img src="GoblinDJRight.png" id="GDR">
 
 <p id="fireasssong">now playing: ??? - ???</p>
 
@@ -144,6 +179,7 @@ body {
 
 
     function opening() {
+        
         sessionStorage.setItem('victory',true)
     document.getElementById('JPL').style.animation = 'JPjump 0.3s forwards'
     function opening2() {
@@ -354,4 +390,19 @@ function nofriend() {
         location.replace('humbleabode.html')
     } setTimeout(nofriend2, 3500)
 }
+    function setup() {
+        userStartAudio()
+        hustlePlay()
+    }
+    function preload() {
+        soundFormats('mp3', 'ogg');
+        hustle = loadSound('dodahustle-adenmayo.mp3')
+        hustle.setVolume(0.1)
+    }
+
+    function hustlePlay() {
+        hustle.play()
+        hustle.loop()
+
+    }
 </script> 

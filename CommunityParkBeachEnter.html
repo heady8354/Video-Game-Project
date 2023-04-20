@@ -314,7 +314,10 @@
         if (forestenter) {
             if (left) {
                 location.replace('ForestDecision2.html')
-            } else {
+            } else if(victory) {
+                location.replace('forest1victory.html')
+            }
+            else {
                 location.replace('forest1.html')
             }
         }
