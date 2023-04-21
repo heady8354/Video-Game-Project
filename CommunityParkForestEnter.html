@@ -275,9 +275,12 @@
         treeBarrierRight = collideRectRect(w / 1.99999, h / 10, 10, 160, x, y, 64, 64)
         beachEnter = collideRectRect(w / 3.4, h / 2.9, 10, 100, x, y, 64, 64)
         forestenter = collideRectRect(w / 1.7, h / 9, 100, 10, x, y, 64, 64)
+        townpathenter = collideRectRect(w * 0.6, h * 0.9, 100, 10, x, y, 64, 64)
 
         //interaction hitboxes
-
+        if (townpathenter) {
+            location.replace('townPath.html')
+        }
 
         if (keyIsDown(SHIFT)) {
             speed = 4;

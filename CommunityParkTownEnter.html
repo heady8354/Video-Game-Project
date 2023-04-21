@@ -242,9 +242,9 @@
         mcDown = loadImage('mcDown.png');
         mcLeft = loadImage('mcLeft.png');
         mcRight = loadImage('mcRight.png');
-        currentImage = mcRight; // Set initial image
-        x = w / 3
-        y = h / 2.9
+        currentImage = mcUp; // Set initial image
+        x = w * 0.6
+        y = h * 0.8
         userStartAudio()
         rabbyPlay()
     }
@@ -275,12 +275,10 @@
         treeBarrierRight = collideRectRect(w / 1.99999, h / 10, 10, 160, x, y, 64, 64)
         beachEnter = collideRectRect(w / 3.4, h / 2.9, 10, 100, x, y, 64, 64)
         forestenter = collideRectRect(w / 1.7, h / 9, 100, 10, x, y, 64, 64)
-        townpathenter = collideRectRect(w * 0.6, h * 0.9, 100, 10, x, y, 64, 64)
+        townpathenter = collideRectRect(w *0.6,h*0.9,100,10,x,y,64,64)
 
         //interaction hitboxes
-        if (townpathenter) {
-            location.replace('townPath.html')
-        }
+
 
         if (keyIsDown(SHIFT)) {
             speed = 4;
@@ -311,13 +309,16 @@
         }
 
         //ifs 
+        if (townpathenter) {
+            location.replace('townPath.html')
+        }
         if (beachEnter) {
             location.replace('Beach.html')
         }
         if (forestenter) {
             if (left) {
                 location.replace('ForestDecision2.html')
-            } else if(victory) {
+            } else if (victory) {
                 location.replace('forest1victory.html')
             }
             else {

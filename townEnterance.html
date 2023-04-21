@@ -1,0 +1,296 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title id="title">civilization!</title>
+</head>
+<style>
+    body {
+        overflow: hidden;
+        background-image: url(townEnterance.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: black;
+    }
+
+    @keyframes getinformedaboutthisfireasssong {
+        0% {
+            top: 100vh
+        }
+
+        50% {
+            top: 90vh
+        }
+
+        100% {
+            top: 100vh
+        }
+    }
+
+    #chatBox {
+        position: absolute;
+        width: 23vw;
+        height: 37vh;
+        left: 74vw;
+        top: 35vh;
+        z-index: 1;
+        opacity: 0;
+        background-color: gainsboro;
+        border: 5px solid gray;
+    }
+
+    #morganfreemanPortrait {
+        top: 35vh;
+        left: 74vw;
+        position: absolute;
+        opacity: 0;
+        z-index: 10;
+        height: 128px;
+        width: 128px;
+    }
+    #SignPortrait2 {
+        top: 35vh;
+        left: 74vw;
+        position: absolute;
+        opacity: 0;
+        z-index: 10;
+        height: 128px;
+        width: 128px;
+    }
+
+    @keyframes appear {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes disappear {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    #fireasssong {
+        color: white;
+        text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        position: absolute;
+        top: 100vh;
+        animation-name: getinformedaboutthisfireasssong;
+        animation-fill-mode: forwards;
+        animation-duration: 10s;
+    }
+</style>
+
+<body>
+    <p id="fireasssong">now playing: b toony - bonzods</p>
+    <div id="chatBox"><br><br>
+        <p id='charName'>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </p><br>
+        <p id="textBox"><span id='readspan'></span></p>
+        <p id='buttons'>
+    </div>
+    <img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
+    <img src="SignPortrait2.png" id="SignPortrait2">
+
+</body>
+<script>
+
+    const warningMsg = 'WARNING!            BEYOND THIS FENCE CONTAINS SPACE-TIME DISPLACEMENT ANOMALIES!              BARBED WIRE AND FENCING HAVE BEEN PLACED FOR YOUR SAFETY!'
+
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let x = window.innerWidth / 2
+    let y = window.innerHeight / 2
+    let speed = 2
+    let inchat = false
+
+    function exit() {
+        document.getElementById('textBox').innerHTML = ''
+        document.getElementById('chatBox').style.opacity = '0'
+        document.getElementById('morganfreemanPortrait').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('SignPortrait2').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('buttons').innerHTML = ''
+        inchat = false
+    }
+
+    function setup() {
+        createCanvas(w, h);
+        walkUp = loadImage('mcWalkUp.gif')
+        walkDown = loadImage('mcWalkDown.gif')
+        walkLeft = loadImage('mcWalkLeft.gif')
+        walkRight = loadImage('mcWalkRight.gif')
+        mcUp = loadImage('mcUp.png');
+        mcDown = loadImage('mcDown.png');
+        mcLeft = loadImage('mcLeft.png');
+        mcRight = loadImage('mcRight.png');
+        currentImage = mcRight; // Set initial image
+        x = w * 0.35
+        y = h / 2.2
+        userStartAudio()
+        toonyPlay()
+    }
+    function draw() {
+        clear()
+        // Draw image at current position
+        image(currentImage, x, y, 64, 64); //player
+        textFont('Arial', 12); // set font and size of text
+        noFill()
+        noStroke()
+        rect(x, y, 64, 64)
+
+
+
+        barrierLeft = collideRectRect(w * 0.24, 50, 100, 1000, x, y, 64, 64)
+        barrierRight = collideRectRect(w * 0.7, 50, 100, 1000, x, y, 64, 64)
+        barrierUp = collideRectRect(280, h * 0.03, 1000, 51, x, y, 64, 64)
+        barrierDown = collideRectRect(280, h * 0.9, 1000, 51, x, y, 64, 64)
+        townenter = collideRectRect(w * 0.68, h / 2.2, 10, 100, x, y, 64, 64)
+        pathenter = collideRectRect(w * 0.3, h / 2.2, 10, 100,x,y,64,64)
+        fencedown = collideRectRect(w * 0.59, h * 0.4, 210, 10,x,y,64,64)
+        fenceleft = collideRectRect(w * 0.58, h * 0.01, 10, 380,x,y,64,64)
+        noFill()
+        rect(w * 0.68, h / 2.2, 10, 100)
+        rect(w * 0.3, h / 2.2, 10, 100)
+        noFill()
+        rect(w*0.59,h*0.4,210,10)
+        rect(w*0.58,h*0.01,10,380)
+        if (fencedown) {
+            drawText()
+        }
+        if (fencedown && keyCode === 69) {
+            document.getElementById('chatBox').style.opacity = '1'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sir Sign the Second'
+            document.getElementById('SignPortrait2').style.animation = 'appear 0.000001s forwards'
+            inchat = true
+            y = y + 30
+            typeText('textBox', 'warningspan', warningMsg)
+
+            function typeText(containerId, spanId, text) {
+                document.getElementById(containerId).innerHTML = '';
+                document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                let i = 0;
+                let txtSpeed = 30
+                const timerId = setInterval(() => {
+                    const span = document.getElementById(spanId);
+                    const currentText = span.innerHTML;
+                    if (i >= text.length) {
+                        clearInterval(timerId);
+                        return;
+                    }
+                    const nextChar = text.charAt(i);
+                    const newText = currentText + nextChar;
+                    span.innerHTML = newText;
+                    i++;
+                }, txtSpeed);
+            } setTimeout(exit, 6500)
+        }
+        if (pathenter) {
+            location.replace('townPathEnteranceEnter.html')
+        }
+        if (townenter) {
+            location.replace('town1.html')
+        }
+
+        if (keyIsDown(65) && !barrierLeft && !inchat) { // A key
+            x -= speed;
+            currentImage = walkLeft;
+            lastPressedKey = 'A';
+        }
+        if (keyIsDown(68) && !barrierRight && !inchat && !fenceleft) { // D key
+            x += speed;
+            currentImage = walkRight;
+            lastPressedKey = 'D';
+        }
+        if (keyIsDown(87) && !barrierUp && !inchat && !fencedown) { // W key
+            y -= speed;
+            currentImage = walkUp;
+            lastPressedKey = 'W';
+        }
+        if (keyIsDown(83) && !barrierDown && !inchat) { // S key
+            y += speed;
+            currentImage = walkDown;
+            lastPressedKey = 'S';
+        }
+        if (keyIsDown(SHIFT)) {
+            speed = 4;
+        } else {
+            speed = 2;
+        }
+    }
+    function keyPressed() {
+        // Update lastPressedKey variable when a key is pressed
+        if (key === 'A') {
+            lastPressedKey = 'A';
+        } else if (key === 'D') {
+            lastPressedKey = 'D';
+        } else if (key === 'W') {
+            lastPressedKey = 'W';
+        } else if (key === 'S') {
+            lastPressedKey = 'S';
+        }
+    }
+    function keyReleased() {
+        // Change image based on last pressed key when a key is released
+        if (lastPressedKey === 'A') {
+            currentImage = mcLeft;
+        } else if (lastPressedKey === 'D') {
+            currentImage = mcRight;
+        } else if (lastPressedKey === 'W') {
+            currentImage = mcUp;
+        } else if (lastPressedKey === 'S') {
+            currentImage = mcDown;
+        } //else, show tip
+    }
+    function drawText() {
+        let textX = x; // x position of text
+        let textY = y - -80; // y position of text (20 pixels above player) outdated but idc
+        textAlign(LEFT);
+        fill(255);
+        stroke(0)
+        strokeWeight(3)
+        text('Press [E] to interact', textX, textY);
+    }
+    function drawText2() {
+        let textX = x; // x position of text
+        let textY = y - -80; // y position of text (20 pixels above player) outdated but idc
+        textAlign(LEFT);
+        fill(255, 0, 0);
+        stroke(0)
+        strokeWeight(3)
+        text('Your decision has been made.', textX, textY);
+    }
+    function preload() {
+        soundFormats('mp3', 'ogg');
+        toony = loadSound('b toony-bonzods.mp3')
+        toony.setVolume(0.1)
+    }
+
+    function toonyPlay() {
+
+
+    } //test local storage
+
+
+</script>
