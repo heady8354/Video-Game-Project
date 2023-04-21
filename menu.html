@@ -141,6 +141,24 @@
             50% {top: 90vh}
             100% {top: 100vh}
         }
+        #headphones {
+            font-family: Garamond;
+            color: white;
+            font-size: 30px;
+            left: 39%;
+            top: 64%;
+            position: absolute;
+            opacity: 0%;
+            -webkit-text-stroke-width: 0.5px;
+            -webkit-text-stroke-color: black;
+            animation-name: playAppear;
+            animation-duration: 1.5s;
+            animation-delay: 3s;
+            animation-fill-mode: forwards;
+            transition: transform 0.5s ease-in-out, opacity 3s ease-in-out;
+            transform-origin: center;
+            z-index: -1000;
+        }
         </style>
         <body>
             <p id="fireasssong">now playing: Petscop - Item Asylum</p>
@@ -148,6 +166,7 @@
             <h3 id="credit">by Will Lopez</h3>
             <h1 id="play" onclick="beginGameF()">Play</h1>
             <div id="overlay"></div>
+            <h1 id="headphones">Headphones reccomended!</h1>
         </body>
     <script>
         let fadeDuration = 3 //seconds

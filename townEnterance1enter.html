@@ -11,12 +11,12 @@
     <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <!--reference external JS-->
     <script src="script.js"></script>
-    <title id="title">seems like a nice hangout spot</title>
+    <title id="title">civilization!</title>
 </head>
 <style>
     body {
         overflow: hidden;
-        background-image: url(townPath.png);
+        background-image: url(townEnterance.png);
         background-repeat: no-repeat;
         background-position: center;
         background-color: black;
@@ -49,6 +49,15 @@
     }
 
     #morganfreemanPortrait {
+        top: 35vh;
+        left: 74vw;
+        position: absolute;
+        opacity: 0;
+        z-index: 10;
+        height: 128px;
+        width: 128px;
+    }
+    #SignPortrait2 {
         top: 35vh;
         left: 74vw;
         position: absolute;
@@ -103,11 +112,12 @@
         <p id='buttons'>
     </div>
     <img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
+    <img src="SignPortrait2.png" id="SignPortrait2">
 
 </body>
 <script>
 
-    const fruitMsg = 'a fruit,      smushed against the ground as if it fell.        Maybe you dropped this out of your bag?       what could lie ahead?'
+    const warningMsg = 'WARNING!            BEYOND THIS FENCE CONTAINS SPACE-TIME DISPLACEMENT ANOMALIES!              BARBED WIRE AND FENCING HAVE BEEN PLACED FOR YOUR SAFETY!'
 
     let w = window.innerWidth;
     let h = window.innerHeight;
@@ -120,6 +130,7 @@
         document.getElementById('textBox').innerHTML = ''
         document.getElementById('chatBox').style.opacity = '0'
         document.getElementById('morganfreemanPortrait').style.animation = 'disappear 0.000001s forwards'
+        document.getElementById('SignPortrait2').style.animation = 'disappear 0.000001s forwards'
         document.getElementById('buttons').innerHTML = ''
         inchat = false
     }
@@ -151,20 +162,55 @@
 
 
 
-        barrierLeft = collideRectRect(w * 0.35, 50, 100, 1000, x, y, 64, 64)
+        barrierLeft = collideRectRect(w * 0.24, 50, 100, 1000, x, y, 64, 64)
         barrierRight = collideRectRect(w * 0.7, 50, 100, 1000, x, y, 64, 64)
         barrierUp = collideRectRect(280, h * 0.03, 1000, 51, x, y, 64, 64)
-        barrierDown = collideRectRect(280, h * 0.63, 1000, 51, x, y, 64, 64)
-        communitypartenter = collideRectRect(w * 0.44, h * 0.1, 170, 10, x, y, 64, 64)
+        barrierDown = collideRectRect(280, h * 0.9, 1000, 51, x, y, 64, 64)
         townenter = collideRectRect(w * 0.68, h / 2.2, 10, 100, x, y, 64, 64)
+        pathenter = collideRectRect(w * 0.3, h / 2.2, 10, 100,x,y,64,64)
+        fencedown = collideRectRect(w * 0.59, h * 0.4, 210, 10,x,y,64,64)
+        fenceleft = collideRectRect(w * 0.58, h * 0.01, 10, 380,x,y,64,64)
         noFill()
         rect(w * 0.68, h / 2.2, 10, 100)
-        rect(w * 0.44, h * 0.1, 170, 10)
-        if (townenter) {
-            location.replace('townEnterance.html')
+        rect(w * 0.3, h / 2.2, 10, 100)
+        noFill()
+        rect(w*0.59,h*0.4,210,10)
+        rect(w*0.58,h*0.01,10,380)
+        if (fencedown) {
+            drawText()
         }
-        if (communitypartenter) {
-            location.replace('CommunityParkTownEnter.html')
+        if (fencedown && keyCode === 69) {
+            document.getElementById('chatBox').style.opacity = '1'
+            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sir Sign the Second'
+            document.getElementById('SignPortrait2').style.animation = 'appear 0.000001s forwards'
+            inchat = true
+            y = y + 30
+            typeText('textBox', 'warningspan', warningMsg)
+
+            function typeText(containerId, spanId, text) {
+                document.getElementById(containerId).innerHTML = '';
+                document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+                let i = 0;
+                let txtSpeed = 30
+                const timerId = setInterval(() => {
+                    const span = document.getElementById(spanId);
+                    const currentText = span.innerHTML;
+                    if (i >= text.length) {
+                        clearInterval(timerId);
+                        return;
+                    }
+                    const nextChar = text.charAt(i);
+                    const newText = currentText + nextChar;
+                    span.innerHTML = newText;
+                    i++;
+                }, txtSpeed);
+            } setTimeout(exit, 6500)
+        }
+        if (pathenter) {
+            location.replace('townPathEnteranceEnter.html')
+        }
+        if (townenter) {
+            location.replace('town1.html')
         }
 
         if (keyIsDown(65) && !barrierLeft && !inchat) { // A key
@@ -172,12 +218,12 @@
             currentImage = walkLeft;
             lastPressedKey = 'A';
         }
-        if (keyIsDown(68) && !barrierRight && !inchat) { // D key
+        if (keyIsDown(68) && !barrierRight && !inchat && !fenceleft) { // D key
             x += speed;
             currentImage = walkRight;
             lastPressedKey = 'D';
         }
-        if (keyIsDown(87) && !barrierUp && !inchat) { // W key
+        if (keyIsDown(87) && !barrierUp && !inchat && !fencedown) { // W key
             y -= speed;
             currentImage = walkUp;
             lastPressedKey = 'W';

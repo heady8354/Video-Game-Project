@@ -182,12 +182,12 @@
 
 
 
-        barrierLeft = collideRectRect(w * 0.24, 50, 100, 1000, x, y, 64, 64)
+        barrierLeft = collideRectRect(w * 0.2, 50, 100, 1000, x, y, 64, 64)
         barrierRight = collideRectRect(w * 0.7, 50, 100, 1000, x, y, 64, 64)
-        barrierUp = collideRectRect(w * 0.3, h * 0.4, 900, 10, x, y, 64, 64)
+        barrierUp = collideRectRect(w * 0.3, h * 0.39, 900, 10, x, y, 64, 64)
         barrierDown = collideRectRect(280, h * 0.9, 1000, 51, x, y, 64, 64)
         townenter = collideRectRect(w * 0.68, h / 2.2, 10, 100, x, y, 64, 64)
-        enteranceenter = collideRectRect(w * 0.3, h / 2.2, 10, 100, x, y, 64, 64)
+        enteranceenter = collideRectRect(w * 0.26, h / 2.2, 10, 100, x, y, 64, 64)
         guardInteract = collideRectRect(w * 0.3, h * 0.409, 200, 1,x,y,64,64)
         door1 = collideRectRect(w * 0.48, h * 0.409, 50, 1, x, y, 64, 64)
         door2 = collideRectRect(w * 0.63, h * 0.409, 50, 1, x, y, 64, 64)
@@ -195,7 +195,7 @@
 
         noFill()
         rect(w*0.3,h*0.4,900,10)
-        fill('yellow')
+        noFill()
         rect(w*0.3,h*0.405,200,1)
         rect(w * 0.48, h * 0.409, 50, 1)
 
@@ -238,7 +238,7 @@
         }
         
         if (enteranceenter) {
-            location.replace('townEnterance.html')
+            location.replace('townEnterance1enter.html')
         }
         if (townenter) {
             location.replace('town2.html')
