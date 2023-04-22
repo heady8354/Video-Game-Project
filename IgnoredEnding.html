@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title>well, he probably was gonna betray you anyway. </title>
+</head>
+<style>
+body {
+    background-color: black;
+}
+@keyframes appear {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes disappear {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+#dead {
+    font-size: 60px;
+    color: red;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    1px 1px 0 #000,
+    1px 1px 0 #000;
+    font-family: fantasy;
+    left: 40%;
+    top: 0%;
+    position: absolute;
+    animation-name: appear;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 0.5s;
+}
+#achieved {
+    color: white;
+    font-family: fantasy;
+    left: 25%;
+    top: 10%;
+    position: absolute;
+    animation-name: appear;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 1s;
+}
+#textBox {
+    height: 700px;
+    width: 700px;
+    position: absolute;
+    top: 20%;
+    left: 31%;
+    font-size: 40px;
+    color: white
+}
+</style>
+<body onload="opening()">
+<h1 id="dead">Ending: Ignored</h1>
+<h2 id="achieved">achieved by ignoring other major areas of the game and going straight to the King and refusing his deal</h1>
+<div id="textBox"></div>
+</body>
+<script>
+const postEndingMsg = '                               After refusing the deal, you are crushed by the Kings might. Your friends and the town citizens are then put into labor camps in the goblins new base, which was your home. Joshua and Denise cry every waking hour of the day, wishing you hadnt lost your memory. '
+
+function opening() {
+    typeText('textBox', 'postendingspan', postEndingMsg)
+     function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 80
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+}
+</script>

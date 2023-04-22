@@ -1,0 +1,204 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"
+        integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"
+        integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <!--reference external JS-->
+    <script src="script.js"></script>
+    <title id="title">woah</title>
+</head>
+<style>
+    body {
+        overflow: hidden;
+        background-image: url(town3.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: black;
+    }
+
+    @keyframes getinformedaboutthisfireasssong {
+        0% {
+            top: 100vh
+        }
+
+        50% {
+            top: 90vh
+        }
+
+        100% {
+            top: 100vh
+        }
+    }
+
+    #chatBox {
+        position: absolute;
+        width: 23vw;
+        height: 37vh;
+        left: 74vw;
+        top: 35vh;
+        z-index: 1;
+        opacity: 0;
+        background-color: gainsboro;
+        border: 5px solid gray;
+    }
+
+    
+
+    @keyframes appear {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes disappear {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    #fireasssong {
+        color: white;
+        text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        position: absolute;
+        top: 100vh;
+        animation-name: getinformedaboutthisfireasssong;
+        animation-fill-mode: forwards;
+        animation-duration: 10s;
+    }
+    #mcLeft {
+            position: absolute;
+            opacity: 0;
+        }
+        #mcDown {
+            position: absolute;
+            opacity: 0;
+        }
+        #mcUp {
+            position: absolute;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+        }
+        #mcRight {
+            position: absolute;
+            opacity: 1;
+            top: 50%;
+            left: 33%;
+        }
+        #goblinking {
+            top: 44%;
+            position: absolute;
+            left: 60%;
+        }
+        #KingPortrait {
+            top: 35vh;
+            left: 74vw;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            height: 128px;
+            width: 128px;
+        }
+</style>
+
+<body onload="opening()">
+    <p id="fireasssong">now playing: b toony - bonzods</p>
+    <div id="chatBox"><br><br>
+        <p id='charName'>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </p><br>
+        <p id="textBox"><span id='readspan'></span></p><br>
+        <p id='buttons'></p>
+    </div>
+    <img src="mcLeft.png" id="mcLeft">
+    <img src="mcDown.png" id="mcDown">
+    <img src="mcUp.png" id="mcUp">
+    <img src="mcRight.png" id="mcRight">
+    <img src="GoblinKing.png" id="goblinking">
+    <img src="KingPortrait.png" id="KingPortrait">
+
+</body>
+<script>
+    const wellMsg = 'well, well, well.  Jack              Winston. '
+    const whatansMsg = 'Once your little friends came by the doctor, I launched an assult on this town and took every citizen captive.            Ive come here to offer you a deal.'
+    const whatdealansMsg = 'Your friends will be set free,  IF..       you join me and the goblins. A strong, powerful faction. Capable of infinite power with such a strong unit like you.  Deal?'
+    const slayedMsg = 'then be slain where you stand!'
+    const veryMsg = 'very well then.    muahahahahaha...'
+    const whoMsg = 'The ruler of the goblins, the leader of those constantly terrorizing your weak town. Now, ive come here to give you an offer. a deal,    if you will.'
+
+
+    function opening() {
+        document.getElementById('chatBox').style.animation = 'appear 0.00001s forwards'
+        document.getElementById('KingPortrait').style.opacity = '1'
+        document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goblin King'
+        typeText('textBox', 'wellspan', wellMsg)
+        document.getElementById('buttons').innerHTML = "<button onclick='what()'>what the hell happened</button><br><button onclick='who()'>who are you?</button>"
+
+    }
+    function what() {
+        typeText('textBox', 'whatansspan', whatansMsg)
+        document.getElementById('buttons').innerHTML = "<button onclick='whatdeal()'>what deal</button>"
+    }
+    function whatdeal() {
+        typeText('textBox', 'whatdealansspan', whatdealansMsg)
+        document.getElementById('buttons').innerHTML = "<button onclick='nodeal()'>No, I can fight your whole 'faction' off.</button><br><button onclick='dealbetray()'>Sure, just let my friends go.</button>"
+    }
+    function nodeal() {
+        typeText('textBox', 'slayedspan', slayedMsg)
+        document.getElementById('buttons').innerHTML = ""
+        
+        function nodeal2() {
+            location.replace('IgnoredEnding.html')
+            
+        }setTimeout(nodeal2,2000)
+    }
+    function dealbetray() {
+        typeText('textBox', 'veryspan', veryMsg)
+        document.getElementById('buttons').innerHTML = ""
+        function deal2() {
+            location.replace('BetrayedEnding.html')
+        }setTimeout(deal2,2000)
+    }
+    function who() {
+        typeText('textBox', 'whoansspan', whoMsg)
+        document.getElementById('buttons').innerHTML = "<button onclick='whatdeal()'>what deal</button>"
+    }
+  
+
+   function typeText(containerId, spanId, text) {
+        document.getElementById(containerId).innerHTML = '';
+        document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
+        let i = 0;
+        let txtSpeed = 30
+        const timerId = setInterval(() => {
+            const span = document.getElementById(spanId);
+            const currentText = span.innerHTML;
+            if (i >= text.length) {
+                clearInterval(timerId);
+                return;
+            }
+            const nextChar = text.charAt(i);
+            const newText = currentText + nextChar;
+            span.innerHTML = newText;
+            i++;
+        }, txtSpeed);
+    }
+</script>

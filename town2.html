@@ -11,12 +11,12 @@
     <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <!--reference external JS-->
     <script src="script.js"></script>
-    <title id="title">pretty flowers</title>
+    <title id="title">mm bread bakery</title>
 </head>
 <style>
     body {
         overflow: hidden;
-        background-image: url(town1.png);
+        background-image: url(town2.png);
         background-repeat: no-repeat;
         background-position: center;
         background-color: black;
@@ -67,15 +67,17 @@
         height: 128px;
         width: 128px;
     }
+
     #GuardPortrait {
-       top: 35vh;
+        top: 35vh;
         left: 74vw;
         position: absolute;
         opacity: 0;
         z-index: 10;
         height: 128px;
-        width: 128px; 
+        width: 128px;
     }
+
     @keyframes appear {
         0% {
             opacity: 0;
@@ -109,13 +111,7 @@
         animation-fill-mode: forwards;
         animation-duration: 10s;
     }
-    #GD {
-         position: absolute;
-            opacity: 1;
-            left: 34%;
-            top: 34%;
-            z-index: -1;
-    }
+
 </style>
 
 <body>
@@ -130,13 +126,12 @@
     <img src="morganfreemanPortrait.png" id="morganfreemanPortrait">
     <img src="SignPortrait2.png" id="SignPortrait2">
     <img src="GuardPortrait.png" id="GuardPortrait">
-    <img src="GuardDown.png" id="GD">
 
 </body>
 <script>
-    const signMsg = 'nothin... just go on ahead :) '
-    const kidMsg = 'Good day..uhm, person!! '
-    const tyMsg = 'thanks?'
+    const signMsg = 'Ah!   Like I said this morning my friend, theres some weird spacey time stuffs!        Have a safe day citizen! '
+    const kidMsg = 'Good day,  Jack! '
+    const tyMsg = 'Why thank you! Good day to you too!'
 
     let w = window.innerWidth;
     let h = window.innerHeight;
@@ -185,63 +180,46 @@
         barrierLeft = collideRectRect(w * 0.2, 50, 100, 1000, x, y, 64, 64)
         barrierRight = collideRectRect(w * 0.7, 50, 100, 1000, x, y, 64, 64)
         barrierUp = collideRectRect(w * 0.3, h * 0.39, 900, 10, x, y, 64, 64)
-        barrierDown = collideRectRect(280, h * 0.9, 1000, 51, x, y, 64, 64)
+        barrierDown = collideRectRect(280, h * 0.6, 1000, 51, x, y, 64, 64)
         townenter = collideRectRect(w * 0.68, h / 2.2, 10, 100, x, y, 64, 64)
         enteranceenter = collideRectRect(w * 0.26, h / 2.2, 10, 100, x, y, 64, 64)
-        guardInteract = collideRectRect(w * 0.3, h * 0.409, 200, 1,x,y,64,64)
+        guardInteract = collideRectRect(w * 0.3, h * 0.409, 200, 1, x, y, 64, 64)
         door1 = collideRectRect(w * 0.48, h * 0.409, 50, 1, x, y, 64, 64)
         door2 = collideRectRect(w * 0.63, h * 0.409, 50, 1, x, y, 64, 64)
-        
+
 
         noFill()
-        rect(w*0.3,h*0.4,900,10)
+        rect(w * 0.3, h * 0.4, 900, 10)
         noFill()
-        rect(w*0.3,h*0.405,200,1)
+        rect(w * 0.3, h * 0.405, 200, 1)
         rect(w * 0.48, h * 0.409, 50, 1)
 
         if (door1) {
             drawText2()
         }
         if (door2) {
-            drawText2()
+            drawText3()
         }
         if (guardInteract) {
-            drawText()
+            drawText2()
         }
         if (guardInteract && keyCode === 69) {
-            document.getElementById('chatBox').style.opacity = '1'
-            document.getElementById('charName').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Guard'
-            document.getElementById('GuardPortrait').style.animation = 'appear 0.000001s forwards'
-            inchat = true
-            y = y + 30
-            typeText('textBox', 'kidspan', kidMsg)
-            document.getElementById('buttons').innerHTML = "<button onclick='sign()'>whats up with that sign at the enterance?</button><br><button onclick='goodday()'>Good day, sir! </button>"
-
-            function typeText(containerId, spanId, text) {
-                document.getElementById(containerId).innerHTML = '';
-                document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
-                let i = 0;
-                let txtSpeed = 30
-                const timerId = setInterval(() => {
-                    const span = document.getElementById(spanId);
-                    const currentText = span.innerHTML;
-                    if (i >= text.length) {
-                        clearInterval(timerId);
-                        return;
-                    }
-                    const nextChar = text.charAt(i);
-                    const newText = currentText + nextChar;
-                    span.innerHTML = newText;
-                    i++;
-                }, txtSpeed);
-            }
+            
         }
-        
+
         if (enteranceenter) {
-            location.replace('townEnterance1enter.html')
+            location.replace('town1town2enterance.html')
         }
         if (townenter) {
-            location.replace('town2.html')
+            if (left) {
+            location.replace('town3LEFT.html')
+            }
+            if (victory) {
+                location.replace('town3VICTORY.html')
+            }
+            if (ignore) {
+                location.replace('town3IGNORE.html')
+            }
         }
 
         if (keyIsDown(65) && !barrierLeft && !inchat) { // A key
@@ -310,8 +288,17 @@
         fill(255);
         stroke(0)
         strokeWeight(3)
-        text('Locked.', textX, textY);
+        text('Locked?', textX, textY);
     }
+    function drawText3() {
+            let textX = x; // x position of text
+            let textY = y - -80; // y position of text (20 pixels above player) outdated but idc
+            textAlign(LEFT);
+            fill(255,0,0);
+            stroke(0)
+            strokeWeight(3)
+            text('Something is wrong.', textX, textY);
+        }
     function preload() {
         soundFormats('mp3', 'ogg');
         toony = loadSound('b toony-bonzods.mp3')

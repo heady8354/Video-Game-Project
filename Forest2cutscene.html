@@ -351,6 +351,7 @@ body {
     const ohyeaMsg = 'Oh yeah!         Thats what I like to hear.          Bring it,       suckers!'
 
 function opening() {
+    sessionStorage.setItem('ignore',false)
     document.getElementById('mcWalkUp').style.animation = 'mcwalktowardsppl 3s linear forwards'
     document.getElementById('JPWalkLeft').style.animation = 'jamesbackup 3s linear forwards'
     
