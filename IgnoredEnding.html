@@ -15,6 +15,7 @@
 <style>
 body {
     background-color: black;
+    overflow: hidden;
 }
 @keyframes appear {
     0% {opacity: 0;}
@@ -63,14 +64,33 @@ body {
     font-size: 40px;
     color: white
 }
+#fireasssong {
+            color:white;
+            text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+            position: absolute;
+            top: 100vh;
+            animation-name: getinformedaboutthisfireasssong;
+            animation-fill-mode: forwards;
+            animation-duration: 10s;
+        }
+        @keyframes getinformedaboutthisfireasssong {
+            0% {top: 100vh}
+            50% {top: 90vh}
+            100% {top: 100vh}
+        }
 </style>
 <body onload="opening()">
+    <p id="fireasssong">now playing: Arrival Fast! Departure - Lore Game</p>
 <h1 id="dead">Ending: Ignored</h1>
 <h2 id="achieved">achieved by ignoring other major areas of the game and going straight to the King and refusing his deal</h1>
 <div id="textBox"></div>
 </body>
 <script>
-const postEndingMsg = '                               After refusing the deal, you are crushed by the Kings might. Your friends and the town citizens are then put into labor camps in the goblins new base, which was your home. Joshua and Denise cry every waking hour of the day, wishing you hadnt lost your memory. '
+const postEndingMsg = '                               After refusing the deal, you are crushed by the Kings might. Your friends and the town citizens are then put into labor camps in the goblins new base, which was your home. Joshua and Denise cry every waking hour of the day, wishing you hadnt lost your memory.  (Ending 1/6) '
 
 function opening() {
     typeText('textBox', 'postendingspan', postEndingMsg)
@@ -93,4 +113,20 @@ function opening() {
         }, txtSpeed);
     }
 }
+    function preload() {
+        soundFormats('mp3', 'ogg');
+        awaken = loadSound('endmusic.mp3')
+        awaken.setVolume(0.1)
+    }
+
+    function awakenPlay() {
+        awaken.play()
+        awaken.loop()
+
+    }
+
+    function setup() {
+        userStartAudio()
+        awakenPlay()
+    }
 </script>

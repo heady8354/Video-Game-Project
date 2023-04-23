@@ -122,7 +122,7 @@
 </style>
 
 <body>
-    <p id="fireasssong">now playing: b toony - bonzods</p>
+    <p id="fireasssong">now playing: sweet jomes - bonzods</p>
     <div id="chatBox"><br><br>
         <p id='charName'>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -316,15 +316,16 @@
         text('Locked.', textX, textY);
     }
     function preload() {
-        soundFormats('mp3', 'ogg');
-        toony = loadSound('b toony-bonzods.mp3')
-        toony.setVolume(0.1)
-    }
+            soundFormats('mp3', 'ogg');
+            toony = loadSound('villagesong.mp3')
+            toony.setVolume(0.1)
+        }
 
-    function toonyPlay() {
+        function toonyPlay() {
+            toony.play()
+            toony.loop()
 
-
-    } //test local storage
+        }
 
     function sign() {
         document.getElementById('buttons').innerHTML = ''

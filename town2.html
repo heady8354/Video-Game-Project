@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <!--reference external JS-->
     <script src="script.js"></script>
-    <title id="title">mm bread bakery</title>
+    <title id="title">where is everyone?</title>
 </head>
 <style>
     body {
@@ -115,7 +115,7 @@
 </style>
 
 <body>
-    <p id="fireasssong">now playing: b toony - bonzods</p>
+    <p id="fireasssong">now playing: sweet jomes - bonzods</p>
     <div id="chatBox"><br><br>
         <p id='charName'>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -211,13 +211,12 @@
             location.replace('town1town2enterance.html')
         }
         if (townenter) {
-            if (left) {
-            location.replace('town3LEFT.html')
-            }
-            if (victory) {
+             if (left) {
+                location.replace('town3LEFT.html')
+            } else if (victory) {
                 location.replace('town3VICTORY.html')
             }
-            if (ignore) {
+            else {
                 location.replace('town3IGNORE.html')
             }
         }
@@ -300,15 +299,16 @@
             text('Something is wrong.', textX, textY);
         }
     function preload() {
-        soundFormats('mp3', 'ogg');
-        toony = loadSound('b toony-bonzods.mp3')
-        toony.setVolume(0.1)
-    }
+            soundFormats('mp3', 'ogg');
+            toony = loadSound('villagesong.mp3')
+            toony.setVolume(0.1)
+        }
 
-    function toonyPlay() {
+        function toonyPlay() {
+            toony.play()
+            toony.loop()
 
-
-    } //test local storage
+        }
 
     function sign() {
         document.getElementById('buttons').innerHTML = ''

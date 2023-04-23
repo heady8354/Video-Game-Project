@@ -54,6 +54,22 @@
             cursor: pointer;
             z-index: -1;
         }
+        #credit2 {
+            font-family: Garamond;
+            color: white;
+            position: absolute;
+            -webkit-text-stroke-width: 0.5px;
+            -webkit-text-stroke-color: black;
+            font-size: 20px;
+            left: 40%;
+            top: 110%;
+            animation-name: creditPopUp2;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-delay: 2s;
+            cursor: pointer;
+            z-index: -1;
+        }
         #data {
             color: white;
             background-color: red;
@@ -113,6 +129,10 @@
         }
         @keyframes creditPopUp {
             0% {top: 110%}
+            100% {top: 80%}
+        }
+        @keyframes creditPopUp2 {
+            0% {top: 110%}
             100% {top: 90%}
         }
         @keyframes playAppear {
@@ -161,6 +181,7 @@
         }
         </style>
         <body>
+            <h3 id="credit2">special thanks to ChatGPT! (bugfixing)</h3>
             <p id="fireasssong">now playing: Petscop - Item Asylum</p>
             <h1 id="title">Amnesia</h1>
             <h3 id="credit">by Will Lopez</h3>

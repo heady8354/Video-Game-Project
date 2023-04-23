@@ -195,6 +195,7 @@
         </style>
 
         <body>
+            <button onclick="skip()">skip intro</button>
             <p id="fireasssong">now playing: Luck - Item Asylum</p>
             <img src="mcClosed.png" id="mcClosed">
             <img src="mcLay.png" id="mcLay">
@@ -211,7 +212,9 @@
             <div id="JCChatBox"><br><br><p id='Charname'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>???</b></p><br><p id="yeah">yeah! how do you feel?</p><br><br><button id='terrible' onclick='terrible()'>terrible...</button><br><button id='whoAre' onclick=whoAre()>who are you people?</button></div>
         </body>
         <script>
-
+            function skip() {
+                location.replace('combatTutorial.html')
+            }
             function terrible() {
                 document.getElementById('JCPortrait').style.top = "10000%"
                 document.getElementById('DLPortrait').style.zIndex = '3'

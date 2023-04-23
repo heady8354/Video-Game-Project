@@ -235,16 +235,17 @@
         strokeWeight(3)
         text('Your decision has been made.', textX, textY);
     }
-    function preload() {
+   function preload() {
         soundFormats('mp3', 'ogg');
         toony = loadSound('b toony-bonzods.mp3')
         toony.setVolume(0.1)
     }
 
     function toonyPlay() {
+        toony.play()
+        toony.loop()
 
-
-    } //test local storage
+    }
 
 
 </script>

@@ -10,7 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--reference external JS-->
     <script src="script.js"></script>
-    <title>called it!</title>
+    <title>did you really have a choice?</title>
 </head>
 <style>
     body {
@@ -60,7 +60,7 @@
     #achieved {
         color: white;
         font-family: fantasy;
-        left: 25%;
+        left: 32%;
         top: 10%;
         position: absolute;
         animation-name: appear;
@@ -101,13 +101,12 @@
 
 <body onload="opening()">
     <p id="fireasssong">now playing: Arrival Fast! Departure - Lore Game</p>
-    <h1 id="dead">Ending: Betrayed</h1>
-    <h2 id="achieved">achieved by ignoring other major areas of the game and going straight to the King and accepting his
-        deal</h1>
+    <h1 id="dead">Ending: Sacrificed</h1>
+    <h2 id="achieved">achieved by running from the goblin party and accepting the Kings offer</h1>
         <div id="textBox"></div>
 </body>
 <script>
-    const postEndingMsg = '                               After accepting the deal, your friends are released from their cells, and as they run past the goblins, they are killed one by one in front of you. You run to attack the goblins, but the King is too strong, and you fall with your friends. (Ending 2/6)'
+    const postEndingMsg = '                               After accepting the offer, you walk towards the goblin army and they let you tell Joshua and Denise what happened. They honor your decision, and cry as you leave their sight. The village is left half destroyed, and the rest of the residents are freed, while you remain in the goblin cove, working for them forever. (Ending 6/6)'
 
     function opening() {
         typeText('textBox', 'postendingspan', postEndingMsg)

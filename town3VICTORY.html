@@ -48,7 +48,7 @@
         border: 5px solid gray;
     }
 
-    
+
 
     @keyframes appear {
         0% {
@@ -83,40 +83,46 @@
         animation-fill-mode: forwards;
         animation-duration: 10s;
     }
+
     #mcLeft {
-            position: absolute;
-            opacity: 0;
-        }
-        #mcDown {
-            position: absolute;
-            opacity: 0;
-        }
-        #mcUp {
-            position: absolute;
-            opacity: 0;
-            top: 50%;
-            left: 50%;
-        }
-        #mcRight {
-            position: absolute;
-            opacity: 1;
-            top: 50%;
-            left: 33%;
-        }
-        #goblinking {
-            top: 44%;
-            position: absolute;
-            left: 60%;
-        }
-        #KingPortrait {
-            top: 35vh;
-            left: 74vw;
-            position: absolute;
-            opacity: 0;
-            z-index: 10;
-            height: 128px;
-            width: 128px;
-        }
+        position: absolute;
+        opacity: 0;
+    }
+
+    #mcDown {
+        position: absolute;
+        opacity: 0;
+    }
+
+    #mcUp {
+        position: absolute;
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+    }
+
+    #mcRight {
+        position: absolute;
+        opacity: 1;
+        top: 50%;
+        left: 33%;
+    }
+
+    #goblinking {
+        top: 44%;
+        position: absolute;
+        left: 60%;
+    }
+
+    #KingPortrait {
+        top: 35vh;
+        left: 74vw;
+        position: absolute;
+        opacity: 0;
+        z-index: 10;
+        height: 128px;
+        width: 128px;
+    }
 </style>
 
 <body onload="opening()">
@@ -137,15 +143,12 @@
 
 </body>
 <script>
-    console.log(sessionStorage.getItem('ignore') + 'ignore');
-        console.log(sessionStorage.getItem('victory') + 'victory');
-        console.log(sessionStorage.getItem('left')+ 'left');
     const wellMsg = 'well, well, well.  Jack              Winston. '
-    const whatansMsg = 'Once your little friends came by the doctor, I launched an assult on this town and took every citizen captive.            Ive come here to offer you a deal.'
-    const whatdealansMsg = 'Your friends will be set free,  IF..       you join me and the goblins. A strong, powerful faction. Capable of infinite power with such a strong unit like you.  Deal?'
-    const slayedMsg = 'then be slain where you stand!'
-    const veryMsg = 'very well then.    muahahahahaha...'
-    const whoMsg = 'The ruler of the goblins, the leader of those constantly terrorizing your weak town. Now, ive come here to give you an offer. a deal,    if you will.'
+    const whatansMsg = 'You defeated my two strongest raiders.. so i want to really test you.   Ive sent more raiders to take over this weak town, and hold everyone, including your friends, captive. I want to ask you something.     '
+    const whatdealansMsg = 'I ask for you to join the goblin faction, and stand beside me as we rule this island together.    You are powerful, and you could have a future with this, leave behind these weaklings who will only bring you down. '
+    const slayedMsg = '...what?'
+    const veryMsg = 'You made the right choice. I am excited to see what comes in the future.'
+    const whoMsg = 'The ruler of the goblins, the leader of those constantly terrorizing your weak town. Now, ive come to ask you something.'
 
 
     function opening() {
@@ -158,35 +161,35 @@
     }
     function what() {
         typeText('textBox', 'whatansspan', whatansMsg)
-        document.getElementById('buttons').innerHTML = "<button onclick='whatdeal()'>what deal</button>"
+        document.getElementById('buttons').innerHTML = "<button onclick='whatdeal()'>ask what</button>"
     }
     function whatdeal() {
         typeText('textBox', 'whatdealansspan', whatdealansMsg)
-        document.getElementById('buttons').innerHTML = "<button onclick='nodeal()'>No, I can fight your whole 'faction' off.</button><br><button onclick='dealbetray()'>Sure, just let my friends go.</button>"
+        document.getElementById('buttons').innerHTML = "<button onclick='nodeal()'>How about I kill you instead</button><br><button onclick='dealbetray()'>I'll rule this island with you</button>"
     }
     function nodeal() {
         typeText('textBox', 'slayedspan', slayedMsg)
         document.getElementById('buttons').innerHTML = ""
-        
+
         function nodeal2() {
-            location.replace('IgnoredEnding.html')
-            
-        }setTimeout(nodeal2,2000)
+            location.replace('HeroEnding.html')
+
+        } setTimeout(nodeal2, 2000)
     }
     function dealbetray() {
         typeText('textBox', 'veryspan', veryMsg)
         document.getElementById('buttons').innerHTML = ""
         function deal2() {
-            location.replace('BetrayedEnding.html')
-        }setTimeout(deal2,2000)
+            location.replace('EvilEnding.html')
+        } setTimeout(deal2, 2000)
     }
     function who() {
         typeText('textBox', 'whoansspan', whoMsg)
         document.getElementById('buttons').innerHTML = "<button onclick='whatdeal()'>what deal</button>"
     }
-  
 
-   function typeText(containerId, spanId, text) {
+
+    function typeText(containerId, spanId, text) {
         document.getElementById(containerId).innerHTML = '';
         document.getElementById(containerId).innerHTML = `<span id='${spanId}'></span>`;
         let i = 0;

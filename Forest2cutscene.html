@@ -338,6 +338,7 @@ body {
 <script>
     function draw() {
         console.log(left)
+        sessionStorage.setItem('ignore', false)
     }
     const troubleMsg = 'Listen,             I dont want any trouble.            Im running out of supplies to give you.   Leave me alone!'
     const hahMsg = 'Hah!     Well,   you better hand over those boxes,    else we taking everything..    by FORCE!   '
@@ -603,6 +604,7 @@ function help3() {
     location.replace('ForestFight.html')
 }
 function bye() {
+    sessionStorage.setItem('victory',false)
     sessionStorage.setItem('left',true)
     document.getElementById('mcUp').style.animation = 'disappear 0.00001s forwards'
     document.getElementById('mcWalkDown').style.animation = 'appear 0.00001s forwards, mcwalkaway 5s linear forwards'

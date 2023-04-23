@@ -10,17 +10,17 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--reference external JS-->
     <script src="script.js"></script>
-    <title>called it!</title>
+    <title>hopefully youre trying to get all the endings and didnt choose this forreal cause thats COLD</title>
 </head>
 <style>
     body {
         background-color: black;
-        overflow: hidden;
     }
 
     @keyframes appear {
         0% {
             opacity: 0;
+            overflow: hidden;
         }
 
         100% {
@@ -60,7 +60,7 @@
     #achieved {
         color: white;
         font-family: fantasy;
-        left: 25%;
+        left: 32%;
         top: 10%;
         position: absolute;
         animation-name: appear;
@@ -101,13 +101,12 @@
 
 <body onload="opening()">
     <p id="fireasssong">now playing: Arrival Fast! Departure - Lore Game</p>
-    <h1 id="dead">Ending: Betrayed</h1>
-    <h2 id="achieved">achieved by ignoring other major areas of the game and going straight to the King and accepting his
-        deal</h1>
+    <h1 id="dead">Ending: Villain</h1>
+    <h2 id="achieved">achieved by defeating the goblin party and accepting the Kings offer</h1>
         <div id="textBox"></div>
 </body>
 <script>
-    const postEndingMsg = '                               After accepting the deal, your friends are released from their cells, and as they run past the goblins, they are killed one by one in front of you. You run to attack the goblins, but the King is too strong, and you fall with your friends. (Ending 2/6)'
+    const postEndingMsg = '                               After accepting the offer, you shake hands with the King as Joshua and Denise stare at you with tears in their eyes, screaming and crying for you to do something. The King orders the goblins to take them back to their cove where theyll be sent to a labor camp for eternity. You and the King rule the island together, having infinite power. (Ending 3/6)'
 
     function opening() {
         typeText('textBox', 'postendingspan', postEndingMsg)
