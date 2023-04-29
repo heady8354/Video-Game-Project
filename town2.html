@@ -211,13 +211,14 @@
             location.replace('town1town2enterance.html')
         }
         if (townenter) {
-             if (victory) {
-                location.replace('town3VICTORY.html')
-            } else if (left) {
-                location.replace('town3LEFT.html')
-            }
-            else {
-                location.replace('town3IGNORE.html')
+            if (left) {
+                location.replace('town3LEFT.html');
+            } else {
+                if (victory) {
+                    location.replace('town3VICTORY.html');
+                } else {
+                    location.replace('town3IGNORE.html');
+                }
             }
         }
 
